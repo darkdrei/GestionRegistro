@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="{% static 'Registered/js/jquery-2.1.1.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'Registered/css/materialize.min.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'usuario/css/login.css' %}">
+  <script src="{% static 'Registered/js/materialize.min.js' %}"></script>
+  <title>Login</title>
+</head>
+<body>
+  <section>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col s10 push-s1">
+
+            <div class="row">
+
+                 <div class="col m6 hide-on-small-only">
+                   <img class="logo" src="{% static 'usuario/logo/logo_express.svg' %}" alt="no encontrado recurso"/>
+                 </div>
+
+              <div class="col s12 m6">
+                <center><h1 class="title">Register</h1></center>
+
+                <div class="col s6 offset-s3" id="img_login">
+                   <center><img class="circle responsive-img show-for-small-only " src="{% static 'usuario/logo/logo_express.svg' %}"></center>
+                </div>
+                <div class="col s6"></div>
+
+                <div id="form_login">
+
+                  <form action="" class="signup-form" method="post">
+                    <!--<center><h5 id="h2_login">Login</h5></center>-->
+
+                    <div class="section">
+                      <!--a href="" class="btn btn-fb hide-on-small-only">Iniciar sesiòn</a>
+                      <a href="" class="btn btn-fb hide-on-med-and-up">Iniciar sesiòn</a-->
+                    </div>
+
+                    <div class=" col s12 divider"></div>
+
+                    <div class="section">
+                      <input type="text" placeholder="Usuario" name="user">
+                      <input type="password" placeholder="Contraseña" name="pass">
+                      <center> <button class="btn btn-fb green darken-2" type="submit">Iniciar sesión</a></center>
+                      <p ></p>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+
+              <div></div>
+            </div>
+        </div>
+      </div>
+     </div>
+  </section>
+  <!--<footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l3 push-l8 center-align">
+          Express del Norte
+        </div>
+      </div>
+    </div>
+
+  </footer>-->
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+{% extends "Registered/base.html" %}
+{% load staticfiles %}
+{% block javascript %}
+  <script type="text/javascript" src="{% static 'operacion/js/cerrarLabor.js' %}"></script>
+  <script type="text/javascript" src="{% static 'operacion/js/tabla_labores.js' %}"></script>
+  <script type="text/javascript" src="{% static 'operacion/js/labores.js' %}"></script>
+{% endblock %}
+{% block css %}
+  <!--link rel="stylesheet" href="{% static 'usuario/css/empleado.css' %}"-->
+{% endblock %}
+{% block title %} Registro de tiempos {% endblock %}
+{% block tool %}
+<div class="row">
+  <div class="col s9 m9 tool offset-s1 offset-m1" id="tool">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <div class="row">
+          <div class="input-field col s12 m12" id="sel_empresa">
+            <input  id="busqueda" type="text" >
+            <label class="active" for="busqueda">Busqueda</label>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block tabla %}
+<thead>
+  <tr>
+    <th>Identificacion</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Hora de Inicio</th>
+    <th>Horas transcuridas</th>
+    <th>Finalizar turno</th>
+  </tr>
+</thead>
+<tbody id="tab_emp">
+
+</tbody>
+{% endblock %}
+{% block botones %}
+<a class="btn-floating btn-large waves-effect waves-light orange darken-3" href="#addlabor"><i class="material-icons ">add</i></a>
+{% endblock %}
+{% block paginacion %}
+{% endblock %}
+{% block dialogos %}
+<!-- Modal Structure -->
+  <div id="addlabor" class="modal modal-fixed-footer">
+    <div class="modal-content row">
+      <h4>Registrar Turno</h4>
+      <div id="contenido">
+        <form class="col s12" id="form_labor" action="{% url 'operacion:ws_labor' %}">
+            <div class="row">
+              <div class="input-field col s12 m8">
+                <input placeholder="Placeholder" id="user" type="text" class="validate">
+                <label for="first_name">Usuario</label>
+              </div>
+            <div class="row">
+              <div class="input-field col s12 m8">
+                <input id="password" type="password" class="validate">
+                <label for="password">Contraseña</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m8">
+                <label for="mensaje"></label>
+              </div>
+            </div>
+      </div>
+    </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat addlabor">Iniciar Sesión</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+    </div>
+  </div>
+  <div id="cerrarlaborc" class="modal modal-fixed-footer">
+    <div class="modal-content row">
+      <h4>Cerrar Turno</h4>
+      <div id="contenidoc">
+        <form class="col s12" id="form_laborc" action="{% url 'operacion:ws_labor' %}">
+            <div class="row">
+              <div class="input-field col s12 m8">
+                <input placeholder="Placeholder" id="userc" type="text" class="validate">
+                <label for="userc">Usuario</label>
+              </div>
+            <div class="row">
+              <div class="input-field col s12 m8">
+                <input id="passwordc" type="password" class="validate">
+                <label for="passwordc">Contraseña</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m8">
+                <label for="mensajec"></label>
+              </div>
+            </div>
+      </div>
+    </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat editlabor sendLabor">Iniciar Sesión</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+    </div>
+  </div>
+{% endblock %}

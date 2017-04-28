@@ -1,0 +1,49 @@
+ {% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript" src="{% static 'Registered/js/jquery-2.1.1.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'Registered/css/materialize.min.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="{% static 'Registered/js/materialize.min.js' %}"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'Registered/css/estilo.css' %}" rel="stylesheet">
+  {% block javascript %}{% endblock %}
+  {% block css %}{% endblock %}
+  <script src="{% static 'Registered/js/scri.js' %}"></script>
+  <meta charset="UTF-8">
+  <title>{% block title%} {% endblock %}</title>
+</head>
+<body>
+
+	<div class="row">
+		<div class="col s12" id="header">
+			<a href=""><i class="material-icons" id="house">home</i></a>
+		</div>
+	</div>
+  {% block tool %}{% endblock %}
+  <div class="row">
+    <div class="col s1"></div>
+    <div class="col s10" id="main">
+      <table class="highlight responsive-table">
+      {% block tabla %}
+      {% endblock %}
+    </table>
+  </div>
+  <div class="col s1" id="add">
+    {% block botones %}
+    {% endblock %}
+  </div>
+</div>
+  <div class="row">
+		<div class="col s12" id="menu">
+			<ul id="paginador" class="pagination">
+        {% block paginacion %}
+        {% endblock %}
+			</ul>
+		</div>
+	</div>
+{% block dialogos %}
+{% endblock %}
+</body>
+</html>

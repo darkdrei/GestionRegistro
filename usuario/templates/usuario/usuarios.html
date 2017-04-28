@@ -1,0 +1,89 @@
+{% extends "Registered/base.html" %}
+{% load staticfiles %}
+{% block javascript %}
+  <script type="text/javascript" src="{% static 'usuario/js/empleados.js' %}"></script>
+  <script type="text/javascript" src="{% static 'usuario/js/addempleado.js' %}"></script>
+{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'usuario/css/empleado.css' %}">
+{% endblock %}
+{% block title %} Empleados {% endblock %}
+{% block tool %}
+<div class="row">
+  <div class="col s9 m9 tool offset-s1 offset-m1" id="tool">
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <div class="row">
+          <div class="input-field col s4 m4" id="sel_empresa">
+            <select id = "empresa" {% if not empresa %} disabled{% endif %}>
+              <option value="0" disabled selected>{% if empresa %}Selecioné{% else %} No Registros {% endif %}</option>
+              {% if empresa %}
+                {% for c in empresa %}
+                  <option value="{{ c.id }}">{{ c.first_name }}</option>
+                {% endfor %}
+              {% endif %}
+            </select>
+            <label>Empresa</label>
+          </div>
+          <div class="input-field col s4 m4">
+            <select id="ciudad" disabled>
+              <option value="" disabled selected>Selecioné</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+            <label>Ciudad</label>
+          </div>
+          <div class="input-field col s4 m4">
+            <select id="tienda" disabled>
+              <option value="" disabled selected>Selecioné</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+            <label>Tienda</label>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block tabla %}
+<thead>
+  <tr>
+    <th>Empresa</th>
+    <th>Ciudad</th>
+    <th>Tienda</th>
+    <th>Identificacion</th>
+    <th>Nombre</th>
+    <th>Apellidos</th>
+    <th>Opciones</th>
+  </tr>
+</thead>
+<tbody id="tab_emp">
+
+</tbody>
+{% endblock %}
+{% block botones %}
+<a class="btn-floating btn-large waves-effect waves-light orange darken-3 addempleado" href="/operacion/add/labor/"><i class="material-icons ">add</i></a>
+{% endblock %}
+{% block paginacion %}
+{% endblock %}
+{% block dialogos %}
+<!-- Modal Structure -->
+  <div id="addempleado" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Registrar Tiempo</h4>
+      <div id="contenido">
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat addlabor">Agregar</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat cancelarlabor">Cancelar</a>
+    </div>
+  </div>
+{% endblock %}
