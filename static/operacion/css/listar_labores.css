@@ -1,0 +1,89 @@
+
+@media screen and (max-width: 250px), screen and (min-width: 601px) {
+	#boton_edit{
+		height: auto;
+		padding-right: 0px;
+	}
+}
+
+header{
+	height: 150px;
+	background-color: #4db6ac;
+	color:white;
+	margin-bottom: 50px;
+	box-shadow: 0px 4px 3px  #888888;
+}
+
+.container{
+	border: 0px;
+	background-color: none;
+	/*box-shadow: 0px 0px 3px  #888888;
+	overflow-x: hidden;
+	overflow-y: scroll;*/
+	padding-right: 0px;
+	margin-bottom: 50px;
+}
+
+#busqueda{
+	background-color: #fff;
+	box-shadow: 0px 2px 3px  #888888;
+	padding-left: 6px;
+}
+
+#btnAgregar{
+
+	margin-bottom: 20px;
+}
+
+body{
+	 background-image: url("concrete_seamless.png");
+}
+
+@font-face{
+  font-family: Titulo;
+  src: url(Billy_Ohio.otf);
+}
+
+#logeoT{
+	margin-top: 20px;
+	color: white;
+	font-size: 48px;
+}
+
+#titulo{
+	font-family: Titulo;
+	font-size: 40px;
+	margin-top: 0px;
+}
+
+#caja{
+	/*border:1px solid black;*/
+	margin-top: 7px;
+	box-shadow: 0px 0px 3px  #888888;
+	background-color: #ffffff;
+  border-right-width: 5px;
+  height: initial;
+  padding-left: 5px;
+
+}
+
+.cajaIn{
+	margin-bottom: 0px;
+	margin-top:10px;
+	box-shadow: 0px 0px 3px  #888888;
+	background-color: #ffffff;
+
+}
+
+#boton_edit{
+	height: auto;
+	margin-top: 20px;
+}
+
+#datos{
+
+}
+
+#row_2{
+	margin-bottom: 7px;
+}

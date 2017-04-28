@@ -52,13 +52,8 @@ function showResponse(responseText, statusText, xhr, $form)  {
 }
 
 function error(response,status,xhr){
-  validadFormulario(response.responseJSON);
-}
-
-function validadFormulario(data){
-  $.each(data, function( k, v ) {
-    console.log( "Key: " + k + ", Value: " + v );
-    var field = $("input[name=\""+k+"\"]");
-    field.addClass('invalid');
-  });
+  console.log(response.responseJSON);
+  $.each(response.responseJSON, function( k, v ) {
+  console.log( "Key: " + k + ", Value: " + v );
+});
 }
