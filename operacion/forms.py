@@ -12,7 +12,7 @@ from django.utils import timezone
 class ConfiguracionForm(forms.ModelForm):
     class Meta:
         model = models.Configuracion
-        fields = ['empresa','dias','valor']
+        fields = '__all__'
         exclude = ['estado']
     #end class
 #end class
@@ -30,7 +30,7 @@ class DiaSemanaForm(forms.ModelForm):
 class ConfiguracionFormView(forms.ModelForm):
     class Meta:
         model = models.Configuracion
-        fields = ['empresa','dias','valor']
+        fields = '__all__'
         exclude = ['estado']
     #end class
 

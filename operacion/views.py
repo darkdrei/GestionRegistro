@@ -37,7 +37,7 @@ class AddConfiguracion(supra.SupraFormView):
 class ListConfiguracion(supra.SupraListView):
     model = models.Configuracion
     search_key = 'q'
-    list_display = ['id','empresa__first_name','valor','seldias']
+    list_display = ['id','empresa__first_name','valor','seldias','servicios','inicio','fin']
     search_fields = ['id']
     paginate_by = 100
 
@@ -45,7 +45,7 @@ class ListConfiguracion(supra.SupraListView):
         return 'Lunes martes'
     # end def
 
-    def seldias(self, obj, row):
+    def servicios(self, obj, row):
         edit = "/operarion/edit/configuracion/%d/" % (obj.id)
         delete = "/operarion/delete/configuracion/%d/" % (obj.id)
         add = "/operarion/add/configuracion/"
