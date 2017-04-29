@@ -1,4 +1,7 @@
-function listEmpleados(){
+$(document).on('ready', function(){
+  listMotos();
+});
+function listMotos(){
   console.log("ejecutando",$("#tienda").val() != null);
   //if($("#tienda").val() != null){
   console.log($("#empresa").val() != "0",$("#ciudad").val() != "0",$("#tienda").val() != "0");
@@ -23,11 +26,11 @@ function listEmpleados(){
                   ciudad = resul[i].ciudad_e,
                   tienda = resul[i].tienda_e,
                   identificacion = resul[i].identificacion,
-                  nombre = resul[i].first_name,
+                  nombre = resul[i].nombre,
                    soat= resul[i].numeroS,
                   marca = resul[i].marca,
                   placa = resul[i].placa,
-                  apellidos = resul[i].last_name,
+                  apellidos = resul[i].apellidos,
                   servicios = resul[i].servicios;
                   var temporal="";
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
