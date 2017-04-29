@@ -17,6 +17,7 @@
 {% block tool %}
 <div class="row cajaIn caja">
   <div class="col s4 m4 l4 ">
+    <label>Empresa</label>
     <select id = "empresa" {% if not empresa %} disabled{% endif %}>
       <option value="0" disabled selected>{% if empresa %}Selecioné{% else %} No Registros {% endif %}</option>
       {% if empresa %}
@@ -24,26 +25,25 @@
       <option value="{{ c.id }}">{{ c.first_name }}</option>
       {% endfor %}
       {% endif %}
-    </select>
-    <label>Empresa</label>
+    </select>    
   </div>
   <div class="col s4 m4 l4 ">
+    <label>Ciudad</label>
     <select id="ciudad" disabled>
       <option value="" disabled selected>Selecioné</option>
       <option value="1">Option 1</option>
       <option value="2">Option 2</option>
       <option value="3">Option 3</option>
-    </select>
-    <label>Ciudad</label>
+    </select>    
   </div>
   <div class="col s4 m4 l4 ">
+    <label>Tienda</label>
     <select id="tienda" disabled>
       <option value="" disabled selected>Selecioné</option>
       <option value="1">Option 1</option>
       <option value="2">Option 2</option>
       <option value="3">Option 3</option>
-    </select>
-    <label>Tienda</label>
+    </select>    
   </div>
 </div>
 <div class="row cajaIn caja">

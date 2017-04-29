@@ -6,6 +6,8 @@
   <script type="text/javascript" src="{% static 'Registered/js/jqueryform.js' %}"></script>
   <script type="text/javascript" src="{% static 'Registered/js/valid_form_ajax.js' %}"></script>
   <script type="text/javascript" src="{% static 'empresa/js/empresa.js' %}"></script>
+  <script type="text/javascript" src="{% static 'empresa/js/addEmpresa.js' %}"></script>
+  <script type="text/javascript" src="{% static 'empresa/js/listEmpresa.js' %}"></script>
 {% endblock %}
 {% block css %}
   <link rel="stylesheet" href="{% static 'usuario/css/empleado.css' %}">
@@ -17,7 +19,7 @@
   <div class="col s4 m4 l4 ">
     <label>Ciudad</label>
     <select id = "ciudad" {% if not ciudad %} disabled{% endif %}>
-      <option value="0" disabled selected>{% if ciudad %}Selecioné{% else %} No Registros {% endif %}</option>
+      <option value="0" disabled selected>{% if ciudad %}Selecione{% else %} No Registros {% endif %}</option>
       {% if ciudad %}
 	      {% for c in ciudad %}
 	      <option value="{{ c.id }}">{{ c.nombre }}</option>
@@ -27,14 +29,16 @@
     
   </div>
 </div>
+
 <div class="row cajaIn caja">
   <div class="col s10 m11 l11 ">
      <input placeholder="Busqueda por cualquier criterio" id="search" type="text" class="validate">
   </div>
   <div class="col s1 m1 l1 ">
-     <a href="{% url 'usuario:add_empleado' %}"class="btn-floating btn-large waves-effect waves-light #4db6ac addempleado"><i class="material-icons" id="addtrabajador">add</i></a>
+     <a href="{% url 'empresa:add_empresa' %}" class="btn-floating btn-large waves-effect waves-light #4db6ac addEmpresa"><i class="material-icons" id="addtrabajador">add</i></a>
   </div>
 </div>
+
 {% endblock %}
 {% block contenido %}
 <div class="row cajaIn caja">
@@ -57,6 +61,7 @@
 </div>
 {% endblock %}
 {% block dialog %}
+
 <div id="addEmpresa" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Registrar Empresa</h4>
@@ -65,11 +70,11 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action waves-effect waves-green btn-flat saveempleado">Guardar</a>
+    <a href="{% url 'empresa:add_empresa' %}" class="modal-action waves-effect waves-green btn-flat saveEmpresa">Guardar</a>
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
   </div>
 </div>
-
+<!--***************************************************************************************************************************-->
 <div id="deleteEmpresa" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Eliminar Empresa</h4>
@@ -82,4 +87,5 @@
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">No</a>
   </div>
 </div>
+
 {% endblock %}

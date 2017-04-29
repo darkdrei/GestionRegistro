@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 #Manejo de empresa
 urlpatterns = [
     url(r'list/empresa/$', login_required(views.ListEmpresa.as_view()), name='list_empresa'),
-    url(r'add/empresa/(?P<pk>\d+)/$', login_required(views.AddEmpresa.as_view()), name='add_empresa'),
+    url(r'add/empresa/$', login_required(views.AddEmpresa.as_view()), name='add_empresa'),
     url(r'edit/empresa/(?P<pk>\d+)/$', login_required(views.EditEmpresa.as_view()), name='edit_empresa'),
     url(r'change/pass/empresa/$', login_required(views.SetPassWordEmpresa.as_view()), name='change_pass_empresa'),
     url(r'delete/empresa/(?P<pk>\d+)/$', login_required(views.DeleteEmpresa.as_view()), name='delete_pass_empresa'),

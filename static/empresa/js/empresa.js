@@ -1,3 +1,4 @@
+var pagina=0,proxima=0,bandera=true,b2=true;
 
 $(document).on('ready', function(){
 	
@@ -9,6 +10,7 @@ $(document).on('ready', function(){
     listEmpresas();
   });
   $('select').material_select();
+  listEmpresas();
 });
 
 function listEmpresas(){
@@ -33,11 +35,11 @@ function listEmpresas(){
             inicio = 0;
             for(var i=inicio;i < limite;i++){
               var empresa = resul[i].first_name,
-                  ciudad = resul[i].ciudad,
+                  ciudad = resul[i].ciudad__nombre,
                   n_tienda = resul[i].tiendas,  
-                  telefono = resul[i].last_name,
+                  telefono = resul[i].telefono,
                   servicios = resul[i].servicios;
-                  var temporal="";
+                  var temporal="",d="";
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
                   temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
                   temporal+="<td><span class=\"mod_ntienda\" >"+n_tienda+"</span></td>";
@@ -46,7 +48,7 @@ function listEmpresas(){
                   d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow tabla_edit\"><i class=\"material-icons\">edit</i></a></li>";
                   d+="<li><a href =\""+servicios.pass+"\" class=\"btn-floating yellow tabla_edit\"><i class=\"material-icons\">add</i></a></li>";
                   temporal+="<td>"+d+"</td>";
-                  emp.append("<tr>"+temporal+"</tr>")
+                  empr.append("<tr>"+temporal+"</tr>")
             }
 
             $('.tabla_delete, .tabla_edit').on('click', function(event){
@@ -68,7 +70,7 @@ function listEmpresas(){
               $('#cont_delete_mod').html(contenido);
               $('#deleteempleado').modal('open');
             });
-            eventosDePaginador();
+            /*eventosDePaginador();*/
           }
         }
       });
