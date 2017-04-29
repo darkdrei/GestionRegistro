@@ -1,6 +1,9 @@
 var pagina=0,proxima=0,bandera=true,b2=true;
 $(document).on('ready', function(){
   //console.log("hola mundo pelao");
+  $('.delete_save_empleado').on('click', function(event){
+    return false;
+  });
   $('#empresa').on('change', function(){
     //console.log("entro ... ",$(this).val(),$(this).val() != "0");
     if($(this).val() != "0"){
@@ -123,12 +126,12 @@ function listEmpleados(){
                   apellidos = resul[i].last_name,
                   servicios = resul[i].servicios;
                   var temporal="";
-                  temporal+="<td>"+empresa+"</td>";
-                  temporal+="<td>"+ciudad+"</td>";
-                  temporal+="<td>"+tienda+"</td>";
-                  temporal+="<td>"+identificacion+"</td>";
-                  temporal+="<td>"+nombre+"</td>";
-                  temporal+="<td>"+apellidos+"</td>";
+                  temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
+                  temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
+                  temporal+="<td><span class=\"mod_tienda\" >"+tienda+"</span></td>";
+                  temporal+="<td><span class=\"mod_identificacion\" >"+identificacion+"</span></td>";
+                  temporal+="<td><span class=\"mod_nombre\" >"+nombre+"</span></td>";
+                  temporal+="<td><span class=\"mod_apellidos\" >"+apellidos+"</span></td>";
                   var d= "<ul class=\"tabla_tool\">";
                   d+="<li><a href =\""+servicios.delete+"\" class=\"btn-floating red tabla_delete\"><i class=\"material-icons\">delete</i></a></li>";
                   d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow tabla_edit\"><i class=\"material-icons\">edit</i></a></li>";
@@ -173,6 +176,18 @@ function listEmpleados(){
             });
             $('.tabla_edit').on('click', function(event){
               console.log("desde los tool tabla");
+            });
+            $('.tabla_delete').on('click',function(event){
+              var contenido ="Empresa "+$(this).parents('tr').find('span.mod_empresa:first').text()+"<br><br>";
+              contenido +="Ciudad "+$(this).parents('tr').find('span.mod_ciudad:first').text()+"<br><br>";
+              contenido +="Tienda "+$(this).parents('tr').find('span.mod_tienda:first').text()+"<br><br>";
+              contenido +="Identificacion "+$(this).parents('tr').find('span.mod_identificacion:first').text()+"<br><br>";
+              contenido +="Nombre "+$(this).parents('tr').find('span.mod_nombre:first').text()+" "+$('.add').parents('tr').find('span.mod_apellidos:first').text()+"<br>";
+              contenido ="<h5>"+contenido+"</h5>";
+              contenido +="<h5>Esta seguro que desea elimiar a el empleado?</h5>";
+              $('.delete_save_empleado:first').attr('href',$(this).attr('href'));
+              $('#cont_delete_mod').html(contenido);
+              $('#deleteempleado').modal('open');
             });
             eventosDePaginador();
           }

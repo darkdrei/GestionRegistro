@@ -12,6 +12,22 @@ $(document).on('ready', function(){
                 return false;
             });
           $('#addempleado').modal('open');
+          $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            monthsFull: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
+            monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+            weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+            weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+            formatSubmit: 'dd/mm/yyyy',
+            format: 'dd/mm/yyyy',
+            onSet: function( arg ){
+                if ( 'select' in arg ){
+                    this.close();
+                }
+            }
+          });
+          $('select').material_select();
           $('.saveempleado').on('click',function(event){
             var options = {
                 //target:        '#output2',   // target element(s) to be updated with server response
@@ -49,16 +65,10 @@ function showResponse(responseText, statusText, xhr, $form)  {
   temporal = responseText;
     console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText +
         '\n\nThe output div should have already been updated with the responseText.');
+  listEmpleados();
+  $('#addempleado').modal('close');
 }
 
 function error(response,status,xhr){
-  validadFormulario(response.responseJSON);
-}
-
-function validadFormulario(data){
-  $.each(data, function( k, v ) {
-    console.log( "Key: " + k + ", Value: " + v );
-    var field = $("input[name=\""+k+"\"]");
-    field.addClass('invalid');
-  });
+  validadFormulario(response.responseJSON,"modal_add_empleado");
 }

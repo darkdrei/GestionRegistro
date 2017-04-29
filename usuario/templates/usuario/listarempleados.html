@@ -4,8 +4,10 @@
 {% block javascript %}
   <!--script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script-->
   <script type="text/javascript" src="{% static 'Registered/js/jqueryform.js' %}"></script>
+  <script type="text/javascript" src="{% static 'Registered/js/valid_form_ajax.js' %}"></script>
   <script type="text/javascript" src="{% static 'usuario/js/empleados.js' %}"></script>
   <script type="text/javascript" src="{% static 'usuario/js/addempleado.js' %}"></script>
+  <script type="text/javascript" src="{% static 'usuario/js/deleteempleado.js' %}"></script>
 {% endblock %}
 {% block css %}
   <link rel="stylesheet" href="{% static 'usuario/css/empleado.css' %}">
@@ -86,4 +88,17 @@
     <a href="#!" class="modal-action waves-effect waves-green btn-flat saveempleado">Guardar</a>
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
   </div>
+</div>
+<div id="deleteempleado" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Eliminar Trabajador</h4>
+    <div id="cont_delete_mod">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action waves-effect waves-green btn-flat delete_save_empleado">Si</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">No</a>
+  </div>
+</div>
 {% endblock %}
