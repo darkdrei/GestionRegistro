@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^operacion/', include('operacion.urls',namespace='operacion')),
     url(r'^usuario/', include('usuario.urls',namespace='usuario')),
     url(r'^empresa/', include('empresa.urls',namespace='empresa')),
+    url(r'^motorizado/', include('motorizado.urls',namespace='motorizado')),
     url(r'^$', login_required(TemplateView.as_view(template_name='Registered/home.html')),name='index'),
 ]
