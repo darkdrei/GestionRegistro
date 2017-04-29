@@ -104,7 +104,7 @@ class Login(BaseFormView):
                 supervisor = empresa.Supervisor.objects.filter(id=user.id)
                 if supervisor:
                     print 'Suervisor---> 3'
-                    return redirect('usuario:view_empleados')
+                    return redirect('/')
                 #end if
                 if user.is_superuser :
                     print 'Admin---> 3'
