@@ -158,8 +158,8 @@ class ListEmpleados(supra.SupraListView):
     #end class
 
     def servicios(self, obj, row):
-        edit = "/usuario/edit/usuario/%d/" % (obj.id)
-        delete = "/usuario/delete/usuario/%d/" % (obj.id)
+        edit = "/usuario/edit/empleado/%d/" % (obj.id)
+        delete = "/usuario/delete/empleado/%d/" % (obj.id)
         password = "change/pass/empleados/"
         return {'edit': edit, 'delete': delete,'pass':password}
     # end def
