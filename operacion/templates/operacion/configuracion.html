@@ -5,10 +5,10 @@
   <!--script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script-->
   <script type="text/javascript" src="{% static 'Registered/js/jqueryform.js' %}"></script>
   <script type="text/javascript" src="{% static 'Registered/js/valid_form_ajax.js' %}"></script>
-  <script type="text/javascript" src="{% static 'motorizado/js/listmotos.js' %}"></script>
+  <!--script type="text/javascript" src="{% static 'motorizado/js/listmotos.js' %}"></script>
   <script type="text/javascript" src="{% static 'motorizado/js/addmoto.js' %}"></script>
   <script type="text/javascript" src="{% static 'motorizado/js/editmoto.js' %}"></script>
-  <script type="text/javascript" src="{% static 'motorizado/js/deletemoto.js' %}"></script>
+  <script type="text/javascript" src="{% static 'motorizado/js/deletemoto.js' %}"></script-->
 {% endblock %}
 {% block css %}
   <link rel="stylesheet" href="{% static 'motorizado/css/listmotos.css' %}">
@@ -29,17 +29,9 @@
     <table class="highlight">
       <thead>
         <tr>
-          <th>Empresa</th>
-          <th>Ciudad</th>
-          <th>Tienda</th>
-          <th>Identificacion</th>
-          <th>Nombre</th>
-          <th>Apellidos</th>
-          <th>Placa</th>
-          <th>Marca</th>
-          <th>Numero Soat</th>
+          <th>Valor</th>
+          <th>Dias</th>
           <th>Opciones</th>
-
         </tr>
       </thead>
       <tbody id="tab_mot">
@@ -50,7 +42,7 @@
 </div>
 {% endblock %}
 {% block dialog %}
-<div id="addmoto" class="modal modal-fixed-footer">
+<div id="addconf" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Registrar Moto</h4>
     <div id="contenido">
@@ -58,11 +50,11 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="{% url 'motorizado:add_moto' %}" class="modal-action waves-effect waves-green btn-flat savemoto">Guardar</a>
+    <a href="{% url 'motorizado:add_moto' %}" class="modal-action waves-effect waves-green btn-flat saveconf">Guardar</a>
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
   </div>
 </div>
-<div id="editmoto" class="modal modal-fixed-footer">
+<div id="editconf" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Editar Moto</h4>
     <div id="edit_contenido">
@@ -70,11 +62,11 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action waves-effect waves-green btn-flat edit_modal_moto">Modificar</a>
+    <a href="#!" class="modal-action waves-effect waves-green btn-flat edit_modal_conf">Modificar</a>
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
   </div>
 </div>
-<div id="deletemoto" class="modal modal-fixed-footer">
+<div id="deleteconf" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Eliminar Moto</h4>
     <div id="cont_delete_mod">
@@ -82,7 +74,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action waves-effect waves-green btn-flat delete_save_moto">Si</a>
+    <a href="#!" class="modal-action waves-effect waves-green btn-flat delete_save_conf">Si</a>
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">No</a>
   </div>
 </div>

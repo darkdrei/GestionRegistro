@@ -1,18 +1,14 @@
 $(document).on('ready', function(){
   $('#addmoto').modal();
-  $('.addmoto').on('click', function(event){
-    return false;
-  });
-  $('.addmoto').on('click', function(event){
+  $('.addmoto,.savemoto').on('click', function(event){
     return false;
   });
   $('.addmoto').on('click', function(event){
     $("#contenido").load($(this).attr('href'),function(responseTxt, statusTxt, xhr){
-          alert(statusTxt+"   Error: " + xhr.status + ": " + xhr.statusText);
           $('#id_tienda, #id_ciudad').material_select();
-          $('#modal_add_empleado').submit(function() {
+          $('#add_form').submit(function() {
                 return false;
-            });
+          });
           $('#addmoto').modal('open');
           $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
@@ -30,25 +26,50 @@ $(document).on('ready', function(){
             }
           });
           $('select').material_select();
-          $('.saveempleado').on('click',function(event){
+          $('.savemoto').on('click',function(event){
             var options = {
-                //target:        '#output2',   // target element(s) to be updated with server response
-                beforeSubmit:  showRequest,  // pre-submit callback
-                success:       showResponse,  // post-submit callback
-                error:error,
+              //target:        '#output2',   // target element(s) to be updated with server response
+              beforeSubmit:  showRequest,  // pre-submit callback
+              success:       showResponse,  // post-submit callback
+              error:error,
 
-                // other available options:
-                url:       '/usuario/add/empleado/',         // override for form's 'action' attribute
-                type:      'post' ,       // 'get' or 'post', override for form's 'method' attribute
-                dataType:  'json',        // 'xml', 'script', or 'json' (expected server response type)
-                //clearForm: true        // clear all form fields after successful submit
-                //resetForm: true        // reset the form after successful submit
+              // other available options:
+              url:       $(this).attr('href'),         // override for form's 'action' attribute
+              type:      'post' ,       // 'get' or 'post', override for form's 'method' attribute
+              dataType:  'json',        // 'xml', 'script', or 'json' (expected server response type)
+              //clearForm: true        // clear all form fields after successful submit
+              //resetForm: true        // reset the form after successful submit
 
-                // $.ajax options can be used here too, for example:
-                //timeout:   3000
+              // $.ajax options can be used here too, for example:
+              //timeout:   3000
             };
-            $("#modal_add_empleado").ajaxSubmit(options);
+            $("#add_form").ajaxSubmit(options);
+            console.log('¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨__***');
+            //$("#add_form").submit();
           });
     });
   });
 });
+
+// pre-submit callback
+function showRequest(formData, jqForm, options) {
+    var queryString = $.param(formData);
+    console.log('About to submit: \n\n' + queryString);
+    return true;
+}
+
+
+
+function showResponse(responseText, statusText, xhr, $form)  {
+  console.log("*********************************");
+  temporal = responseText;
+    console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText +
+        '\n\nThe output div should have already been updated with the responseText.');
+  listMotos()
+  $('#addmoto').modal('close');
+}
+
+function error(response,status,xhr){
+  console.log("se explotola vaina");
+  validadFormulario(response.responseJSON,"add_form");
+}
