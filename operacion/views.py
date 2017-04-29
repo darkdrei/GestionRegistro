@@ -37,7 +37,7 @@ class AddConfiguracion(supra.SupraFormView):
 class ListConfiguracion(supra.SupraListView):
     model = models.Configuracion
     search_key = 'q'
-    list_display = ['id','empresa__first_name','valor','seldias','servicios','inicio','fin']
+    list_display = ['id','empresa__first_name','valor','seldias','servicios','inicio','fin','ciudad__nombre']
     search_fields = ['id']
     paginate_by = 100
 

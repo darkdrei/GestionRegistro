@@ -25,9 +25,11 @@ function listConfiguracion(){
               var empresa = resul[i].empresa__first_name,
                   dias = resul[i].seldias,
                   valor = resul[i].valor,
+                  ciudad = resul[i].ciudad__nombre,
                   servicios = resul[i].servicios;
                   var temporal="";
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
+                  temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
                   temporal+="<td><span class=\"mod_dias\" >"+dias+"</span></td>";
                   temporal+="<td><span class=\"mod_valor\" >"+valor+"</span></td>";
                   var d= "<ul class=\"tabla_tool\">";

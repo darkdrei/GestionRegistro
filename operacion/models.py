@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from empresa import models as empresa
+from empresa.models import Ciudad
 from usuario import models as usuario
 
 # Create your models here.
@@ -29,6 +30,7 @@ class DiaSemana(models.Model):
 
 class Configuracion(models.Model):
     empresa = models.ForeignKey(empresa.Empresa)
+    ciudad = models.ForeignKey(Ciudad)
     valor = models.FloatField()
     inicio = models.TimeField(editable=True, null=True)
     fin = models.TimeField(editable=True, null=True)
