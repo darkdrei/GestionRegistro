@@ -30,6 +30,8 @@ class DiaSemana(models.Model):
 class Configuracion(models.Model):
     empresa = models.ForeignKey(empresa.Empresa)
     valor = models.FloatField()
+    inicio = models.TimeField(editable=True, null=True)
+    fin = models.TimeField(editable=True, null=True)
     dias = models.ManyToManyField(DiaSemana)
     estado = models.BooleanField(default=True)
 
@@ -37,7 +39,7 @@ class Configuracion(models.Model):
         return u'%s'%self.empresa.first_name
     # end def
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s'%self.empresa.first_name
     # end def
 

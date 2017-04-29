@@ -5,13 +5,16 @@
   <!--script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script-->
   <script type="text/javascript" src="{% static 'Registered/js/jqueryform.js' %}"></script>
   <script type="text/javascript" src="{% static 'Registered/js/valid_form_ajax.js' %}"></script>
-  <!--script type="text/javascript" src="{% static 'motorizado/js/listmotos.js' %}"></script>
-  <script type="text/javascript" src="{% static 'motorizado/js/addmoto.js' %}"></script>
+  <script type="text/javascript" src="{% static 'Registered/js/timepicki.js' %}"></script>
+  <script type="text/javascript" src="{% static 'operacion/js/listconfiguraciones.js' %}"></script>
+  <script type="text/javascript" src="{% static 'operacion/js/addconfiguraciones.js' %}"></script>
+  <!--script type="text/javascript" src="{% static 'motorizado/js/addmoto.js' %}"></script>
   <script type="text/javascript" src="{% static 'motorizado/js/editmoto.js' %}"></script>
   <script type="text/javascript" src="{% static 'motorizado/js/deletemoto.js' %}"></script-->
 {% endblock %}
 {% block css %}
   <link rel="stylesheet" href="{% static 'motorizado/css/listmotos.css' %}">
+  <link rel="stylesheet" href="{% static 'Registered/css/timepicki.css' %}">
 {% endblock %}
 {% block tool %}
 <div class="row cajaIn caja">
@@ -19,7 +22,7 @@
      <input placeholder="Busqueda" id="search" type="text" class="validate">
   </div>
   <div class="col s1 m1 l1 ">
-     <a href="{% url 'motorizado:add_moto' %}"class="btn-floating btn-large waves-effect waves-light #4db6ac addmoto"><i class="material-icons" id="addtrabajador">add</i></a>
+     <a href="{% url 'operacion:add_conf' %}"class="btn-floating btn-large waves-effect waves-light #4db6ac addconfiguracion"><i class="material-icons" id="addtrabajador">add</i></a>
   </div>
 </div>
 {% endblock %}
@@ -45,13 +48,13 @@
 {% block dialog %}
 <div id="addconf" class="modal modal-fixed-footer">
   <div class="modal-content">
-    <h4>Registrar Moto</h4>
+    <h4>Registrar Configuracion</h4>
     <div id="contenido">
 
     </div>
   </div>
   <div class="modal-footer">
-    <a href="{% url 'motorizado:add_moto' %}" class="modal-action waves-effect waves-green btn-flat saveconf">Guardar</a>
+    <a href="{% url 'operacion:add_conf' %}" class="modal-action waves-effect waves-green btn-flat saveconf">Guardar</a>
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
   </div>
 </div>

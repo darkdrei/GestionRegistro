@@ -22,26 +22,14 @@ function listConfiguracion(){
             inicio = 0;
             for(var i=inicio;i < limite;i++){
               console.log("************------------------*****************");
-              var empresa = resul[i].empresa_e,
-                  ciudad = resul[i].ciudad_e,
-                  tienda = resul[i].tienda_e,
-                  identificacion = resul[i].identificacion,
-                  nombre = resul[i].nombre,
-                   soat= resul[i].numeroS,
-                  marca = resul[i].marca,
-                  placa = resul[i].placa,
-                  apellidos = resul[i].apellidos,
+              var empresa = resul[i].empresa__first_name,
+                  dias = resul[i].seldias,
+                  valor = resul[i].valor,
                   servicios = resul[i].servicios;
                   var temporal="";
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
-                  temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
-                  temporal+="<td><span class=\"mod_tienda\" >"+tienda+"</span></td>";
-                  temporal+="<td><span class=\"mod_identificacion\" >"+identificacion+"</span></td>";
-                  temporal+="<td><span class=\"mod_nombre\" >"+nombre+"</span></td>";
-                  temporal+="<td><span class=\"mod_apellidos\" >"+apellidos+"</span></td>";
-                  temporal+="<td><span class=\"mod_placa\" >"+placa+"</span></td>";
-                  temporal+="<td><span class=\"mod_marca\" >"+marca+"</span></td>";
-                  temporal+="<td><span class=\"mod_soat\" >"+soat+"</span></td>";
+                  temporal+="<td><span class=\"mod_dias\" >"+dias+"</span></td>";
+                  temporal+="<td><span class=\"mod_valor\" >"+valor+"</span></td>";
                   var d= "<ul class=\"tabla_tool\">";
                   d+="<li><a href =\""+servicios.delete+"\" class=\"btn-floating red tabla_delete\"><i class=\"material-icons\">delete</i></a></li>";
                   d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow modf_moto\"><i class=\"material-icons\">edit</i></a></li>";
