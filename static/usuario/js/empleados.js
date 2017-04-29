@@ -1,7 +1,7 @@
 var pagina=0,proxima=0,bandera=true,b2=true;
 $(document).on('ready', function(){
   //console.log("hola mundo pelao");
-  $('.delete_save_empleado').on('click', function(event){
+  $('.delete_save_empleado, .addempleado').on('click', function(event){
     return false;
   });
   $('#empresa').on('change', function(){
@@ -134,7 +134,7 @@ function listEmpleados(){
                   temporal+="<td><span class=\"mod_apellidos\" >"+apellidos+"</span></td>";
                   var d= "<ul class=\"tabla_tool\">";
                   d+="<li><a href =\""+servicios.delete+"\" class=\"btn-floating red tabla_delete\"><i class=\"material-icons\">delete</i></a></li>";
-                  d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow tabla_edit\"><i class=\"material-icons\">edit</i></a></li>";
+                  d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow tabla_edit modf_empleado\"><i class=\"material-icons\">edit</i></a></li>";
                   d+="<li><a href =\""+servicios.pass+"\" class=\"btn-floating yellow tabla_edit\"><i class=\"material-icons\">add</i></a></li>";
                   temporal+="<td>"+d+"</td>";
                   emp.append("<tr>"+temporal+"</tr>")
@@ -189,6 +189,7 @@ function listEmpleados(){
               $('#cont_delete_mod').html(contenido);
               $('#deleteempleado').modal('open');
             });
+            funcionesModificar();
             eventosDePaginador();
           }
         }
