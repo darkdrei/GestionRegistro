@@ -22,6 +22,7 @@ from django.views.generic.edit import BaseFormView
 from empresa import models as empresa
 from django.contrib.auth.views import logout
 from django.db.models import Q
+from motorizado import forms as form_motorizado
 
 
 class GeneralCliente(TemplateView):

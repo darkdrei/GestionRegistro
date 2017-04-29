@@ -111,10 +111,9 @@ class InfoMoto(models.Model):
     tipo = models.CharField(max_length=50)
     marca = models.CharField(max_length=50)
     placa = models.CharField(max_length=6, unique=True)
-    soat = models.OneToOneField(Soat)
-    tecno = models.OneToOneField(Tecno)
     t_propiedad = models.CharField(
         ("Tarjeta de Propiedad"), max_length=50, unique=True)
+    estado = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Moto Informacion"
