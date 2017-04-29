@@ -43,13 +43,13 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="col s12 m6 l3" id="Carta">
-				<div class="card" id="card1">
+		<div class="col s12 m6 l3" id="Carta">
+				<div class="card">
 		            <div class="card-image">
-		              <center><a href=""><i class="material-icons" id="logeo">&#xE853;</i></a></center>
+		              <center><a href="{% url 'empresa:esc_lis_empresas' %}"><i class="material-icons" id="logeo">&#xE8D1;</i></a></center>
 		            </div>
 		            <div class="card-content">
-		              <center><p>Login Empleados</p></center>
+		              <center><p>Empresas</p></center>
 		            </div>
 	          	</div>
 			</div>
@@ -60,7 +60,7 @@
 		              <center><a href=""><i class="material-icons" id="logeo">&#xE85D;</i></a></center>
 		            </div>
 		            <div class="card-content">
-		              <center><p>Informe Turnos</p></center>
+		              <center><p>Informes</p></center>
 		            </div>
 	          	</div>
 			</div>
@@ -68,21 +68,10 @@
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href=""><i class="material-icons" id="logeo">&#xE7FE;</i></a></center>
+		              <center><a href="{% url 'usuario:esc_lis_empleados' %}"><i class="material-icons" id="logeo">&#xE7FB;</i></a></center>
 		            </div>
 		            <div class="card-content">
-		              <center><p>Agregar Motorizado</p></center>
-		            </div>
-	          	</div>
-			</div>
-
-			<div class="col s12 m6 l3" id="Carta">
-				<div class="card">
-		            <div class="card-image">
-		              <center><a href=""><i class="material-icons" id="logeo">&#xE7FB;</i></a></center>
-		            </div>
-		            <div class="card-content">
-		              <center><p>Listar Motorizados</p></center>
+		              <center><p>Motorizados</p></center>
 		            </div>
 	          	</div>
 			</div>
@@ -93,37 +82,29 @@
 		              <center><a href=""><i class="material-icons" id="logeo">&#xE8D1;</i></a></center>
 		            </div>
 		            <div class="card-content">
-		              <center><p>Agregar Tienda</p></center>
+		              <center><p>Tienda</p></center>
 		            </div>
 	          	</div>
 			</div>
-			<div class="col s12 m6 l3" id="Carta">
-				<div class="card">
-		            <div class="card-image">
-		              <center><a href=""><i class="material-icons" id="logeo">list</i></a></center>
-		            </div>
-		            <div class="card-content">
-		              <center><p>Listar Tienda</p></center>
-		            </div>
-	          	</div>
-			</div>
+
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
 		              <center><a href=""><i class="material-icons" id="logeo">supervisor_account</i></a></center>
 		            </div>
 		            <div class="card-content">
-		              <center><p>Agregar Supervisor</p></center>
+		              <center><p>Supervisor</p></center>
 		            </div>
 	          	</div>
 			</div>
+
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href=""><i class="material-icons" id="logeo">contacts</i></a></center>
+		              <center><a href="{% url 'operacion:configuraciones' %}"><i class="material-icons" id="logeo">&#xE227;</i></a></center>
 		            </div>
 		            <div class="card-content">
-		              <center><p>Listar Supervisor</p></center>
+		              <center><p>Configuraciones de Pago</p></center>
 		            </div>
 	          	</div>
 			</div>
