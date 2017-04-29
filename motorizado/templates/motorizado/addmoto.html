@@ -3,7 +3,7 @@ ul  {
     list-style: None;
 }
 </style>
-<form action="{% url 'usuario:add_empleado' %}" method="post" id="add_form">
+<form action="{% url 'usuario:add_empleado' %}"  id="add_form">
   {% csrf_token %}
   <ul>
     {{form.as_ul}}

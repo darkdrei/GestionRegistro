@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from cuser.middleware import CuserMiddleware
 from django.views.generic import View, DeleteView
 from django.db.models import Q
+from django.shortcuts import redirect, get_object_or_404, HttpResponse
 
 
 class AddMoto(supra.SupraFormView):
@@ -42,7 +43,7 @@ class ListMoto(supra.SupraListView):
     #end class
 
     def servicios(self, obj, row):
-        edit = "/morotizado/edit/moto/%d/" % (obj.id)
+        edit = "/motorizado/edit/moto/%d/" % (obj.id)
         delete = "/motorizado/delete/moto/%d/" % (obj.id)
         add = "/motorizado/add/moto/"
         password = "change/pass/empleados/"

@@ -1,6 +1,10 @@
 $(document).on('ready', function(){
   listMotos();
+  $('#search').on('keyup', function(event){
+    listMotos();
+  });
 });
+
 function listMotos(){
   console.log("ejecutando",$("#tienda").val() != null);
   //if($("#tienda").val() != null){
@@ -41,10 +45,10 @@ function listMotos(){
                   temporal+="<td><span class=\"mod_apellidos\" >"+apellidos+"</span></td>";
                   temporal+="<td><span class=\"mod_placa\" >"+placa+"</span></td>";
                   temporal+="<td><span class=\"mod_marca\" >"+marca+"</span></td>";
-                  temporal+="<td><span class=\"mod_apellidos\" >"+soat+"</span></td>";
+                  temporal+="<td><span class=\"mod_soat\" >"+soat+"</span></td>";
                   var d= "<ul class=\"tabla_tool\">";
                   d+="<li><a href =\""+servicios.delete+"\" class=\"btn-floating red tabla_delete\"><i class=\"material-icons\">delete</i></a></li>";
-                  d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow tabla_edit modf_empleado\"><i class=\"material-icons\">edit</i></a></li>";
+                  d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow modf_moto\"><i class=\"material-icons\">edit</i></a></li>";
                   temporal+="<td>"+d+"</td>";
                   emp.append("<tr>"+temporal+"</tr>")
             }
@@ -57,19 +61,8 @@ function listMotos(){
             $('.tabla_edit').on('click', function(event){
               console.log("desde los tool tabla");
             });
-            $('.tabla_delete').on('click',function(event){
-              var contenido ="Empresa "+$(this).parents('tr').find('span.mod_empresa:first').text()+"<br><br>";
-              contenido +="Ciudad "+$(this).parents('tr').find('span.mod_ciudad:first').text()+"<br><br>";
-              contenido +="Tienda "+$(this).parents('tr').find('span.mod_tienda:first').text()+"<br><br>";
-              contenido +="Identificacion "+$(this).parents('tr').find('span.mod_identificacion:first').text()+"<br><br>";
-              contenido +="Nombre "+$(this).parents('tr').find('span.mod_nombre:first').text()+" "+$('.add').parents('tr').find('span.mod_apellidos:first').text()+"<br>";
-              contenido ="<h5>"+contenido+"</h5>";
-              contenido +="<h5>Esta seguro que desea elimiar a el empleado?</h5>";
-              $('.delete_save_empleado:first').attr('href',$(this).attr('href'));
-              $('#cont_delete_mod').html(contenido);
-              $('#deleteempleado').modal('open');
-            });
-            // funcionesModificar();
+            funcionesModificarMoto();
+            funcionesEliminar();
             // eventosDePaginador();
           }
         }
