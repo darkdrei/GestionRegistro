@@ -13,8 +13,7 @@ urlpatterns = [
     url(r'delete/empresa/(?P<pk>\d+)/$', login_required(views.DeleteEmpresa.as_view()), name='delete_pass_empresa'),
 ]
 
-
-#Manejo de empresa
+#Manejo de tienda
 urlpatterns += [
     url(r'list/tienda/$', login_required(views.ListTienda.as_view()), name='list_tienda'),
     url(r'add/tienda/(?P<pk>\d+)/$', login_required(views.AddTienda.as_view()), name='add_tienda'),
@@ -25,4 +24,9 @@ urlpatterns += [
 #Manejo de ciudad
 urlpatterns += [
     url(r'list/ciudad/$', login_required(views.ListCiudad.as_view()), name='list_ciudad'),
+]
+
+#vista
+urlpatterns += [
+    url(r'ListarEmpresas/$',login_required(views.Empresas.as_view()), name='esc_lis_empresas'),
 ]

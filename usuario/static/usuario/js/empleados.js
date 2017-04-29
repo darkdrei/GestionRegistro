@@ -1,4 +1,5 @@
 var pagina=0,proxima=0,bandera=true,b2=true;
+
 $(document).on('ready', function(){
   //console.log("hola mundo pelao");
   $('.delete_save_empleado').on('click', function(event){

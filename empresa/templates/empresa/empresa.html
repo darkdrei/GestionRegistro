@@ -5,13 +5,12 @@
   <!--script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script-->
   <script type="text/javascript" src="{% static 'Registered/js/jqueryform.js' %}"></script>
   <script type="text/javascript" src="{% static 'Registered/js/valid_form_ajax.js' %}"></script>
-  <script type="text/javascript" src="{% static 'usuario/js/empleados.js' %}"></script>
-  <script type="text/javascript" src="{% static 'usuario/js/addempleado.js' %}"></script>
-  <script type="text/javascript" src="{% static 'usuario/js/deleteempleado.js' %}"></script>
+  <script type="text/javascript" src="{% static 'empresa/js/empresa.js' %}"></script>
 {% endblock %}
 {% block css %}
   <link rel="stylesheet" href="{% static 'usuario/css/empleado.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'operacion/css/listar_labores.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'empresa/css/empresa.css' %}">
 {% endblock %}
 {% block tool %}
 <div class="row cajaIn caja">
@@ -40,18 +39,17 @@
 {% block contenido %}
 <div class="row cajaIn caja">
   <div class="col s12 m12 l12" id="Tabla">
-    <table class="highlight">
+    <table class="highlight centered">
       <thead>
         <tr>
           <th>Empresa</th>
           <th>Ciudad</th>
           <th>N. Tiendas</th>
-          <th>Nombre</th>
           <th>Telefonos</th>
           <th>Opciones</th>
         </tr>
       </thead>
-      <tbody id="tab_emp">
+      <tbody id="tab_empr">
 
       </tbody>
     </table>

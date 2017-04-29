@@ -16,25 +16,49 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, get_object_or_404, HttpResponse
 from empresa import models as empresa
 from django.utils import timezone
+from django.db.models import Q
 
 
 class ListEmpresa(supra.SupraListView):
     model = models.Empresa
     search_key = 'q'
-    list_display = ['id','nit','first_name','direccion','ciudad']
+    list_display = ['id','nit','first_name','direccion','telefono', 'celular', 'ciudad__nombre','tiendas','servicios']
     search_fields = ['id']
-    paginate_by = 10
+    paginate_by = 100
+
+    def servicios(self, obj, row):
+        edit = "/empresa/edit/empresa/%d/" % (obj.id)
+        delete = "/empresa/delete/empresa/%d/" % (obj.id)
+        return {'edit': edit, 'delete': delete}
+    # end def
+
+    def tiendas(self, obj, row):
+        tienda = models.Tienda.objects.filter(empresa__id=obj.id)
+        return len(tienda)
+    # end def
 
     def get_queryset(self):
         queryset = super(ListEmpresa, self).get_queryset()
         user = CuserMiddleware.get_user()
         confi = models.Empresa.objects.filter(supervisor__id=user.id,active=True)
+        busqueda = self.request.GET.get('search','')
+        confi.filter(Q(ciudad__nombre__contains=busqueda) | Q(first_name__contains=busqueda) | Q(nit__contains=busqueda))
         return confi
 
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(ListEmpresa, self).dispatch(*args, **kwargs)
     # end def
+# end class
+
+
+class Empresas(TemplateView):
+    def dispatch(self, request, *args, **kwargs):
+        user = CuserMiddleware.get_user()
+        ciu = models.Ciudad.objects.all()
+        return render(request, 'empresa/empresa.html',{'ciudad':ciu})
+    # end def
+
 # end class
 
 
