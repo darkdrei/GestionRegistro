@@ -6,6 +6,11 @@ from supra import views as supra
 from usuario import models as usuario
 import models
 import forms
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from cuser.middleware import CuserMiddleware
+from django.views.generic import View, DeleteView
+from django.db.models import Q
 
 
 class AddMoto(supra.SupraFormView):
@@ -15,7 +20,7 @@ class AddMoto(supra.SupraFormView):
 
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
-        return super(AddEmpleado, self).dispatch(*args, **kwargs)
+        return super(AddMoto, self).dispatch(*args, **kwargs)
     # end def
 # end class
 
@@ -28,12 +33,12 @@ class ListMoto(supra.SupraListView):
     paginate_by = 100
 
     class Renderer:
-        empresa_e ='empleado__tienda__empresa__first_name'
-        ciudad_e = 'empleado__tienda__ciudad__nombre'
-        tienda_e = 'empleado__tienda__nombre'
-		identificacion = 'empleado__identificacion'
-		nombre = 'empleado__firs_name'
+		empresa_e ='empleado__tienda__empresa__first_name'
+		ciudad_e = 'empleado__tienda__ciudad__nombre'
+		nombre = 'empleado__first_name'
+		tienda_e = 'empleado__tienda__nombre'
 		apellidos = 'empleado__last_name'
+		identificacion = 'empleado__identificacion'
     #end class
 
     def servicios(self, obj, row):
@@ -47,18 +52,16 @@ class ListMoto(supra.SupraListView):
     def get_queryset(self):
         user = CuserMiddleware.get_user()
         #emp = models.InfoMoto.objects.filter(empleado__tienda__empresa__supervisor__id=user.id).values_list('id', flat=True)
-        print emp
         if self.request.GET.get('pagina', False):
             self.paginate_by = self.request.GET.get('pagina', False)
         #end if
         busqueda = self.request.GET.get('search','')
-        print 'Empresa ',empr,'  ciudad ',ciud,' tienda',tiend
         moto = models.InfoMoto.objects.filter((Q(empleado__tienda__empresa__first_name__contains=busqueda) |
 		Q(empleado__tienda__ciudad__nombre__contains=busqueda) | Q(empleado__tienda__nombre__contains=busqueda)
-		| Q(empleado__firs_name__contains=busqueda) | Q(empleado__last_name__contains=busqueda)
+		| Q(empleado__first_name__contains=busqueda) | Q(empleado__last_name__contains=busqueda)
 		| Q(placa__contains=busqueda) | Q(marca__contains=busqueda)
 		| Q(numeroS__contains=busqueda))
-		& Q(empleado__tienda__empresa__supervisor__id=user.id,estado=True))
+		&Q(empleado__tienda__empresa__supervisor__id=user.id,estado=True))
         return moto
 
     @method_decorator(csrf_exempt)
