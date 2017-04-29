@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 #formularios configuracion
 urlpatterns = [
+    url(r'^configuraciones/$',login_required(TemplateView.as_view(template_name='operacion/configuraciones.html')), name='configuraciones'),
     url(r'add/configuracion/$',login_required(views.AddConfiguracion.as_view()) ,name='add_conf'),
     url(r'edit/configuracion/(?P<pk>\d)/$',login_required(views.AddConfiguracion.as_view()) ,name='edit_conf'),
     url(r'list/configuracion/$',login_required(views.ListConfiguracion.as_view()) ,name='list_conf'),

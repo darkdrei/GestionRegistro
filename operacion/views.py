@@ -37,14 +37,25 @@ class AddConfiguracion(supra.SupraFormView):
 class ListConfiguracion(supra.SupraListView):
     model = models.Configuracion
     search_key = 'q'
-    list_display = ['id','ordinario','fincho']
+    list_display = ['id','empresa__first_name','valor','seldias']
     search_fields = ['id']
-    paginate_by = 10
+    paginate_by = 100
+
+    def seldias(self, obj, row):
+        return 'Lunes martes'
+    # end def
+
+    def seldias(self, obj, row):
+        edit = "/operarion/edit/configuracion/%d/" % (obj.id)
+        delete = "/operarion/delete/configuracion/%d/" % (obj.id)
+        add = "/operarion/add/configuracion/"
+        return {'edit': edit, 'delete': delete,'add':add}
+    # end def
 
     def get_queryset(self):
         queryset = super(ListConfiguracion, self).get_queryset()
         user = CuserMiddleware.get_user()
-        confi = models.Configuracion.objects.filter(empresa__tienda__empleado__user_ptr_id=user.id,estado=True)
+        confi = models.Configuracion.objects.filter(empresa__supervisor__user_ptr_id=user.id,estado=True)
         return confi
 
     @method_decorator(csrf_exempt)
