@@ -97,6 +97,6 @@ class Administrador(Usuario):
 
     class Meta:
         verbose_name = "Administrador Tienda"
-        verbose_name_plural = "Administradore de Tienda"
+        verbose_name_plural = "Administradores de Tiendas"
     #end class
 #end class

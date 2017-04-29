@@ -1,4 +1,5 @@
 var pagina=0,proxima=0,bandera=true,b2=true;
+
 $(document).on('ready', function(){
   //console.log("hola mundo pelao");
   $('.delete_save_empleado, .addempleado').on('click', function(event){
@@ -108,13 +109,6 @@ function listEmpleados(){
           var limite=data.count,inicio=0;
           console.log('RESULTADOS   ',resul.length,'    ',data.count,'  ',resul);
           if(resul.length){
-            // if (proxima == 0){
-            //   limite=5;
-            //   incio=0;
-            // }else{
-            //   limite = proxima*5;
-            //   inicio = (proxima-1)*5;
-            // }
             inicio = 0;
             for(var i=inicio;i < limite;i++){
               console.log("************------------------*****************");
@@ -139,35 +133,6 @@ function listEmpleados(){
                   temporal+="<td>"+d+"</td>";
                   emp.append("<tr>"+temporal+"</tr>")
             }
-            // var paginador = $('#paginador');
-            // paginador.html("");
-            // paginador.append('<li class="disabled"><a href="#!" class=\"ant\"><i class="material-icons">chevron_left</i></a></li>');
-            // if(data.next && bandera){
-            //   console.log(data.count,' valor de impresion ',data.count/5);
-            //   paginas = Math.round(data.count/5);
-            //   proxima = data.next;
-            //   if (paginas < 1){
-            //     paginas =1;
-            //     proxima=1;
-            //   }
-            //   bandera=false;
-            //   // var paginador = $('#paginador');
-            //   // paginador.html("");
-            //   // paginador.append('<li class="disabled"><a href="#!" class=\"ant\"><i class="material-icons">chevron_left</i></a></li>');
-            // }else{
-            //   //borrar el iterador
-            // }
-            // for(var i=0; i< paginas;i++){
-            //   var clase="";
-            //   if (b2){
-            //       clase = (i+1 == proxima-1?"active":"waves-effect");
-            //   }else{
-            //     clase = (i+1 == proxima?"active":"waves-effect");
-            //   }
-            //   paginador.append("<li class=\""+clase+"\"><a href=\""+(1+i)+"\" class=\"iterator\">"+(1+i)+"</a></li>");
-            // }
-            // b2=false;
-            // paginador.append('<li class="waves-effect"><a href="#!" class=\"sig\"><i class="material-icons">chevron_right</i></a></li>');
             $('.tabla_delete, .tabla_edit').on('click', function(event){
               return false;
             });
@@ -191,25 +156,9 @@ function listEmpleados(){
             });
             funcionesModificar();
             eventosDePaginador();
+            funcionesEliminar();
           }
         }
       });
   //  }
-}
-
-function eventosDePaginador(){
-  $('.iterator').on('click', function(event){
-    return false;
-  });
-  $('.iterator').on('click', function(event){
-    proxima = $(this).attr('href');
-    $('.pagination li').removeClass('active');
-    var actual = $('.pagination li.active');
-    actual.removeClass('active');
-    actual.addClass('waves-effect');
-    var proximo = $(".pagination li a[href=\""+proxima+"\"");
-    console.log("El cambio de elmento es ",proximo);
-    proximo.parent().addClass('active');
-    proximo.parent().removeClass('waves-effect');
-  });
 }

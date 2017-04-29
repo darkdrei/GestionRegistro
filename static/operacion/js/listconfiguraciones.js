@@ -1,19 +1,15 @@
 $(document).on('ready', function(){
-  listMotos();
+  listConfiguracion();
   $('#search').on('keyup', function(event){
-    listMotos();
+    listConfiguracion();
   });
 });
 
-function listMotos(){
-  console.log("ejecutando",$("#tienda").val() != null);
-  //if($("#tienda").val() != null){
-  console.log($("#empresa").val() != "0",$("#ciudad").val() != "0",$("#tienda").val() != "0");
-  console.log($("#empresa").val(),$("#ciudad").val(),$("#tienda").val());
+function listConfiguracion(){
       var res = "";
           res+= $("#search").val() != null? "&search="+$("#search").val():"";
       $.ajax({
-        url:'/motorizado/list/moto/?'+res,
+        url:'/operacion/list/configuracion/?'+res,
         type:'get',
         dataType:'json',
         success:function(data){
@@ -61,8 +57,8 @@ function listMotos(){
             $('.tabla_edit').on('click', function(event){
               console.log("desde los tool tabla");
             });
-            funcionesModificarMoto();
-            funcionesEliminar();
+            // funcionesModificarMoto();
+            // funcionesEliminar();
             // eventosDePaginador();
           }
         }
