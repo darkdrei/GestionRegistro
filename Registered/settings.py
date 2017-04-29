@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'cuser',
     'nested_admin',
     'Registered',
+    'motorizado',
 ]
 
 MIDDLEWARE = [
