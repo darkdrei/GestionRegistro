@@ -42,8 +42,8 @@ class PrecioDefecto(models.Model):
     # end def
 
     class Meta:
-        verbose_name ='Configuracion pago por tienda'
-        verbose_name_plural ='Configuraciones pago por tienda'
+        verbose_name ='Configuracion pago por defecto  tienda'
+        verbose_name_plural ='Configuraciones pago por defecto tienda'
     #end class
 
 
