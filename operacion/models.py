@@ -27,6 +27,26 @@ class DiaSemana(models.Model):
     #end class
 #end class
 
+class PrecioDefecto(models.Model):
+    empresa = models.ForeignKey(empresa.Empresa)
+    ciudad = models.ForeignKey(Ciudad)
+    valor = models.FloatField()
+    estado = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return u'%s'%self.empresa.first_name
+    # end def
+
+    def __str__(self):
+        return u'%s'%self.empresa.first_name
+    # end def
+
+    class Meta:
+        verbose_name ='Configuracion pago por tienda'
+        verbose_name_plural ='Configuraciones pago por tienda'
+    #end class
+
+
 
 class Configuracion(models.Model):
     empresa = models.ForeignKey(empresa.Empresa)

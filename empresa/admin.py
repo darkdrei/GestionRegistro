@@ -38,9 +38,9 @@ class EmpresaInline(nested_admin.NestedStackedInline):
     # end def
 
 class SupervisorAdmin(admin.ModelAdmin):
-    list_display = ['identificacion','first_name','last_name','direccion','ciudad']
+    list_display = ['identificacion','first_name','last_name','direccion']
     form = forms.SupervisorForm
-    filter_horizontal =['empresas']
+    filter_horizontal =['empresas','ciudad']
     #inlines = [EmpresaInline]
 
     def get_form(self, request, obj=None, *args, **kwargs):

@@ -34,6 +34,33 @@ class AddConfiguracion(supra.SupraFormView):
 # end class
 
 
+class AddConfiguracionWS(supra.SupraFormView):
+    model = models.Configuracion
+    form_class = forms.ConfiguracionFormView
+    template_name = 'operacion/addconfig.html'
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(AddConfiguracionWS, self).dispatch(*args, **kwargs)
+    # end def
+
+    def get(self, request, *args, **kwargs):
+        return render(request,'operacion/addconfig.html',{'form': forms.ConfiguracionFormView()})
+    #end def
+
+    def post(self, request, *args, **kwargs):
+        form = forms.ConfiguracionFormView(request.POST, instance=models.Configuracion())
+        if form.is_valid():
+            confi = form.save(commit=False)
+            confi.save()
+            return HttpResponse('[{"status":true}]', content_type='application/json', status=200)
+        # end if
+        error = form.errors.as_json()
+        return HttpResponse(error, content_type='application/json', status=404)
+    # end def
+# end class
+
+
 class ListConfiguracion(supra.SupraListView):
     model = models.Configuracion
     search_key = 'q'

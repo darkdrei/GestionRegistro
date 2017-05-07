@@ -43,6 +43,15 @@ class Empleados(TemplateView):
 # end class
 
 
+class Supervisores(TemplateView):
+    def dispatch(self, request, *args, **kwargs):
+        user = CuserMiddleware.get_user()
+        emp = empresa.Empresa.objects.filter(supervisor__id=user.id,active=True)
+        return render(request, 'usuario/listarempleados.html',{'empresa':emp})
+    # end def
+# end class
+
+
 class Logout(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         logout(request)

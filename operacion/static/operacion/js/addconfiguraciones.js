@@ -54,11 +54,10 @@ function showResponse(responseText, statusText, xhr, $form)  {
   temporal = responseText;
     console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText +
         '\n\nThe output div should have already been updated with the responseText.');
-  listMotos()
+  listConfiguracion();
   $('#addmoto').modal('close');
 }
 
 function error(response,status,xhr){
-  console.log("se explotola vaina");
   validadFormulario(response.responseJSON,"add_form");
 }

@@ -32,3 +32,9 @@ urlpatterns += [
 urlpatterns += [
     url(r'^empleados/$',login_required(views.Empleados.as_view()), name='esc_lis_empleados'),
 ]
+
+
+# registro de supervisores
+urlpatterns += [
+    url(r'^supervisores/$',login_required(views.Supervisores.as_view()), name='supervisoress'),
+]

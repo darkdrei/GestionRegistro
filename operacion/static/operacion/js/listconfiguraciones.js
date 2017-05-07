@@ -21,7 +21,6 @@ function listConfiguracion(){
           if(resul.length){
             inicio = 0;
             for(var i=inicio;i < limite;i++){
-              console.log("************------------------*****************");
               var empresa = resul[i].empresa__first_name,
                   dias = resul[i].seldias,
                   valor = resul[i].valor,

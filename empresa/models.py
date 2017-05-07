@@ -55,7 +55,7 @@ class Supervisor(User):
     identificacion = models.CharField(max_length=15, null=True, blank=True)
     celular = models.CharField(max_length=10, null=True, blank=True)
     direccion = models.CharField(max_length=50)
-    ciudad = models.ForeignKey(Ciudad)
+    ciudad = models.ManyToManyField(Ciudad)
     empresas = models.ManyToManyField(Empresa)
     active = models.BooleanField(default=True)
 
