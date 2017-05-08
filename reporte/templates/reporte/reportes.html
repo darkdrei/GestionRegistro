@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'Registered/css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+	<title>Reportes</title>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+
+<header>
+
+<div class="row">
+	<div class="col s6 m4 l2 offset-s3 offset-m4 offset-l5">
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<center><i class="material-icons" id="logeoT">phonelink_lock</i></center>
+			</div>
+			<div class="col s12 m12 l12">
+				<center><p id="titulo">Registered</p></center>
+			</div>
+		</div>
+	</div>
+  <div class="col s2 m2 l4 "></div>
+  <div class="col s3 m2 l1">
+    <center><a href="{% url 'usuario:logout' %}" <i class="material-icons" id="close">input</i></a></center>
+  </div>
+</div>
+
+</header>
+
+<section>
+	<div class="container">
+		<div class="row">
+
+			<div class="col s12 m6 l3" id="Carta">
+				<div class="card">
+		            <div class="card-image">
+		              <center><a href="{% url 'reporte:pagos' %}"><i class="material-icons" id="logeo">&#xE85D;</i></a></center>
+		            </div>
+		            <div class="card-content">
+		              <center><p>Total a pagar</p></center>
+		            </div>
+	          	</div>
+			</div>
+
+      <div class="col s12 m6 l3" id="Carta">
+				<div class="card">
+		            <div class="card-image">
+		              <center><a href=""><i class="material-icons" id="logeo">&#xE85D;</i></a></center>
+		            </div>
+		            <div class="card-content">
+		              <center><p>Total a pagar detallado</p></center>
+		            </div>
+	          	</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+</body>
+</html>

@@ -15,6 +15,32 @@ body{
   src: url("/static/Registered/font/Billy_Ohio.otf");
 }
 
+#Tabla{
+	padding: 20px;
+}
+
+@media (max-width: 601px) and (min-width: 250px) {
+	.scrolbx{
+		overflow-x: scroll;
+		padding-top: 5px;
+	}
+
+	.scrolby{
+		overflow-y: scroll;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+
+.scrolbx{
+	padding-top: 5px;
+}
+
+.scrolby{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
 #logeoT{
 	margin-top: 20px;
 	color: white;
@@ -44,6 +70,19 @@ body{
 
 #close{
 	font-size: 50px;
+	color: #fff;
+    margin-top: 45px;
+}
+
+#back{
+	-webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    font-size: 50px;
+    color: #fff;
+    margin-top: 45px;
 }
 
 a:link {

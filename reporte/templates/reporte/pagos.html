@@ -1,0 +1,123 @@
+{% extends 'Registered/base2.html' %}
+{% load staticfiles %}
+{% block title %}Listar empleados{% endblock %}
+{% block javascript %}
+  <!--script type="text/javascript" src="http://malsup.github.com/jquery.form.js"></script-->
+  <script type="text/javascript" src="{% static 'Registered/js/jqueryform.js' %}"></script>
+  <!--script type="text/javascript" src="{% static 'Registered/js/valid_form_ajax.js' %}"></script>
+  <script type="text/javascript" src="{% static 'usuario/js/editempleado.js' %}"></script-->
+  <script type="text/javascript" src="{% static 'reporte/js/reportes.js' %}"></script>
+  <!--script type="text/javascript" src="{% static 'usuario/js/addempleado.js' %}"></script>
+  <script type="text/javascript" src="{% static 'usuario/js/deleteempleado.js' %}"></script-->
+{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'usuario/css/empleado.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'operacion/css/listar_labores.css' %}">
+{% endblock %}
+{% block tool %}
+<div class="row cajaIn caja">
+  <div class="col s4 m4 l4 ">
+    <select id = "empresa" {% if not empresa %} disabled{% endif %}>
+      <option value="0" disabled selected>{% if empresa %}Selecioné{% else %} No Registros {% endif %}</option>
+      {% if empresa %}
+      {% for c in empresa %}
+      <option value="{{ c.id }}">{{ c.first_name }}</option>
+      {% endfor %}
+      {% endif %}
+    </select>
+    <label>Empresa</label>
+  </div>
+  <div class="col s4 m4 l4 ">
+    <select id="ciudad" disabled>
+      <option value="" disabled selected>Selecioné</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Ciudad</label>
+  </div>
+  <div class="col s4 m4 l4 ">
+    <select id="tienda" disabled>
+      <option value="" disabled selected>Selecioné</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Tienda</label>
+  </div>
+</div>
+<div class="row cajaIn caja">
+  <div class="col s3 m3 l3 ">
+      <input type="date" class="datepicker" placeholder="Busqueda" id="inicio">
+  </div>
+  <div class="col s3 m3 l3 ">
+     <input type="date" class="datepicker" placeholder="Busqueda" id="fin">
+  </div>
+  <div class="col s4 m4 l4 ">
+     <input placeholder="Busqueda" id="search" type="text" class="validate">
+  </div>
+  <div class="col s1 m1 l1 ">
+     <a href="{% url 'usuario:add_empleado' %}"class="btn-floating btn-large waves-effect waves-light #4db6ac addempleado"><i class="material-icons" id="addtrabajador">add</i></a>
+  </div>
+</div>
+{% endblock %}
+{% block contenido %}
+<div class="row cajaIn caja">
+  <div class="col s12 m12 l12" id="Tabla">
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>Ciudad</th>
+          <th>Tienda</th>
+          <th>Identificacion</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody id="tab_emp">
+
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+{% block dialog %}
+<div id="addempleado" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Registrar Trabajador</h4>
+    <div id="contenido">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action waves-effect waves-green btn-flat saveempleado">Guardar</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+  </div>
+</div>
+<div id="editempleado" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Editar Trabajador</h4>
+    <div id="edit_contenido">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action waves-effect waves-green btn-flat edit_modal_empleado">Modificar</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+  </div>
+</div>
+<div id="deleteempleado" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Eliminar Trabajador</h4>
+    <div id="cont_delete_mod">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action waves-effect waves-green btn-flat delete_save_empleado">Si</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">No</a>
+  </div>
+</div>
+{% endblock %}
