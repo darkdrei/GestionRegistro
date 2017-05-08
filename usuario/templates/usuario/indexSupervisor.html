@@ -1,0 +1,96 @@
+{% extends 'Registered/base2.html' %}
+{% load staticfiles %}
+{% block title %}Supervisores{% endblock %}
+{% block javascript %}
+
+<script type="text/javascript" src="{% static 'Registered/js/jqueryform.js' %}"></script>
+  <script type="text/javascript" src="{% static 'Registered/js/valid_form_ajax.js' %}"></script>
+  <script type="text/javascript" src="{% static 'empresa/js/addsupervisor.js' %}"></script>
+  <script type="text/javascript" src="{% static 'empresa/js/deletesupervisor.js' %}"></script>
+  <script type="text/javascript" src="{% static 'empresa/js/editsupervisor.js' %}"></script>
+  <script type="text/javascript" src="{% static 'empresa/js/listsupervisor.js' %}"></script>
+{% endblock %}
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'operacion/css/listar_labores.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'empresa/css/empresa.css' %}">
+{% endblock %}
+
+{% block tool %}
+
+<div class="row cajaIn caja scrolbx">
+  <div class="col s10 m10 l10 ">
+     <input placeholder="Busqueda por cualquier criterio" id="search" type="text" class="validate">
+  </div>
+  <div class="col s1 m1 l1 ">
+     <a href="{% url 'empresa:add_tienda' %}" class="btn-floating btn-large waves-effect waves-light #4db6ac addtienda"><i class="material-icons" id="addtrabajador">add</i></a>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<div class="row cajaIn caja scrolbx scrolby">
+  <div class="col s12 m12 l12" id="Tabla">
+    <table class="highlight centered">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>UserName</th>
+          <th>Celular</th>
+          <th>Empresas</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody id="tab_tiendas">
+
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+{% block dialog %}
+
+<!--**********************************************Agregar Tienda****************************************************-->
+<div id="addtienda" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Registrar Tienda</h4>
+    <div id="contenido">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="{% url 'empresa:add_tienda' %}" class="modal-action waves-effect waves-green btn-flat savetienda">Guardar</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+  </div>
+</div>
+
+<!--*************************************************Editar Tienda***************************************************-->
+<div id="edittienda" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Editar Tienda</h4>
+    <div id="edit_contenido">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action waves-effect waves-green btn-flat edit_modal_tienda">Modificar</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+  </div>
+</div>
+
+<!--**********************************************Eliminar Tienda*****************************************************-->
+<div id="deletetienda" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Eliminar Tienda</h4>
+    <div id="cont_delete_mod">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action waves-effect waves-green btn-flat delete_save_tienda">Si</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">No</a>
+  </div>
+</div>
+
+{% endblock %}

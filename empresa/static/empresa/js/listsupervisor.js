@@ -1,11 +1,11 @@
 $(document).on('ready', function(){
-  listempresa();
+  listsupervisor();
   $('#search').on('keyup', function(event){
-    listempresa();
+    listsupervisor();
   });
 });
 
-function listempresa(){
+function listsupervisor(){
   console.log("ejecutando",$("#tienda").val() != null);
   //if($("#tienda").val() != null){
   console.log($("#empresa").val() != "0",$("#ciudad").val() != "0",$("#tienda").val() != "0");
@@ -13,12 +13,12 @@ function listempresa(){
       var res = "";
           res+= $("#search").val() != null? "&search="+$("#search").val():"";
       $.ajax({
-        url:'/empresa/list/empresa/?'+res,
+        url:'/empresa/list/supervisor/?'+res,
         type:'get',
         dataType:'json',
         success:function(data){
           console.log(data);
-          var emp = $('#tab_empr');
+          var emp = $('#tab_supervisor');
           emp.html("");
           var resul = data.object_list;
           var limite=data.count,inicio=0;
@@ -27,20 +27,24 @@ function listempresa(){
             for(var i=inicio;i < limite;i++){
               console.log("************------------------*****************");
               var empresa = resul[i].first_name,
-                  nit = resul[i].nit,
-                  ciudad = resul[i].ciudad__nombre,
-                  tiendas = resul[i].tiendas,
-                  telefono = resul[i].telefono,
+                  apellido = resul[i].last_name,
+                  user = resul[i].username,
+                  celular = resul[i].celular,
+                  empresas = resul[i].nom_empresa,
                   servicios = resul[i].servicios;
                   var temporal="";
+                  var resul_emp = empresas.split(","),ul_emp="";
+                  for(var k=1; k<resul_emp.length;k++){
+                    ul_emp+="<li>"+resul_emp[k]+"</li>";
+                  }
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
-                  temporal+="<td><span class=\"mod_nit\" >"+nit+"</span></td>";
-                  temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
-                  temporal+="<td><span class=\"mod_tiendas\" >"+tiendas+"</span></td>";
-                  temporal+="<td><span class=\"mod_telefono\" >"+telefono+"</span></td>";
+                  temporal+="<td><span class=\"mod_apellido\" >"+apellido+"</span></td>";
+                  temporal+="<td><span class=\"mod_username\" >"+user+"</span></td>";
+                  temporal+="<td><span class=\"mod_celular\" >"+celular+"</span></td>";
+                  temporal+="<td><span class=\"mod_empresas\" ><ul class=\"lis_emp_tem\"><ul class=\"listempp\">"+ul_emp+"</ul></span></td>";
                   var d= "<ul class=\"tabla_tool\">";
                   d+="<li><a href =\""+servicios.delete+"\" class=\"btn-floating red tabla_delete\"><i class=\"material-icons\">delete</i></a></li>";
-                  d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow modf_empresa\"><i class=\"material-icons\">edit</i></a></li>";
+                  d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow modf_supervisor\"><i class=\"material-icons\">edit</i></a></li>";
                   temporal+="<td>"+d+"</td>";
                   emp.append("<tr>"+temporal+"</tr>")
             }
@@ -51,7 +55,7 @@ function listempresa(){
             $('.tabla_edit').on('click', function(event){
               console.log("desde los tool tabla");
             });
-            funcionesModificarEmpresa();
+            funcionesModificarSupervisor();
             funcionesEliminar();
             // eventosDePaginador();
           }
