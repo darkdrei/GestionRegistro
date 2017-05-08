@@ -16,7 +16,7 @@ urlpatterns = [
 #Manejo de tienda
 urlpatterns += [
     url(r'list/tienda/$', login_required(views.ListTienda.as_view()), name='list_tienda'),
-    url(r'add/tienda/(?P<pk>\d+)/$', login_required(views.AddTienda.as_view()), name='add_tienda'),
+    url(r'add/tienda/$', login_required(views.AddTienda.as_view()), name='add_tienda'),
     url(r'edit/tienda/(?P<pk>\d+)/$', login_required(views.AddTienda.as_view()), name='edit_tienda'),
     url(r'delete/tienda/(?P<pk>\d+)/$', login_required(views.DeleteTienda.as_view()), name='delete_pass_tienda'),
 ]
@@ -28,5 +28,10 @@ urlpatterns += [
 
 #vista
 urlpatterns += [
-    url(r'ListarEmpresas/$',login_required(views.Empresas.as_view()), name='esc_lis_empresas'),
+    url(r'indexEmpresas/$',login_required(views.Empresas.as_view()), name='esc_lis_empresas'),
+]
+
+#vista Tiendas
+urlpatterns += [
+    url(r'indexTienda/$',login_required(views.Tiendas.as_view()), name='index_tiendas'),
 ]

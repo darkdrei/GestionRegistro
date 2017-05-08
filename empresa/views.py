@@ -58,9 +58,7 @@ class Empresas(TemplateView):
         ciu = models.Ciudad.objects.all()
         return render(request, 'empresa/empresa.html',{'ciudad':ciu})
     # end def
-
 # end class
-
 
 class ListCiudad(supra.SupraListView):
     model = models.Empresa
@@ -165,9 +163,21 @@ class SetPassWordEmpresa(View):
 class ListTienda(supra.SupraListView):
     model = models.Tienda
     search_key = 'q'
-    list_display = ['id','nombre','direccion','ciudad','empresa','fijo']
+    list_display = ['id','nombre','direccion','nom_ciudad','nom_empresa','fijo','servicios']
     search_fields = ['id']
     paginate_by = 10
+
+    class Renderer:
+        nom_empresa = 'empresa__first_name'
+        nom_ciudad = 'ciudad__nombre'
+    # end class
+
+    def servicios(self, obj, row):
+        edit = "/empresa/edit/tienda/%d/" % (obj.id)
+        delete = "/empresa/delete/tienda/%d/" % (obj.id)
+        add = "/empresa/add/tienda/"
+        return {'edit': edit, 'delete': delete,'add':add}
+    # end def
 
     def get_queryset(self):
         queryset = super(ListTienda, self).get_queryset()
@@ -187,6 +197,14 @@ class ListTienda(supra.SupraListView):
     # end def
 # end class
 
+class Tiendas(TemplateView):
+    def dispatch(self, request, *args, **kwargs):
+        user = CuserMiddleware.get_user()
+        ciu = models.Ciudad.objects.all()
+        return render(request, 'empresa/tiendas.html',{'ciudad':ciu})
+    # end def
+
+# end class
 
 class AddTienda(supra.SupraFormView):
     model = models.Tienda

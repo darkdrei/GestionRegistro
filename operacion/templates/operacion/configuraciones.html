@@ -16,8 +16,9 @@
   <link rel="stylesheet" href="{% static 'motorizado/css/listmotos.css' %}">
   <link rel="stylesheet" href="{% static 'Registered/css/timepicki.css' %}">
 {% endblock %}
+
 {% block tool %}
-<div class="row cajaIn caja">
+<div class="row cajaIn caja scrolbx">
   <div class="col s10 m11 l11 ">
      <input placeholder="Busqueda" id="search" type="text" class="validate">
   </div>
@@ -27,7 +28,7 @@
 </div>
 {% endblock %}
 {% block contenido %}
-<div class="row cajaIn caja">
+<div class="row cajaIn caja scrolbx scrolby">
   <div class="col s12 m12 l12" id="Tabla">
     <table class="highlight">
       <thead>
