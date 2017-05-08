@@ -28,7 +28,7 @@ urlpatterns += [
 
 #vista
 urlpatterns += [
-    url(r'indexEmpresas/$',login_required(views.Empresas.as_view()), name='esc_lis_empresas'),
+    url(r'indexEmpresas/$',login_required(views.Empresas.as_view()), name='index_empresas'),
 ]
 
 #vista Tiendas
