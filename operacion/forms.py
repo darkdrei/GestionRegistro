@@ -110,7 +110,7 @@ class ConfiguracionFormView(forms.ModelForm):
                     #print x
                     confi = models.Configuracion.objects.filter(dias__id__in=x,empresa=data.get('empresa'))
                     #print confi
-                    dias = models.DiaSemana.objects.filter(Q(Q(id__in=x,configuracion__empresa=data.get('empresa'),estado=True)) &
+                    dias = models.DiaSemana.objects.filter(Q(Q(id__in=x,configuracion__ciudad=data.get('ciudad'),configuracion__empresa=data.get('empresa'),estado=True)) &
                     Q(
                         Q(
                             Q(configuracion__inicio__lte=data.get('inicio')) & Q(configuracion__fin__gte=data.get('inicio'))
