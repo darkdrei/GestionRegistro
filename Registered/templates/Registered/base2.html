@@ -19,7 +19,13 @@
 
    <header>
    		<div class="row">
-   			<div class="col s6 m4 l2 offset-s3 offset-m4 offset-l5">
+
+        {% block atras %}{% endblock %}
+
+
+        {% block logo %}
+
+   			<div class="col s6 m4 l2 ">
    				<div class="row">
    					<div class="col s12 m12 l12">
    						<center><i class="material-icons" id="logeoT">phonelink_lock</i></center>
@@ -29,10 +35,13 @@
    					</div>
    				</div>
    			</div>
+        {% endblock %}
    		  <div class="col s2 m2 l4 "></div>
+        {% block salir %}
    		  <div class="col s3 m2 l1">
    		    <center><a href="{% url 'usuario:logout' %}" <i class="material-icons" id="close">input</i></a></center>
    		  </div>
+        {% endblock %}
    		</div>
    	</header>
    <div class="container" style="margin-bottom: 20px;">
