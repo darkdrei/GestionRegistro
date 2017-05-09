@@ -18,6 +18,8 @@ from django.utils import timezone
 from datetime import datetime
 from usuario import models as usuario
 from django.db.models import Q
+from django.db import connection
+import json as simplejson
 
 # Create your views here.
 
@@ -34,4 +36,30 @@ class Reporte(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return render(request, 'reporte/reportes.html')
     # end def
+# end class
+
+def producirFecha(v):
+    if v :
+        r = v.split('/')
+        return '%s-%s-%s'%(r[2],r[1],r[0])
+    #end if
+    r = datetime.today()
+    return '%d-%d-%d'%(r.year,r.month,r.day)
+#end def
+
+class WsPagosEmpleados(View):
+    def get(self, request):
+        empresa = request.GET.get('empresa', '0')
+        ciudad = request.GET.get('ciudad', '0')
+        tienda = request.GET.get('tienda', '0')
+        inicio = producirFecha(request.GET.get('inicio', False))
+        fin = producirFecha(request.GET.get('fin', False))
+        busqueda = request.GET.get('busqueda', '')
+        cursor = connection.cursor()
+        m = 'select get_total_trabajador(%d,\'%s\'::text,%s::integer,%s::integer,%s::integer,\'%s\'::date,\'%s\'::date)' % (
+            request.user.id, busqueda, empresa, ciudad, tienda, inicio, fin)
+        cursor.execute(m)
+        row = cursor.fetchone()
+        return HttpResponse((simplejson.dumps(row[0])), content_type="application/json")
+    # end class
 # end class

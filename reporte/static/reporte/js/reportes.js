@@ -91,49 +91,46 @@ $(document).on('ready', function(){
     }
   });
   $('#ciudad, #empresa, #tienda').on('change',function(event){
-    //listEmpleados();
+    listEmpleados();
   });
   //listEmpleados();
   $('#search').on('keyup', function(event){
-    //listEmpleados();
+    listEmpleados();
   });
   $('select').material_select();
 });
 
 function listEmpleados(){
-  console.log("ejecutando",$("#tienda").val() != null);
-  //if($("#tienda").val() != null){
-  console.log($("#empresa").val() != "0",$("#ciudad").val() != "0",$("#tienda").val() != "0");
-  console.log($("#empresa").val(),$("#ciudad").val(),$("#tienda").val());
       var res = "";
       res+= $("#empresa").val() != null? "empresa="+$("#empresa").val():"",
           res+= $("#ciudad").val() != null? "&ciudad="+$("#ciudad").val():"",
           res+= $("#tienda").val() != null? "&tienda="+$("#tienda").val():"",
-          res+= $("#search").val() != null? "&search="+$("#search").val():"";
+          res+= $("#inicio").val().length>0? "&inicio="+$("#inicio").val():"",
+          res+= $("#fin").val().length>0? "&fin="+$("#fin").val():"",
+          res+= $("#search").val().length>0? "&busqueda="+$("#search").val():"";
           res+= proxima != 0? "&pagina="+proxima*10:"";
       console.log(res);
       $.ajax({
-        url:'/usuario/list/empleados/?'+res,
+        url:'/reporte/ws/pagos/empledos/?'+res,
         type:'get',
         dataType:'json',
         success:function(data){
           console.log(data);
           var emp = $('#tab_emp');
           emp.html("");
-          var resul = data.object_list;
-          var limite=data.count,inicio=0;
-          console.log('RESULTADOS   ',resul.length,'    ',data.count,'  ',resul);
+          var resul = data;
           if(resul.length){
             inicio = 0;
-            for(var i=inicio;i < limite;i++){
+            for(var i=inicio;i < resul.length;i++){
               console.log("************------------------*****************");
-              var empresa = resul[i].empresa_e,
-                  ciudad = resul[i].ciudad_e,
-                  tienda = resul[i].tienda_e,
+              var empresa = resul[i].nom_empre,
+                  ciudad = "resul[i].ciudad_e",
+                  tienda = resul[i].nom_tienda,
                   identificacion = resul[i].identificacion,
-                  nombre = resul[i].first_name,
-                  apellidos = resul[i].last_name,
-                  servicios = resul[i].servicios;
+                  nombre = resul[i].nom_emp,
+                  apellidos = resul[i].ape_emp,
+                  horas = resul[i].total_horas,
+                  total = resul[i].total_turnos;
                   var temporal="";
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
                   temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
@@ -141,11 +138,8 @@ function listEmpleados(){
                   temporal+="<td><span class=\"mod_identificacion\" >"+identificacion+"</span></td>";
                   temporal+="<td><span class=\"mod_nombre\" >"+nombre+"</span></td>";
                   temporal+="<td><span class=\"mod_apellidos\" >"+apellidos+"</span></td>";
-                  var d= "<ul class=\"tabla_tool\">";
-                  d+="<li><a href =\""+servicios.delete+"\" class=\"btn-floating red tabla_delete\"><i class=\"material-icons\">delete</i></a></li>";
-                  d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow tabla_edit modf_empleado\"><i class=\"material-icons\">edit</i></a></li>";
-                  d+="<li><a href =\""+servicios.pass+"\" class=\"btn-floating yellow tabla_edit\"><i class=\"material-icons\">add</i></a></li>";
-                  temporal+="<td>"+d+"</td>";
+                  temporal+="<td><span class=\"mod_apellidos\" >"+horas+"</span></td>";
+                  temporal+="<td><span class=\"mod_apellidos\" >"+total+"</span></td>";
                   emp.append("<tr>"+temporal+"</tr>")
             }
             $('.tabla_delete, .tabla_edit').on('click', function(event){
