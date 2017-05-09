@@ -21,6 +21,14 @@ urlpatterns += [
     url(r'delete/tienda/(?P<pk>\d+)/$', login_required(views.DeleteTienda.as_view()), name='delete_pass_tienda'),
 ]
 
+#Manejo de tienda
+urlpatterns += [
+    url(r'list/supervisor/$', login_required(views.ListSupervisor.as_view()), name='list_supervisor'),
+    url(r'add/supervisor/$', login_required(views.AddSupervisor.as_view()), name='add_supervisor'),
+    url(r'edit/supervisor/(?P<pk>\d+)/$', login_required(views.EditSupervisor.as_view()), name='edit_supervisor'),
+    url(r'delete/supervisor/(?P<pk>\d+)/$', login_required(views.DeleteSupervisor.as_view()), name='delete_pass_supervisor'),
+]
+
 #Manejo de ciudad
 urlpatterns += [
     url(r'list/ciudad/$', login_required(views.ListCiudad.as_view()), name='list_ciudad'),
@@ -34,4 +42,9 @@ urlpatterns += [
 #vista Tiendas
 urlpatterns += [
     url(r'indexTienda/$',login_required(views.Tiendas.as_view()), name='index_tiendas'),
+]
+
+#vista Supervisores
+urlpatterns += [
+    url(r'indexsupervisor/$',login_required(views.Supervisores.as_view()), name='index_supervisor'),
 ]

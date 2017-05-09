@@ -1,0 +1,11 @@
+<style>
+ul  {
+    list-style: None;
+}
+</style>
+<form action=""  id="add_form">
+  {% csrf_token %}
+  <ul>
+    {{form.as_ul}}
+  </ul>
+</form>

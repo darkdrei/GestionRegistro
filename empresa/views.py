@@ -241,3 +241,103 @@ class DeleteTienda(View):
         return HttpResponse('[{"status":false}]', content_type='application/json', status=202)
     # end def
 # end class
+
+
+class AddSupervisor(supra.SupraFormView):
+    model = models.Supervisor
+    form_class = forms.SupervisorForm
+    template_name = 'empresa/addsupervisor.html'
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(AddSupervisor, self).dispatch(*args, **kwargs)
+    # end def
+# end class
+
+
+class DeleteSupervisor(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(DeleteSupervisor, self).dispatch(*args, **kwargs)
+    # end def
+
+    def get(self, request, *args, **kwargs):
+        print request,kwargs
+        ti=kwargs['pk']
+        if ti:
+            print 1
+            tien = models.Supervisor.objects.filter(id=empr).first()
+            if tien:
+                print 2
+                tien.active=False
+                tien.save()
+                return HttpResponse('[{"status":true}]', content_type='application/json', status=200)
+            # end if
+        # end if
+        print 3
+        return HttpResponse('[{"status":false}]', content_type='application/json', status=202)
+    # end def
+# end class
+
+
+class EditSupervisor(supra.SupraFormView):
+    model = models.Supervisor
+    form_class = forms.SupervisorEditForm
+    template_name = 'empresa/addsupervisor.html'
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(EditSupervisor, self).dispatch(*args, **kwargs)
+    # end def
+# end class
+
+
+class ListSupervisor(supra.SupraListView):
+    model = models.Supervisor
+    search_key = 'q'
+    list_display = ['id','username' ,'first_name','identificacion', 'celular', 'last_name','num_empresa','servicios','nom_empresa']
+    search_fields = ['id']
+    paginate_by = 100
+
+    def servicios(self, obj, row):
+        edit = "/empresa/edit/supervisor/%d/" % (obj.id)
+        delete = "/empresa/delete/supervisor/%d/" % (obj.id)
+        return {'edit': edit, 'delete': delete}
+    # end def
+
+    def num_empresa(self, obj, row):
+        empresa = models.Empresa.objects.filter(supervisor__id=obj.id)
+        return len(empresa)
+    # end def
+
+    def nom_empresa(self, obj, row):
+        empresa = models.Empresa.objects.filter(supervisor__id=obj.id)
+        cad = ''
+        for x in empresa:
+            cad = '%s,%s'%(cad,x.first_name) 
+        #end for
+        return cad
+    # end def
+
+    def get_queryset(self):
+        queryset = super(ListSupervisor, self).get_queryset()
+        user = CuserMiddleware.get_user()
+        empresa = models.Empresa.objects.filter(supervisor__id=user.id,active=True).values_list('id',flat=True)
+        busqueda = self.request.GET.get('search','')
+        superv = models.Supervisor.objects.filter(empresas__id__in=empresa,active=True).distinct('id')
+        #confi.filter(Q(ciudad__nombre__contains=busqueda) | Q(first_name__contains=busqueda) | Q(nit__contains=busqueda))
+        return superv
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(ListSupervisor, self).dispatch(*args, **kwargs)
+    # end def
+# end class
+
+class Supervisores(TemplateView):
+    def dispatch(self, request, *args, **kwargs):
+        user = CuserMiddleware.get_user()
+        ciu = models.Ciudad.objects.all()
+        return render(request, 'empresa/indexsupervisor.html',{'ciudad':ciu})
+    # end def
+# end class
