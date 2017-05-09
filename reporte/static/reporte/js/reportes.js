@@ -2,6 +2,21 @@ var pagina=0,proxima=0,bandera=true,b2=true;
 
 $(document).on('ready', function(){
   //console.log("hola mundo pelao");
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year
+    monthsFull: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
+    monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+    weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+    weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+    formatSubmit: 'dd/mm/yyyy',
+    format: 'dd/mm/yyyy',
+    onSet: function( arg ){
+        if ( 'select' in arg ){
+            this.close();
+        }
+    }
+  });
   $('.delete_save_empleado, .addempleado').on('click', function(event){
     return false;
   });
