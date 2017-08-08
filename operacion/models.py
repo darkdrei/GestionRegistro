@@ -131,3 +131,25 @@ class Labor(models.Model):
         verbose_name_plural ='Labores'
     #end class
 #end class
+
+
+class PagoLabor(models.Model):
+    labor = models.ForeignKey(Labor)
+    ini = models.CharField(max_length=22, verbose_name="Hora de inicio", null=True,blank=True)
+    fin = models.CharField(max_length=22, verbose_name="Hora de fin", null=True,blank=True)
+    precio = models.FloatField(default=0)
+    hora = models.FloatField(default=0)
+
+    def __unicode__(self):
+        return u'%s %s'%(self.labor.empleado.first_name,self.labor.empleado.last_name)
+    # end class
+
+    def __str__(self):
+        return u'%s %s'%(self.labor.empleado.first_name,self.labor.empleado.last_name)
+    # end class
+
+    class Meta:
+        verbose_name ='Pago Labor'
+        verbose_name_plural ='Pago Labores'
+    #end class
+#end class

@@ -34,9 +34,15 @@ class DiaSemanaFormAdmin(admin.ModelAdmin):
     form = forms.DiaSemanaForm
 #end class
 
+
+class PagoLaborAdmin(admin.ModelAdmin):
+    list_display = ['labor','ini','fin','precio','hora']
+#end class
+
 # Register your models here.
 admin.site.register(models.Configuracion, ConfiguracionAdmin)
 admin.site.register(models.Calendario, CalendarioAdmin)
 admin.site.register(models.Dia, DiaAdmin)
 admin.site.register(models.Labor, LaborAdmin)
 admin.site.register(models.DiaSemana, DiaSemanaFormAdmin)
+admin.site.register(models.PagoLabor, PagoLaborAdmin)
