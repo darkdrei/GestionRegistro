@@ -52,11 +52,12 @@ class WsPagosEmpleados(View):
         empresa = request.GET.get('empresa', '0')
         ciudad = request.GET.get('ciudad', '0')
         tienda = request.GET.get('tienda', '0')
-        inicio = producirFecha(request.GET.get('inicio', False))
-        fin = producirFecha(request.GET.get('fin', False))
+        inicio = producirFecha(request.GET.get('inicio', '01/01/2017'))
+        fecha = datetime.today()
+        fin = producirFecha(request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year)))
         busqueda = request.GET.get('busqueda', '')
         cursor = connection.cursor()
-        m = 'select get_total_trabajador(%d,\'%s\'::text,%s::integer,%s::integer,%s::integer,\'%s\'::date,\'%s\'::date)' % (
+        m = 'select get_total_trabajador2(%d,\'%s\'::text,%s::integer,%s::integer,%s::integer,\'%s\'::date,\'%s\'::date)' % (
             request.user.id, busqueda, empresa, ciudad, tienda, inicio, fin)
         cursor.execute(m)
         row = cursor.fetchone()
