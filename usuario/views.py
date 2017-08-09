@@ -103,7 +103,7 @@ class Login(BaseFormView):
             print 'Usuario---> 1'
             user = authenticate(username=username, password=passw)
             if user is not None:
-                print 'Usuario---> 2'
+                print 'Usuario---> 2', user.id
                 login(request, user)
                 administrador = models.Administrador.objects.filter(id=user.id)
                 if administrador:

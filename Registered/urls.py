@@ -17,6 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 
 urlpatterns = [
@@ -29,3 +33,7 @@ urlpatterns = [
     url(r'^reporte/', include('reporte.urls',namespace='reporte')),
     url(r'^$', login_required(TemplateView.as_view(template_name='Registered/home.html')),name='index'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
