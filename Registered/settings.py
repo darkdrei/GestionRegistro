@@ -147,4 +147,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/home/dark/GestionRegistro/static/'
 MEDIA_URL = '/media/'
 HOST_MEDIA = '/home/dark/GestionRegistro/media/'
-MEDIA_ROOT = '/home/dark/GestionRegistro/media/'
+#MEDIA_ROOT = '/home/dark/GestionRegistro/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
