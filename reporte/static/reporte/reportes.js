@@ -98,6 +98,7 @@ $(document).on('ready', function(){
     //listEmpleados();
   });
   $('select').material_select();
+  listEmpleados();
 });
 
 function listEmpleados(){
