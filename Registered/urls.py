@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^reporte/', include('reporte.urls',namespace='reporte')),
     url(r'^$', login_required(TemplateView.as_view(template_name='Registered/home.html')),name='index'),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

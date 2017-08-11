@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
 	<title>Home - Registered</title>
   <style type="text/css">
@@ -19,106 +20,118 @@
 <body>
 
 <header>
-
-<div class="row">
-	<div class="col s6 m4 l2 offset-s3 offset-m4 offset-l5">
-		<div class="row">
-			<div class="col s12 m12 l12">
-				<center><i class="material-icons" id="logeoT">phonelink_lock</i></center>
+	<div class="row">
+		<div class="col s6 m4 l2 offset-s1 offset-m1 offset-l1">
+			<div class="row">
+				<div class="col s3 m3 l3">
+					<center><i class="material-icons" id="logeoT">phonelink_lock</i></center>
+				</div>
+				<div class="col s6 m6 l6">
+					<center><p id="titulo">Registered</p></center>
+				</div>
 			</div>
-			<div class="col s12 m12 l12">
-				<center><p id="titulo">Registered</p></center>
-			</div>
-		</div>
+	    </div>
+	  	<div class="col s2 m4 l7 "></div>
+	  	<div class="col s3 m2 l1">
+	    	<center><a href="{% url 'usuario:logout' %}" <i class="material-icons" id="close">input</i></a></center>
+	  	</div>
 	</div>
-  <div class="col s2 m2 l4 "></div>
-  <div class="col s3 m2 l1">
-    <center><a href="{% url 'usuario:logout' %}" <i class="material-icons" id="close">input</i></a></center>
-  </div>
-</div>
-
 </header>
 
 <section>
 	<div class="container">
 		<div class="row">
 
-		<div class="col s12 m6 l3" id="Carta">
+			<a href="{% url 'empresa:index_empresas' %}">
+			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href="{% url 'empresa:index_empresas' %}"><i class="material-icons" id="logeo">&#xE8D1;</i></a></center>
+		              <center><i class="material-icons" id="logeo">&#xE8D1;</i></center>
 		            </div>
 		            <div class="card-content">
 		              <center><p>Empresas</p></center>
 		            </div>
 	          	</div>
 			</div>
+			</a>
 
+			<a href="{% url "reporte:reportes" %}">
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href="{% url "reporte:reportes" %}"><i class="material-icons" id="logeo">&#xE85D;</i></a></center>
+		              <center><i class="material-icons" id="logeo">&#xE85D;</i></center>
 		            </div>
 		            <div class="card-content">
 		              <center><p>Informes</p></center>
 		            </div>
 	          	</div>
 			</div>
+			</a>
 
+			<a href="{% url 'usuario:esc_lis_empleados' %}">
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href="{% url 'usuario:esc_lis_empleados' %}"><i class="material-icons" id="logeo">&#xE7FB;</i></a></center>
+		              <center><i class="material-icons" id="logeo">&#xE7FB;</i></center>
 		            </div>
 		            <div class="card-content">
 		              <center><p>Motorizados</p></center>
 		            </div>
 	          	</div>
 			</div>
+			</a>
 
+			<a href="{% url 'empresa:index_tiendas' %}">
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href="{% url 'empresa:index_tiendas' %}"><i class="material-icons" id="logeo">&#xE8D1;</i></a></center>
+		              <center><i class="material-icons" id="logeo">&#xE8D1;</i></center>
 		            </div>
 		            <div class="card-content">
 		              <center><p>Tienda</p></center>
 		            </div>
 	          	</div>
 			</div>
+			</a>
 
+			<a href="">
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href=""><i class="material-icons" id="logeo">supervisor_account</i></a></center>
+		              <center><i class="material-icons" id="logeo">supervisor_account</i></center>
 		            </div>
 		            <div class="card-content">
 		              <center><p>Supervisor</p></center>
 		            </div>
 	          	</div>
 			</div>
-
+			</a>
+			
+			<a href="{% url 'operacion:configuraciones' %}">
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href="{% url 'operacion:configuraciones' %}"><i class="material-icons" id="logeo">&#xE227;</i></a></center>
+		              <center><i class="material-icons" id="logeo">&#xE227;</i></center>
 		            </div>
 		            <div class="card-content">
-		              <center><p>Configuraciones de Pago</p></center>
+		              <center><p>Pago</p></center>
 		            </div>
 	          	</div>
 			</div>
+			</a>
 
+			<a href="{% url 'motorizado:infomoto' %}">
 			<div class="col s12 m6 l3" id="Carta">
 				<div class="card">
 		            <div class="card-image">
-		              <center><a href="{% url 'motorizado:infomoto' %}"><i class="material-icons" id="logeo">&#xE91B;</i></a></center>
+		              <center><i class="material-icons" id="logeo">&#xE91B;</i></center>
 		            </div>
 		            <div class="card-content">
 		              <center><p>Motos</p></center>
 		            </div>
 	          	</div>
 			</div>
+			</a>
 
 		</div>
 	</div>
