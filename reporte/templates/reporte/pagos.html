@@ -64,23 +64,29 @@
 {% block contenido %}
 <div class="row cajaIn caja">
   <div class="col s12 m12 l12" id="Tabla">
-    <table class="highlight">
-      <thead>
-        <tr>
-          <th>Empresa</th>
-          <th>Ciudad</th>
-          <th>Tienda</th>
-          <th>Identificacion</th>
-          <th>Nombre</th>
-          <th>Apellidos</th>
-          <th>Numero de Horas</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="tab_emp">
+    <form action="" id="envio">
+          <table class="highlight">
+            <thead>
+              <tr>
+                <th><span class="reporte_general"><input type="checkbox" id="test5" class="all_empleados"/>
+            <label for="test5"></label></span></th>
+                <th>Empresa</th>
+                <th>Ciudad</th>
+                <th>Tienda</th>
+                <th>Identificacion</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Numero de Horas</th>
+                <th>Total</th>
+                <th><a href="#" class="reporte_general"><img src="{{ MEDIA_URL }}des2.png" /></a></th>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tab_emp">
 
-      </tbody>
-    </table>
+            </tbody>
+          </table>
+        </form>
   </div>
 </div>
 {% endblock %}
