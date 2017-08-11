@@ -1,0 +1,5 @@
+Collecting xhtml2pdf
+Requirement already satisfied: Pillow in /home/dark/virtualenvs/register/lib/python2.7/site-packages (from xhtml2pdf)
+Collecting pyPdf2 (from xhtml2pdf)
+Collecting reportlab>=2.2 (from xhtml2pdf)
+  Downloading reportlab-3.4.0-cp27-cp27mu-manylinux1_x86_64.whl (3.7MB)
