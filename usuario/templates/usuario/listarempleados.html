@@ -11,57 +11,56 @@
   <script type="text/javascript" src="{% static 'usuario/js/deleteempleado.js' %}"></script>
 {% endblock %}
 {% block css %}
-  <link rel="stylesheet" href="{% static 'usuario/css/empleado.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'operacion/css/listar_labores.css' %}">
+  <!--link rel="stylesheet" href="{% static 'usuario/css/listarempleado.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'operacion/css/listar_labores.css' %}"-->
 {% endblock %}
-
-
 
 {% block tool %}
-<div class="row cajaIn caja scrolbx">
-  <div class="col s4 m4 l4 ">
-    <label>Empresa</label>
-    <select id = "empresa" {% if not empresa %} disabled{% endif %}>
-      <option value="0" disabled selected>{% if empresa %}Selecioné{% else %} No Registros {% endif %}</option>
-      {% if empresa %}
-      {% for c in empresa %}
-      <option value="{{ c.id }}">{{ c.first_name }}</option>
-      {% endfor %}
-      {% endif %}
-    </select>    
+  <div class="row filtrado">
+    <div class="col s4 m4 l4 ">
+      <label>Empresa</label>
+      <select id = "empresa" {% if not empresa %} disabled{% endif %}>
+        <option value="0" disabled selected>{% if empresa %}Selecioné{% else %} No Registros {% endif %}</option>
+        {% if empresa %}
+        {% for c in empresa %}
+        <option value="{{ c.id }}">{{ c.first_name }}</option>
+        {% endfor %}
+        {% endif %}
+      </select>    
+    </div>
+    <div class="col s4 m4 l4 ">
+      <label>Ciudad</label>
+      <select id="ciudad" disabled>
+        <option value="" disabled selected>Selecioné</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>    
+    </div>
+    <div class="col s4 m4 l4 ">
+      <label>Tienda</label>
+      <select id="tienda" disabled>
+        <option value="" disabled selected>Selecioné</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>    
+    </div>
   </div>
-  <div class="col s4 m4 l4 ">
-    <label>Ciudad</label>
-    <select id="ciudad" disabled>
-      <option value="" disabled selected>Selecioné</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>    
-  </div>
-  <div class="col s4 m4 l4 ">
-    <label>Tienda</label>
-    <select id="tienda" disabled>
-      <option value="" disabled selected>Selecioné</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>    
-  </div>
-</div>
-<div class="row cajaIn caja scrolbx">
-  <div class="col s10 m11 l11 ">
-     <input placeholder="Busqueda" id="search" type="text" class="validate">
-  </div>
-  <div class="col s1 m1 l1 ">
-     <a href="{% url 'usuario:add_empleado' %}"class="btn-floating btn-large waves-effect waves-light #4db6ac addempleado"><i class="material-icons" id="addtrabajador">add</i></a>
-  </div>
-</div>
+  <div class="row search">
+    <div class="col s10 m11 l11 ">
+       <input placeholder="Busqueda" id="search" type="text" class="validate">
+    </div>
+    <div class="col s1 m1 l1 ">
+       <a href="{% url 'usuario:add_empleado' %}"class="btn-floating btn-large waves-effect waves-light #4db6ac addempleado"><i class="material-icons" id="addtrabajador">add</i></a>
+    </div>
+  </div>  
 {% endblock %}
+
 {% block contenido %}
 <div class="row cajaIn caja scrolbx scrolby">
   <div class="col s12 m12 l12" id="Tabla">
-    <table class="highlight">
+    <table class="bordered highlight">
       <thead>
         <tr>
           <th>Empresa</th>
@@ -81,6 +80,9 @@
 </div>
 {% endblock %}
 {% block dialog %}
+<!--*******************************************************************************************************-->
+<!--*****************************************AGREGAR EMPLEADO**********************************************-->
+<!--*******************************************************************************************************-->
 <div id="addempleado" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Registrar Trabajador</h4>
@@ -93,6 +95,9 @@
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
   </div>
 </div>
+<!--*******************************************************************************************************-->
+<!--****************************************EDITAR EMPLEADO************************************************-->
+<!--*******************************************************************************************************-->
 <div id="editempleado" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Editar Trabajador</h4>
@@ -105,6 +110,9 @@
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
   </div>
 </div>
+<!--*******************************************************************************************************-->
+<!--*************************************ELIMINAR EMPLEADO*************************************************-->
+<!--*******************************************************************************************************-->
 <div id="deleteempleado" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Eliminar Trabajador</h4>

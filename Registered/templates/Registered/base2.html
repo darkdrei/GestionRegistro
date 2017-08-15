@@ -7,8 +7,11 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="{% static 'Registered/js/materialize.min.js' %}"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{% static 'Registered/css/estilo.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+  <!--link href="{% static 'Registered/css/estilo.css' %}" rel="stylesheet">
   <link href="{% static 'Registered/css/home.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'usuario/css/listarempleado.css' %}"-->
+  <link rel="stylesheet" href="{% static 'Registered/css/base.css' %}">  
   {% block javascript %}{% endblock %}
   {% block css %}{% endblock %}
   <script src="{% static 'Registered/js/scri.js' %}"></script>
@@ -19,51 +22,36 @@
 
    <header>
    		<div class="row">
-
-        <div class="col s3 m2 l1">
+        <div class="col s2 m2 l1">
           <center><a href="{% url 'index' %}" <i class="material-icons" id="back">input</i></a></center>
         </div>
-            <div class="col s6 m4 l2  offset-m2 offset-l4">
-              <div class="row">
-                <div class="col s12 m12 l12">
-                  <center><i class="material-icons" id="logeoT">phonelink_lock</i></center>
-                </div>
-                <div class="col s12 m12 l12">
-                  <center><p id="titulo">Registered</p></center>
-                </div>
-              </div>
+        <div class="col s6 m6 l6  offset-m2 offset-l4">
+          <div class="row">
+            <div class="col s3 m2 l1">
+              <center><i class="material-icons" id="logeoT">phonelink_lock</i></center>
             </div>
-   		  <div class="col s2 m2 l4 "></div>
-   		  <div class="col s3 m2 l1">
+            <div class="col s6 m4 l2">
+              <center><p id="titulo">Registered</p></center>
+            </div>
+          </div>
+        </div>
+   		  
+   		  <div class="col s4 m2 l1">
    		    <center><a href="{% url 'usuario:logout' %}" ><i class="material-icons" id="close">input</i></a></center>
    		  </div>
    		</div>
    	</header>
-   <div class="container" style="margin-bottom: 20px;">
+
+   <div class="container filtro">
      {% block tool %}
-     <!--div class="row">
-       <div class="col s10 m11 l11 ">
-          <input placeholder="Busqueda" id="first_name" type="text" class="validate">
-       </div>
-       <div class="col s1 m1 l1 ">
-          <a class="btn-floating btn-large waves-effect waves-light #4db6ac"><i class="material-icons" id="AgregarMotorizado">add</i></a>
-       </div>
-     </div-->
+     
      {% endblock %}
    </div>
 
    <section>
      <div class="container">
        {% block contenido %}
-       <!--div class="row">
 
-
-         <div class="col s12 m12 l12" id="Tabla">
-           <table class="highlight">
-
-           </table>
-         </div>
-       </div--><!--end row-->
        {% endblock %}
     </div>
   </section>

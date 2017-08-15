@@ -47,12 +47,14 @@ function listempresa(){
             $('.tabla_delete, .tabla_edit').on('click', function(event){
               return false;
             });
-
+            $('.tabla_delete').on('click', function(event){
+              console.log("desde los tool tabla");
+            });
             $('.tabla_edit').on('click', function(event){
               console.log("desde los tool tabla");
             });
-            funcionesModificarEmpresa();
-            funcionesEliminar();
+            //funcionesModificarMoto();
+            //funcionesEliminar();
             // eventosDePaginador();
           }
         }
