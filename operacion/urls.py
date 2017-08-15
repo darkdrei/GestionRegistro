@@ -28,6 +28,6 @@ urlpatterns += [
 #funcionalidad de adicional labor
 urlpatterns += [
     url(r'labores/$',views.Labores.as_view() ,name='labores'),
-    url(r'movil/trabajos/$',login_required(TemplateView.as_view(template_name='operacion/listado_labores.html')) ,name='movil_labores'),
+    url(r'movil/trabajos/$',login_required(views.MobilLabore.as_view()) ,name='movil_labores'),
     url(r'ws/labor/$',login_required(views.AddWsLabor.as_view()) ,name='ws_labor'),
 ]

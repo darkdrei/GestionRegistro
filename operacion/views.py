@@ -19,6 +19,7 @@ from django.utils import timezone
 from datetime import datetime
 from usuario import models as usuario
 from django.db.models import Q
+from motorizado import models as motorizado
 
 
 # Create your views here.
@@ -225,5 +226,15 @@ class DeleteLabor(View):
 class Labores(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return render(request, 'operacion/empleados_tienda.html')
+    # end def
+# end class
+
+
+class MobilLabore(TemplateView):
+    def dispatch(self, request, *args, **kwargs):
+        empleados = motorizado.InfoMoto.objects.filter(empleado__tienda__administrador__user_ptr_id=request.user.id)
+        print empleados
+        ctx = {'empleados':empleados,'usuario':request.user.username}
+        return render(request, 'operacion/listado_labores.html',ctx)
     # end def
 # end class

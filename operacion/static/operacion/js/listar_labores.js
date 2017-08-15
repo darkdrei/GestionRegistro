@@ -3,6 +3,7 @@ var my_cronos = null;
 window.TEMPORAL_ID=0
 var fecha1=null,fecha2=null;
 $(document).on('ready', function(){
+  $('select').material_select();
   listLabores();
   $('#busqueda').on('keyup', function(event){
     listLabores();

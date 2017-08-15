@@ -1,3 +1,4 @@
+<<<<<<< HEAD:usuario/static/usuario/css/listarempleados.css
 .tabla_tool li {
     display: inline;
 }
@@ -16,4 +17,24 @@
 #close{
 	color: #fff;
     margin-top: 45px;
+=======
+.tabla_tool li {
+    display: inline;
+}
+
+#back{
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    font-size: 50px;
+    color: #000;
+    margin-top: 45px;
+}
+
+#close{
+	color: #fff;
+    margin-top: 45px;
+>>>>>>> 0c9c9b70a117485bd7a12d92e0620a5a1d343ccc:usuario/static/usuario/css/empleado.css
 }

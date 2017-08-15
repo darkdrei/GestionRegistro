@@ -99,8 +99,19 @@
 						<div id="contenido">
 							<form class="col s12" id="form_labor" action="{% url 'operacion:ws_labor' %}">
 									<div class="row">
+										<div class="input-field col s12">
+									    <select name="empleado" id="empleado">
+									      <option value="0" disabled selected>Seleccione Trabajador</option>
+												{% for e in empleados %}
+									      	<option value="{{ e.empleado.id}}">{{ e.empleado__first_name }} {{ e.empleado.last_name }}</option>
+												{% endfor %}
+
+									    </select>
+									    <label>Empleados</label>
+									  </div>
+
 										<div class="input-field col s12 m8">
-											<input placeholder="usuario" id="user" type="text" class="validate">
+											<input placeholder="usuario" id="user" type="text" class="validate" value="{{ usuario }}">
 											<label for="first_name">Usuario</label>
 										</div>
 									<div class="row">

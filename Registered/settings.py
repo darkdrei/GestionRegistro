@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['localhost','*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.humanize',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     'Registered',
     'motorizado',
     'reporte',
+    'easy_pdf',
+    'django_humanize',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -146,6 +150,6 @@ LOGIN_REDIRECT_URL = 'usuario:login'
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/dark/GestionRegistro2/static/'
 MEDIA_URL = '/media/'
-HOST_MEDIA = '/home/dark/GestionRegistro2/media/'
-#MEDIA_ROOT = '/home/dark/GestionRegistro2/media/'
+HOST_MEDIA = '/home/dark/GestionRegistro/media/'
+#MEDIA_ROOT = '/home/dark/GestionRegistro/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
