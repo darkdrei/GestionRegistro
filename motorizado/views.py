@@ -12,6 +12,7 @@ from cuser.middleware import CuserMiddleware
 from django.views.generic import View, DeleteView
 from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404, HttpResponse
+from operacion import models as operacion
 
 
 class AddMoto(supra.SupraFormView):
@@ -24,6 +25,36 @@ class AddMoto(supra.SupraFormView):
         return super(AddMoto, self).dispatch(*args, **kwargs)
     # end def
 # end class
+
+
+class ListMotorizados(supra.SupraListView):
+    model = models.InfoMoto
+    search_key = 'q'
+    list_display = ['emp_id','nombre','apellidos']
+    search_fields = ['id']
+    paginate_by = 100
+
+    class Renderer:
+        emp_id = 'empleado__id'
+        nombre = 'empleado__first_name'
+        apellidos = 'empleado__last_name'
+    #end class
+
+    def get_queryset(self):
+        user = CuserMiddleware.get_user()
+        queryset = super(ListMotorizados, self).get_queryset()
+        asignados = operacion.Labor.objects.filter(empleado__tienda__administrador__id=user.id, cerrado=False).values_list('empleado__id', flat=True)
+        print 'esto son los asignados ',asignados
+        queryset = queryset.filter(empleado__tienda__administrador__id=user.id)
+        queryset =queryset.exclude(empleado__id__in=asignados)
+        return queryset
+    #end class
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(ListMotorizados, self).dispatch(*args, **kwargs)
+    # end def
+#end class
 
 
 class ListMoto(supra.SupraListView):
