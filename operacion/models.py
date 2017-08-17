@@ -27,6 +27,7 @@ class DiaSemana(models.Model):
     #end class
 #end class
 
+
 class PrecioDefecto(models.Model):
     empresa = models.ForeignKey(empresa.Empresa)
     ciudad = models.ForeignKey(Ciudad)
