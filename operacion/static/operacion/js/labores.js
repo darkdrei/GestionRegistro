@@ -10,35 +10,42 @@ $(document).on('ready', function(){
     //document.getElementById('form_labor').reset()
     $('#form_labor label[for="mensaje"]').text("");
     var user =$('#user').val(),
-        pass = $('#password').val();
+        pass = $('#password').val(),
+        empleado = $('#empleado').val();
         console.log("proceso de autenticacion "+user+"  "+pass);
-    $.ajax({
-      url:$(this).attr('href'),
-      type:'post',
-      dataType:'json',
-      data:{user:user,pass:pass},
-      success:function(data){
-        console.log(data);
-        if (!data[0].status){
-          document.getElementById('form_labor').reset()
-          $('#form_labor label[for="mensaje"]').text("Clave y usuario invalidos");
+        if (val=="0"){
+          $('#form_labor label[for="mensaje"]').text("No tiene domiciliarios para asignar");
+          $('#password').val("");
+          $('#empleado').val("");
+          return;
         }
-        $.ajax({
-          url:$('#form_labor').attr('action'),
-          type:'post',
-          dataType:'json',
-          data:{usuario:data[0].id},
-          success:function(data){
-            if (!data[0].status){
-              document.getElementById('form_labor').reset()
-              $('#form_labor label[for="mensaje"]').text("Clave y usuario invalidos");
-            }else{
-              $('#form_labor').modal('close');
-              listLabores();
-            }
+      $.ajax({
+        url:$(this).attr('href'),
+        type:'post',
+        dataType:'json',
+        data:{user:user,pass:pass},
+        success:function(data){
+          console.log(data);
+          if (!data[0].status){
+            document.getElementById('form_labor').reset()
+            $('#form_labor label[for="mensaje"]').text("Clave y usuario invalidos");
           }
-        });
-      }
+          $.ajax({
+            url:$('#form_labor').attr('action'),
+            type:'post',
+            dataType:'json',
+            data:{usuario:empleado},
+            success:function(data){
+              if (!data[0].status){
+                document.getElementById('form_labor').reset()
+                $('#form_labor label[for="mensaje"]').text("Clave y usuario invalidos");
+              }else{
+                $('#form_labor').modal('close');
+                listLabores();
+              }
+            }
+          });
+        }
+      });
     });
-  });
 });
