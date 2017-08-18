@@ -1,0 +1,10 @@
+Requirement already satisfied: xhtml2pdf in c:\users\vpadi\desktop\gesrg\lib\site-packages
+Requirement already satisfied: Pillow in c:\users\vpadi\desktop\gesrg\lib\site-packages (from xhtml2pdf)
+Requirement already satisfied: pyPdf2 in c:\users\vpadi\desktop\gesrg\lib\site-packages (from xhtml2pdf)
+Requirement already satisfied: reportlab>=2.2 in c:\users\vpadi\desktop\gesrg\lib\site-packages (from xhtml2pdf)
+Requirement already satisfied: html5lib in c:\users\vpadi\desktop\gesrg\lib\site-packages (from xhtml2pdf)
+Requirement already satisfied: olefile in c:\users\vpadi\desktop\gesrg\lib\site-packages (from Pillow->xhtml2pdf)
+Requirement already satisfied: pip>=1.4.1 in c:\users\vpadi\desktop\gesrg\lib\site-packages (from reportlab>=2.2->xhtml2pdf)
+Requirement already satisfied: setuptools>=2.2 in c:\users\vpadi\desktop\gesrg\lib\site-packages (from reportlab>=2.2->xhtml2pdf)
+Requirement already satisfied: webencodings in c:\users\vpadi\desktop\gesrg\lib\site-packages (from html5lib->xhtml2pdf)
+Requirement already satisfied: six in c:\users\vpadi\desktop\gesrg\lib\site-packages (from html5lib->xhtml2pdf)
