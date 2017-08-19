@@ -72,7 +72,7 @@ function listLabores(){
           					temporal+="</div>";
           					temporal+="</div>";
           					temporal+="<div class=\"col s1 m1 l1\" >";
-                    temporal+="<input type=\"hidden\" name=\"username\"  value=\""+usuario+"\">";
+                    temporal+="<input type=\"hidden\" name=\"username\"  value=\""+nombre+" "+apellidos+"\">";
                     temporal+="<input type=\"hidden\" name=\"ids\"  value=\""+id+"\">";
                     console.log('+++++++++++++++++++++++++++++++++++  ',servicio.edit);
           					temporal+="<a href=\""+servicio.edit+"\" class=\"btn-floating btn-large waves-effect waves-light #4db6ac edit_labor_emp\"><i class=\"material-icons\">phonelink_lock</i></a>";
@@ -188,8 +188,7 @@ function cerrarLabor(){
   $('.sendLabor').on('click', function(event){
       var user = $('#userc').val(),
       pass = $('#passwordc').val();
-      var this_ =$(this);
-      console.log("regreso del envio ",window.TEMPORAL_ID,"  *********");
+      var this_ = $(this);
       $.ajax({
         url:$(this).attr('href'),
         type:'post',
