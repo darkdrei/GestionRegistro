@@ -12,9 +12,9 @@ $(document).on('ready', function(){
     var user =$('#user').val(),
         pass = $('#password').val(),
         empleado = $('#empleado').val();
-        console.log("proceso de autenticacion "+user+"  "+pass);
-        if (val=="0"){
-          $('#form_labor label[for="mensaje"]').text("No tiene domiciliarios para asignar");
+        console.log("proceso de autenticacion "+user+"  "+pass+"  "+(empleado=="0"));
+        if (empleado=="0" || empleado==null){
+          $('#form_labor label[for="mensaje"]').text("Debe seleccionar domiciliario.");
           $('#password').val("");
           $('#empleado').val("");
           return;
