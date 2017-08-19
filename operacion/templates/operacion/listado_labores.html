@@ -93,6 +93,16 @@
 				</div><!--end row-->
 	        </div>
         </section>
+				<div id="mensaje_empleado" class="modal modal-fixed-footer">
+						<div class="modal-content">
+							<h4>No existen domiciliarios</h4>
+							<p>Los domiciliarios asignados se encuentram en labor,
+							    debe ponerse en contacto con su proveedor.</p>
+						</div>
+						<div class="modal-footer">
+							<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Aceptar</a>
+						</div>
+					</div>
 				<div id="addlabor" class="modal modal-fixed-footer">
 					<div class="modal-content row">
 						<h4>Registrar Turno</h4>
@@ -134,6 +144,7 @@
 						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
 					</div>
 				</div>
+
 				<div id="cerrarlaborc" class="modal modal-fixed-footer">
 					<div class="modal-content row">
 						<h4>Cerrar Turno</h4>
@@ -163,15 +174,6 @@
 						<a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat editlabor sendLabor">Iniciar Sesión</a>
 						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
 					</div>
-					<div id="mensaje_empleado" class="modal">
-				    <div class="modal-content" id="contenido_mens">
-					      <h4>No existen domiciliarios para asiganar</h4>
-					      <p>Ponganse en contacto con el administrador.</p>
-					    </div>
-					    <div class="modal-footer">
-					      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat informacion">Ok</a>
-					    </div>
-				  </div>
 				</div>
 
 	</body>
