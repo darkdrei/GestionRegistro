@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^list/empleado/',login_required(views.ListEmpleado.as_view()) ,name='lis_empleado'),
     url(r'^list/empleados/',login_required(views.ListEmpleados.as_view()) ,name='list_empleados'),
     url(r'^change/pass/empleados/',login_required(views.SetPassWordEmpleado.as_view()) ,name='set_pass_empleado'),
-    url(r'^is/login/administrador/$',login_required(views.IsLogin.as_view()) ,name='login_empleado'),
+    url(r'^is/login/administrador/$',login_required(views.IsLogin.as_view()) ,name='is_login_admin'),
 ]
 
 
