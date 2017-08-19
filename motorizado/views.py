@@ -46,7 +46,7 @@ class ListMotorizados(supra.SupraListView):
         asignados = operacion.Labor.objects.filter(empleado__tienda__administrador__id=user.id, cerrado=False).values_list('empleado__id', flat=True)
         print 'esto son los asignados ',asignados
         queryset = queryset.filter(empleado__tienda__administrador__id=user.id)
-        #queryset =queryset.exclude(empleado__id__in=asignados)
+        queryset =queryset.exclude(empleado__id__in=asignados)
         return queryset
     #end class
 
