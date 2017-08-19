@@ -263,3 +263,25 @@ class SetPassWordEmpleado(View):
         return HttpResponse('{"r":"Campos requeridos"}', content_type="application/json", status=400)
     # end def
 #end class
+
+
+class IsLogin(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(IsLogin, self).dispatch(*args, **kwargs)
+    # end def
+
+    def post(self, request, *args, **kwargs):
+        username = request.user.username
+        passw = request.POST.get('pass', False)
+        if username and passw:
+            user = authenticate(username=username, password=passw)
+            if user is not None:
+                print 'Usuario---> 2'
+                return HttpResponse('[{"status":true,"id":%d}]'%(user.id), content_type='application/json', status=200)
+            # end if
+        # end if
+        print 'Usuario---> 3'
+        return HttpResponse('[{"status":false}]', content_type='application/json', status=202)
+    # end def
+# end class
