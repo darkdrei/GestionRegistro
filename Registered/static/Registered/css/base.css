@@ -11,6 +11,24 @@ header{
     top: 0px;
 }
 
+a:link {
+    color: #000000;
+}
+
+/* visited link */
+a:visited {
+    color: #000000;
+}
+
+/* mouse over link */
+a:hover {
+    color: #000000;
+}
+
+/* selected link */
+a:active {
+    color: #000000;
+}
 
 
 #logeoT{
