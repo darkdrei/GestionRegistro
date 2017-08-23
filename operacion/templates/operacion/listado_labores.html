@@ -1,168 +1,144 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script type="text/javascript" src="{% static 'Registered/js/jquery-2.1.1.min.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'Registered/css/materialize.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'operacion/css/listar_labores.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-		<link href="{% static 'Registered/css/estilo.css' %}" rel="stylesheet">
-		<link href="{% static 'Registered/css/home.css' %}" rel="stylesheet">
-    <script src="{% static 'Registered/js/materialize.min.js' %}"></script>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	    <script type="text/javascript" src="{% static 'Registered/js/jquery-2.1.1.min.js' %}"></script>
+	    <link rel="stylesheet" href="{% static 'Registered/css/materialize.min.css' %}">
+	    <link rel="stylesheet" type="text/css" href="{% static 'operacion/css/listar_labores.css' %}">
+	    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+		<!--link href="{% static 'Registered/css/estilo.css' %}" rel="stylesheet">
+		<link href="{% static 'Registered/css/home.css' %}" rel="stylesheet"-->
+	    <script src="{% static 'Registered/js/materialize.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'operacion/js/cerrarLabor.js' %}"></script>
-	  <script type="text/javascript" src="{% static 'operacion/js/listar_labores.js' %}"></script>
-	  <script type="text/javascript" src="{% static 'operacion/js/labores.js' %}"></script>
-	  <script type="text/javascript" src="{% static 'operacion/js/modallabor.js' %}"></script>
-	<title>Listado de labores</title>
-</head>
+		<script type="text/javascript" src="{% static 'operacion/js/listar_labores.js' %}"></script>
+		<script type="text/javascript" src="{% static 'operacion/js/labores.js' %}"></script>
+		<script type="text/javascript" src="{% static 'operacion/js/modallabor.js' %}"></script>
+		<title>Listado de labores</title>
+	</head>
 	<body>
-<header>
-		<div class="row">
-			<div class="col s6 m4 l2 offset-s3 offset-m4 offset-l5">
-				<div class="row">
-					<div class="col s12 m12 l12">
-						<center><i class="material-icons" id="logeoT">phonelink_lock</i></center>
-					</div>
-					<div class="col s12 m12 l12">
-						<center><p id="titulo">Registered</p></center>
-					</div>
-				</div>
-			</div>
-		  <div class="col s2 m2 l4 "></div>
-		  <div class="col s3 m2 l1">
-		    <center><a href="{% url 'usuario:logout' %}" <i class="material-icons" id="close">input</i></a></center>
-		  </div>
-		</div>
-	</header>
-		<div class="container" style="margin-bottom: 20px;">
+		<header>
+		    <div class="row">
+		        <div class="col s6 m4 l2 offset-s1 offset-m1 offset-l1">
+		          	<div class="row">
+			            <a href="{% url 'index' %}">
+				            <div class="col s3 m3 l3">
+				              <center><i class="material-icons" id="logeoT">phonelink_lock</i></center>
+				            </div>
+				            <div class="col s6 m6 l6">
+				              <center><p id="titulo">Registered</p></center>
+				            </div>
+			            </a>
+		         	</div>
+		        </div>
+
+		        <div class="col s2 m4 l7 "></div>
+		        <div class="col s3 m2 l1">
+		        	<center><a href="{% url 'usuario:logout' %}"><i class="material-icons" id="close">input</i></a></center>
+		        </div>
+		    </div><!--end div row-->
+		</header>
+				
+		<div class="container filtro" style="margin-bottom: 20px;">
 			<div class="row">
 				<div class="col s10 m11 l11 ">
-					 <input placeholder="Busqueda" id="busqueda" type="text" class="validate">
+					<input placeholder="Busqueda" id="busqueda" type="text" class="validate">
 				</div>
 				<div class="col s1 m1 l1 ">
-					 <a class="btn-floating btn-large waves-effect waves-light #4db6acn addlabormodal"><i class="material-icons" >add</i></a>
+					<a class="btn-floating btn-large waves-effect waves-light #4db6acn addlabormodal"><i class="material-icons" >add</i></a>
 				</div>
 			</div>
 		</div>
+
 		<section>
 			<div class="container">
-				<div class="row" id="labores">
-					<div class="col s12 m12 l12 cajaIn ">
-						<div class="row" id="row_2">
-							<div class="col s12 m12 l12 caja" >
-								<div class="row">
-									<div class="col s9 m9 l9 datos" >
-										<div class="row">
-											<div class="col s5 m5 l5">Nombre:</div><br>
-											<div class="col s4 m4 l4">Hora:</div><br>
-											<div class="col s4 m4 l4">Duracion:</div>
-										</div>
-									</div>
-									<div class="col s1 m1 l1" id="boton_edit">
-										<a class="btn-floating btn-large waves-effect waves-light #4db6ac"><i class="material-icons">phonelink_lock</i></a>
-									</div>
-								</div>
-							</div><!--end clas col id caja-->
-						</div>
-					</div>
-
-					<div class="col s12 m12 l12 " id="cajaIn">
-						<div class="row" id="row_2">
-							<div class="col s12 m12 l12" id="caja">
-								<div class="row">
-									<div class="col s9 m9 l9" id="datos">
-										<div class="row">
-											<div class="col s5 m5 l5">Nombre:</div><br>
-											<div class="col s4 m4 l4">Hora:</div><br>
-											<div class="col s4 m4 l4">Duracion:</div>
-										</div>
-									</div>
-									<div class="col s1 m1 l1" id="boton_edit">
-										<a class="btn-floating btn-large waves-effect waves-light #4db6ac"><i class="material-icons">phonelink_lock</i></a>
-									</div>
-								</div>
-							</div><!--end clas col id caja-->
-						</div>
-					</div>
-
+				<div class="row" id="labores">					
+					<!--Js Codigo a mostrar en la tabla-->
 				</div><!--end row-->
 	        </div>
-        </section>
-				<div id="addlabor" class="modal modal-fixed-footer">
-					<div class="modal-content row">
-						<h4>Registrar Turno</h4>
-						<div id="contenido">
-							<form class="col s12" id="form_labor" action="{% url 'operacion:ws_labor' %}">
-									<div class="row">
-										<div class="input-field col s12">
-									    <select name="empleado" id="empleado">
-									      <option value="0" disabled selected>Seleccione Trabajador</option>
+		</section>
+
+		<div id="addlabor" class="modal modal-fixed-footer">
+			<div class="modal-content row">
+				<h4>Registrar Turno</h4>
+				<div id="contenido">
+					<form class="col s12" id="form_labor" action="{% url 'operacion:ws_labor' %}">
+						<div class="row">
+							<div class="input-field col s12">
+							    <select name="empleado" id="empleado">
+		    				        <option value="0" disabled selected>Seleccione Trabajador</option>
 												{% for e in empleados %}
-									      	<option value="{{ e.empleado.id}}">{{ e.empleado__first_name }} {{ e.empleado.last_name }}</option>
+									<option value="{{ e.empleado.id}}">{{ e.empleado__first_name }} {{ e.empleado.last_name }}</option>
 												{% endfor %}
+								</select>
+									    
+							    <label>Empleados</label>
+							</div>
 
-									    </select>
-									    <label>Empleados</label>
-									  </div>
+							<div class="input-field col s12 m8">
+								<input placeholder="usuario" id="user" type="text" class="validate" value="{{ usuario }}">
+								<label for="first_name">Usuario</label>
+							</div>
 
-										<div class="input-field col s12 m8">
-											<input placeholder="usuario" id="user" type="text" class="validate" value="{{ usuario }}">
-											<label for="first_name">Usuario</label>
-										</div>
-									<div class="row">
-										<div class="input-field col s12 m8">
-											<input id="password" type="password" class="validate" placeholder="contraseña">
-											<label for="password">Contraseña</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col s12 m8">
-											<label for="mensaje"></label>
-										</div>
-									</div>
+							<div class="row">
+								<div class="input-field col s12 m8">
+									<input id="password" type="password" class="validate" placeholder="contraseña">
+									<label for="password">Contraseña</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12 m8">
+									<label for="mensaje"></label>
+								</div>
+							</div>
 						</div>
 					</form>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat addlabor">Iniciar Sesión</a>
-						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
-					</div>
 				</div>
-				<div id="cerrarlaborc" class="modal modal-fixed-footer">
-					<div class="modal-content row">
-						<h4>Cerrar Turno</h4>
-						<div id="contenidoc">
-							<form class="col s12" id="form_laborc" action="{% url 'operacion:ws_labor' %}">
-									<div class="row">
-										<div class="input-field col s12 m8">
-											<input placeholder="Placeholder" id="userc" type="text" class="validate" disabled>
-											<label for="userc">Usuario</label>
-										</div>
-									<div class="row">
-										<div class="input-field col s12 m8">
-											<input id="passwordc" type="password" class="validate">
-											<label for="passwordc">Contraseña</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col s12 m8">
-											<label for="mensajec"></label>
-										</div>
-									</div>
+			</div>
+			
+			<div class="modal-footer">
+				<a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat addlabor">Iniciar Sesión</a>
+				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+			</div>
+
+		</div>
+		
+		<div id="cerrarlaborc" class="modal modal-fixed-footer">
+			<div class="modal-content row">
+				<h4>Cerrar Turno</h4>
+				<div id="contenidoc">
+					<form class="col s12" id="form_laborc" action="{% url 'operacion:ws_labor' %}">
+						<div class="row">
+							<div class="input-field col s12 m8">
+								<input placeholder="Placeholder" id="userc" type="text" class="validate" disabled>
+								<label for="userc">Usuario</label>
+							</div>
+							
+							<div class="row">
+								<div class="input-field col s12 m8">
+									<input id="passwordc" type="password" class="validate">
+									<label for="passwordc">Contraseña</label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="input-field col s12 m8">
+									<label for="mensajec"></label>
+								</div>
+							</div>
 						</div>
 					</form>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat editlabor sendLabor">Iniciar Sesión</a>
-						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
-					</div>
 				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat editlabor sendLabor">Iniciar Sesión</a>
+				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+			</div>
+		</div>
 	</body>
 </html>
