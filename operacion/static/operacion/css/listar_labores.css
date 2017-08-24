@@ -11,7 +11,15 @@ header{
     top: 0px;
 }
 
+section > .container{
+	background-color: #F5F5F6;
+	margin-top: 10px;
+}
 /*#F5F5F6*/
+
+.filtro > .row{
+	background-color: #F5F5F6;
+}
 
 body{
 	 background-color: #E1E2E1;
@@ -69,10 +77,9 @@ a:active {
 .filtro{
 	padding-left: 10%;
 	width: 90%;
-	padding-top: 100px;	
+	padding-top: 95px;	
 	position: absolute;	
 	z-index: -1;
-	background-color: #F5F5F6;
 }
 
 .filtrado{
