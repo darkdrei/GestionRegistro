@@ -11,7 +11,13 @@ header{
     top: 0px;
 }
 
+body{
+	 background-color: #E1E2E1;
+}
 
+a:link, a:visited, a:hover, a:active{
+    color: #000000;
+}
 
 #logeoT{
 	margin-top: 10px;
@@ -45,9 +51,13 @@ header{
 .filtro{
 	padding-left: 10%;
 	width: 90%;
-	padding-top: 100px;	
+	padding-top: 95px;	
 	position: absolute;	
 	z-index: -1;
+}
+
+.filtro > .row{
+	background-color: #F5F5F6;
 }
 
 .filtrado{
@@ -64,9 +74,14 @@ td, th {
 section{
 	padding-left: 0%;
 	width: 100%;
-	padding-top: 250px;	
+	padding-top: 170px;	
 	position: absolute;		
 	z-index: -2;
+}
+
+section > .container{
+	background-color: #F5F5F6;
+	margin-top: 10px;
 }
 .tabla_tool li {
     display: inline;

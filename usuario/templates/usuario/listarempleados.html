@@ -16,11 +16,10 @@
 {% endblock %}
 
 {% block tool %}
-  <div class="row filtrado">
+  <div class="row cajaIn caja">
     <div class="col s4 m4 l4 ">
-      <label>Empresa</label>
       <select id = "empresa" {% if not empresa %} disabled{% endif %}>
-        <option value="0" disabled selected>{% if empresa %}Selecioné{% else %} No Registros {% endif %}</option>
+        <option value="0" disabled selected>{% if empresa %}Empresa{% else %} No Registros {% endif %}</option>
         {% if empresa %}
         {% for c in empresa %}
         <option value="{{ c.id }}">{{ c.first_name }}</option>
@@ -29,25 +28,24 @@
       </select>    
     </div>
     <div class="col s4 m4 l4 ">
-      <label>Ciudad</label>
       <select id="ciudad" disabled>
-        <option value="" disabled selected>Selecioné</option>
+        <option value="" disabled selected>Ciudad</option>
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
       </select>    
     </div>
     <div class="col s4 m4 l4 ">
-      <label>Tienda</label>
       <select id="tienda" disabled>
-        <option value="" disabled selected>Selecioné</option>
+        <option value="" disabled selected>Tienda</option>
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
       </select>    
     </div>
   </div>
-  <div class="row search">
+  
+  <div class="row cajaIn caja">
     <div class="col s10 m11 l11 ">
        <input placeholder="Busqueda" id="search" type="text" class="validate">
     </div>
@@ -60,7 +58,7 @@
 {% block contenido %}
 <div class="row cajaIn caja scrolbx scrolby">
   <div class="col s12 m12 l12" id="Tabla">
-    <table class="bordered highlight">
+    <table class="highlight centered">
       <thead>
         <tr>
           <th>Empresa</th>
