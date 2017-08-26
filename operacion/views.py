@@ -162,7 +162,7 @@ class ValidarObservacion(View):
 class ListObservacion(supra.SupraListView):
     model = models.Observacion
     search_key = 'q'
-    list_display = ['id','observacion','usuario','atendido','nom_tienda']
+    list_display = ['id','observacion','usuario','atendido','nom_tienda', 'servicios']
     paginate_by = 100
 
     class Renderer:
@@ -174,8 +174,8 @@ class ListObservacion(supra.SupraListView):
     def servicios(self, obj, row):
         edit = '/operacion/edit/observacion/%d/'%obj.idea
         add = '/operacion/add/observacion/'
-        add = '/operacion/add/observacion/'
-        return {'edit': edit}
+        valid = '/operacion/validar/observacion/%d/'%obj.idea
+        return {'edit': edit,'add':add,'validar':valid}
     # end def
 
     def get_queryset(self):
