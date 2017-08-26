@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#cuve os
 from __future__ import unicode_literals
 
 from django.db import models
@@ -152,5 +153,27 @@ class PagoLabor(models.Model):
     class Meta:
         verbose_name ='Pago Labor'
         verbose_name_plural ='Pago Labores'
+    #end class
+#end class
+
+
+class Observacion(models.Model):
+    empleado = models.ForeignKey(usuario.Empleado, verbose_name='Domiciliario')
+    tienda = models.ForeignKey(empresa.Tienda, blank=True, null=True)
+    observacion = models.CharField(max_length=800, null=True, blank=True)
+    atendido = models.BooleanField(default=False)
+    estado= models.BooleanField(default=True)
+
+    def __init__(self):
+        return u'%s %s- %s'%(self.empleado.first_name, self.empleado.last_name, self.tienda.nombre)
+    #end def
+
+    def __str__(self):
+        return u'%s %s- %s'%(self.empleado.first_name, self.empleado.last_name, self.tienda.nombre)
+    #end def
+
+    class Meta:
+        verbose_name = 'Observacion'
+        verbose_name_plural = 'Observaciones'
     #end class
 #end class
