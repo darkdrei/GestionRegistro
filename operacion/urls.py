@@ -35,7 +35,8 @@ urlpatterns += [
 #funciones de la funcion de Observaciones
 urlpatterns += [
     url(r'add/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
-    url(r'edit/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
-    url(r'delete/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
-    url(r'list/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
+    url(r'edit/observacion/(?P<pk>)/$',login_required(views.AddObservacion.as_view()),name='edit_observacion'),
+    url(r'delete/observacion/(?P<pk>)/$',login_required(views.DeleteObservacion.as_view()),name='delete_observacion'),
+    url(r'list/observacion/$',login_required(views.ListObservacion.as_view()),name='list_observacion'),
+    url(r'validar/observacion/(?P<pk>)/$',login_required(views.ValidarObservacion.as_view()),name='valid_observacion'),
 ]
