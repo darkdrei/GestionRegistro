@@ -105,6 +105,56 @@ class AddLabor(supra.SupraFormView):
 # end class
 
 
+class AddObservacion(supra.SupraFormView):
+    model = models.Observacion
+    form_class = forms.ObservacionForm
+    template_name = 'operacion/addobservacion.html'
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(AddObservacion, self).dispatch(*args, **kwargs)
+    # end def
+# end class
+
+
+class ListObservacion(supra.SupraListView):
+    model = models.Labor
+    search_key = 'q'
+    list_display = ['id','empleado','ini','nombre','apellidos','identificacion','id_emp','tiempo','servicios','usuario']
+    search_fields = ['id','empleado__first_name','empleado__last_name','empleado__identificacion','empleado__username']
+    paginate_by = 10
+
+    class Renderer:
+        nombre = 'empleado__first_name'
+        apellidos = 'empleado__last_name'
+        identificacion = 'empleado__identificacion'
+        id_emp = 'empleado__id'
+        usuario ='empleado__username'
+    # end class
+
+    def servicios(self, obj, row):
+        edit = "/operacion/edit/labor/"
+        return {'edit': edit}
+    # end def
+
+    def get_queryset(self):
+        queryset = super(ListLabor, self).get_queryset()
+        user = CuserMiddleware.get_user()
+        tienda = empresa.Tienda.objects.filter(administrador__user_ptr_id=user.id).first()
+        busqueda = self.request.GET.get('busq','')
+        print self.request.GET
+        consulta_tiempo = """select EXTRACT(EPOCH FROM "operacion_labor"."ini")"""
+        confi = queryset.filter((Q(empleado__first_name__icontains=busqueda) | Q(empleado__last_name__icontains=busqueda) | Q(empleado__identificacion__icontains=busqueda)) & Q(empleado__tienda__administrador__user_ptr_id=user.id,estado=True,cerrado=False)).extra(select={'tiempo':consulta_tiempo})
+        return confi
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(ListLabor, self).dispatch(*args, **kwargs)
+    # end def
+# end class
+
+
+
 class ListLabor(supra.SupraListView):
     model = models.Labor
     search_key = 'q'
