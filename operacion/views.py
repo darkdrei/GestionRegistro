@@ -117,23 +117,64 @@ class AddObservacion(supra.SupraFormView):
 # end class
 
 
+class DeleteObservacion(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(DeleteObservacion, self).dispatch(*args, **kwargs)
+    # end def
+
+    def get(self, request, *args, **kwargs):
+        observacion=kwargs['pk']
+        if observacion:
+            lab = models.Observacion.objects.filter(id=observacion).first()
+            if lab:
+                lab.estado=False
+                lab.save()
+                return HttpResponse('[{"status":true}]', content_type='application/json', status=200)
+            # end if
+        # end if
+        return HttpResponse('[{"status":false}]', content_type='application/json', status=202)
+    # end def
+# end class
+
+
+class ValidarObservacion(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(ValidarObservacion, self).dispatch(*args, **kwargs)
+    # end def
+
+    def get(self, request, *args, **kwargs):
+        observacion=kwargs['pk']
+        if observacion:
+            lab = models.Observacion.objects.filter(id=observacion).first()
+            if lab:
+                lab.estado=atendido
+                lab.save()
+                return HttpResponse('[{"status":true}]', content_type='application/json', status=200)
+            # end if
+        # end if
+        return HttpResponse('[{"status":false}]', content_type='application/json', status=202)
+    # end def
+# end class
+
+
 class ListObservacion(supra.SupraListView):
-    model = models.Labor
+    model = models.Observacion
     search_key = 'q'
-    list_display = ['id','empleado','ini','nombre','apellidos','identificacion','id_emp','tiempo','servicios','usuario']
-    search_fields = ['id','empleado__first_name','empleado__last_name','empleado__identificacion','empleado__username']
-    paginate_by = 10
+    list_display = ['id','observacion','usuario','atendido','nom_tienda']
+    paginate_by = 100
 
     class Renderer:
-        nombre = 'empleado__first_name'
-        apellidos = 'empleado__last_name'
-        identificacion = 'empleado__identificacion'
-        id_emp = 'empleado__id'
-        usuario ='empleado__username'
+        nom_tienda = 'tienda__nombre'
+        empresa = 'tienda__empresa__first__name'
+        ciudad = 'tienda__empresa__ciudad__nombre'
     # end class
 
     def servicios(self, obj, row):
-        edit = "/operacion/edit/labor/"
+        edit = '/operacion/edit/observacion/%d/'%obj.idea
+        add = '/operacion/add/observacion/'
+        add = '/operacion/add/observacion/'
         return {'edit': edit}
     # end def
 
