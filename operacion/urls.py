@@ -31,3 +31,11 @@ urlpatterns += [
     url(r'movil/trabajos/$',login_required(views.MobilLabore.as_view()) ,name='movil_labores'),
     url(r'ws/labor/$',login_required(views.AddWsLabor.as_view()) ,name='ws_labor'),
 ]
+
+#funciones de la funcion de Observaciones
+urlpatterns += [
+    url(r'add/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
+    url(r'edit/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
+    url(r'delete/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
+    url(r'list/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
+]
