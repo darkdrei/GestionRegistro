@@ -162,12 +162,12 @@ class ValidarObservacion(View):
 class ListObservacion(supra.SupraListView):
     model = models.Observacion
     search_key = 'q'
-    list_display = ['id','observacion','usuario','atendido','nom_tienda', 'servicios']
+    list_display = ['id','observacion','atendido','nom_tienda', 'servicios','ciudad','empresa','nom_tienda']
     paginate_by = 100
 
     class Renderer:
         nom_tienda = 'tienda__nombre'
-        empresa = 'tienda__empresa__first__name'
+        empresa = 'tienda__empresa__first_name'
         ciudad = 'tienda__empresa__ciudad__nombre'
     # end class
 
@@ -178,19 +178,9 @@ class ListObservacion(supra.SupraListView):
         return {'edit': edit,'add':add,'validar':valid}
     # end def
 
-    def get_queryset(self):
-        queryset = super(ListLabor, self).get_queryset()
-        user = CuserMiddleware.get_user()
-        tienda = empresa.Tienda.objects.filter(administrador__user_ptr_id=user.id).first()
-        busqueda = self.request.GET.get('busq','')
-        print self.request.GET
-        consulta_tiempo = """select EXTRACT(EPOCH FROM "operacion_labor"."ini")"""
-        confi = queryset.filter((Q(empleado__first_name__icontains=busqueda) | Q(empleado__last_name__icontains=busqueda) | Q(empleado__identificacion__icontains=busqueda)) & Q(empleado__tienda__administrador__user_ptr_id=user.id,estado=True,cerrado=False)).extra(select={'tiempo':consulta_tiempo})
-        return confi
-
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
-        return super(ListLabor, self).dispatch(*args, **kwargs)
+        return super(ListObservacion, self).dispatch(*args, **kwargs)
     # end def
 # end class
 
