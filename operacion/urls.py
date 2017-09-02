@@ -34,6 +34,7 @@ urlpatterns += [
 
 #funciones de la funcion de Observaciones
 urlpatterns += [
+    url(r'index/observacion/$',login_required(TemplateView.as_view(template_name='operacion/observaciones.html')),name='index_observacion'),
     url(r'add/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
     url(r'edit/observacion/(?P<pk>)/$',login_required(views.AddObservacion.as_view()),name='edit_observacion'),
     url(r'delete/observacion/(?P<pk>)/$',login_required(views.DeleteObservacion.as_view()),name='delete_observacion'),
