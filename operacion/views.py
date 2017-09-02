@@ -70,7 +70,11 @@ class ListConfiguracion(supra.SupraListView):
     paginate_by = 100
 
     def seldias(self, obj, row):
-        return 'Lunes martes'
+        info = []
+        for x in obj.dias.all():
+            info.append(x.nombre)
+        # end for
+        return ','.join(str(e) for e in info)
     # end def
 
     def servicios(self, obj, row):
@@ -83,8 +87,11 @@ class ListConfiguracion(supra.SupraListView):
     def get_queryset(self):
         queryset = super(ListConfiguracion, self).get_queryset()
         user = CuserMiddleware.get_user()
+        search = self.request.GET.get('search','')
         confi = models.Configuracion.objects.filter(empresa__supervisor__user_ptr_id=user.id,estado=True)
+        confi = confi.filter(Q(empresa__first_name__icontains=search) | Q(ciudad__nombre__icontains=search)).order_by('empresa__first_name','ciudad__nombre','-dias__valor')
         return confi
+    #end def
 
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
