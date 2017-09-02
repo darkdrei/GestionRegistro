@@ -30,7 +30,7 @@ class AddMoto(supra.SupraFormView):
 class ListMotorizados(supra.SupraListView):
     model = models.InfoMoto
     search_key = 'q'
-    list_display = ['emp_id','nombre','apellidos']
+    list_display = ['emp_id','nombre','apellidos','tienda']
     search_fields = ['id']
     paginate_by = 100
 
@@ -38,6 +38,7 @@ class ListMotorizados(supra.SupraListView):
         emp_id = 'empleado__id'
         nombre = 'empleado__first_name'
         apellidos = 'empleado__last_name'
+        tienda = 'empleado__tienda__nombre'
     #end class
 
     def get_queryset(self):
@@ -45,7 +46,7 @@ class ListMotorizados(supra.SupraListView):
         queryset = super(ListMotorizados, self).get_queryset()
         asignados = operacion.Labor.objects.filter(empleado__tienda__administrador__id=user.id, cerrado=False).values_list('empleado__id', flat=True)
         print 'esto son los asignados ',asignados
-        queryset = queryset.filter(empleado__tienda__administrador__id=user.id)
+        #queryset = queryset.filter(empleado__tienda__administrador__id=user.id)
         queryset =queryset.exclude(empleado__id__in=asignados)
         return queryset
     #end class
