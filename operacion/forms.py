@@ -147,7 +147,11 @@ class ConfiguracionFormView(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ConfiguracionFormView, self).__init__(*args, **kwargs)
         user = CuserMiddleware.get_user()
-        self.fields['empresa'].queryset = empresa.Empresa.objects.filter(supervisor__user_ptr_id=user.id)
+        emp = empresa.Empresa.objects.filter(supervisor__user_ptr_id=user.id)
+        self.fields['empresa'].queryset = emp
+        list_emp = emp.values_list('id', flat=True)
+        print 'este el valor de la empresa --> ',list_emp
+        self.fields['ciudad'].queryset = empresa.Ciudad.objects.filter(tienda__empresa__in=list_emp).distinct()
     # end def
 
     def save(self, commit = True):
