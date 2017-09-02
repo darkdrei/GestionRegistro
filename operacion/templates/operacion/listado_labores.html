@@ -42,7 +42,7 @@
 		        </div>
 		    </div><!--end div row-->
 		</header>
-				
+
 		<!--div class="container filtro" style="margin-bottom: 20px;">
 			<div class="row">
 				<div class="col s10 m11 l11 ">
@@ -66,33 +66,21 @@
 
 		<section>
 			<div class="container">
-				<div class="row" id="labores">					
-					<!--Js Codigo a mostrar en la tabla-->
-				</div><!--end row-->
-	        </div>
-<<<<<<< HEAD
-        </section>
-				<div id="mensaje_empleado" class="modal modal-fixed-footer">
-						<div class="modal-content">
-							<h4>No existen domiciliarios</h4>
-							<p>Los domiciliarios asignados se encuentram en labor,
-							    debe ponerse en contacto con su proveedor.</p>
-						</div>
-						<div class="modal-footer">
-							<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Aceptar</a>
-						</div>
-					</div>
-				<div id="addlabor" class="modal modal-fixed-footer">
-					<div class="modal-content row">
-						<h4>Registrar Turno</h4>
-						<div id="contenido">
-							<form class="col s12" id="form_labor" action="{% url 'operacion:ws_labor' %}">
-									<div class="row">
-										<div class="input-field col s12">
-									    <select name="empleado" id="empleado">
-									      <option value="0" disabled selected>Seleccione Trabajador</option>
-=======
+				<div class="row" id="labores">
+					<!--Js Codigo a mostrar en la tabla -->
+				</div>
+	    </div>
 		</section>
+		<div id="mensaje_empleado" class="modal modal-fixed-footer">
+				<div class="modal-content">
+					<h4>No existen domiciliarios</h4>
+					<p>Los domiciliarios asignados se encuentram en labor,
+					    debe ponerse en contacto con su proveedor.</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Aceptar</a>
+				</div>
+		</div>
 
 		<div id="addlabor" class="modal modal-fixed-footer">
 			<div class="modal-content row">
@@ -102,13 +90,8 @@
 						<div class="row">
 							<div class="input-field col s12">
 							    <select name="empleado" id="empleado">
-		    				        <option value="0" disabled selected>Seleccione Trabajador</option>
->>>>>>> fc9f5bc04c7e88100fe8fcda4a034cbe6130e9cf
-												{% for e in empleados %}
-									<option value="{{ e.empleado.id}}">{{ e.empleado__first_name }} {{ e.empleado.last_name }}</option>
-												{% endfor %}
 								</select>
-									    
+
 							    <label>Empleados</label>
 							</div>
 
@@ -132,7 +115,12 @@
 						</div>
 					</form>
 				</div>
-<<<<<<< HEAD
+			</div>
+			<div class="modal-footer">
+						<a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat addlabor">Iniciar Sesión</a>
+						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+			</div>
+		</div>
 
 				<div id="cerrarlaborc" class="modal modal-fixed-footer">
 					<div class="modal-content row">
@@ -164,49 +152,5 @@
 						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
 					</div>
 				</div>
-
-=======
-			</div>
-			
-			<div class="modal-footer">
-				<a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat addlabor">Iniciar Sesión</a>
-				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
-			</div>
-
-		</div>
-		
-		<div id="cerrarlaborc" class="modal modal-fixed-footer">
-			<div class="modal-content row">
-				<h4>Cerrar Turno</h4>
-				<div id="contenidoc">
-					<form class="col s12" id="form_laborc" action="{% url 'operacion:ws_labor' %}">
-						<div class="row">
-							<div class="input-field col s12 m8">
-								<input placeholder="Placeholder" id="userc" type="text" class="validate" disabled>
-								<label for="userc">Usuario</label>
-							</div>
-							
-							<div class="row">
-								<div class="input-field col s12 m8">
-									<input id="passwordc" type="password" class="validate">
-									<label for="passwordc">Contraseña</label>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="input-field col s12 m8">
-									<label for="mensajec"></label>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<a href="{% url 'usuario:login_empleado' %}" class="modal-action waves-effect waves-green btn-flat editlabor sendLabor">Iniciar Sesión</a>
-				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
-			</div>
-		</div>
->>>>>>> fc9f5bc04c7e88100fe8fcda4a034cbe6130e9cf
 	</body>
 </html>
