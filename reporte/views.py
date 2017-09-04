@@ -127,14 +127,13 @@ class EmpleadoEspicificoImprimir(PDFTemplateView):
             empleados, inicio, fin)
         cursor.execute(m)
         row = cursor.fetchone()
-        print row[0][0]['data_']
+        print row[0][0]['info'][0]
         context = self.get_context_data(**kwargs)
         context.update({'inicio':inicio})
         context.update({'fin':fin})
         context.update({'empleados':row[0][0]['data_'] if row[0][0]['data_'] else []})
-        context.update({'info':row[0][0]['info'] if row[0][0]['info'] else []})
+        context.update({'info':row[0][0]['info'][0] if row[0][0]['info'] else []})
         context.update({'total':row[0][0]['ttotal'] if row[0][0]['info'] else []})
-        print context
         return self.render_to_response(context)
     # end def
 # end class
