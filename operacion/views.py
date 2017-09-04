@@ -19,6 +19,7 @@ from django.utils import timezone
 from datetime import datetime
 from usuario import models as usuario
 from django.db.models import Q
+from motorizado import models as motorizado
 
 
 # Create your views here.
@@ -69,7 +70,11 @@ class ListConfiguracion(supra.SupraListView):
     paginate_by = 100
 
     def seldias(self, obj, row):
-        return 'Lunes martes'
+        info = []
+        for x in obj.dias.all():
+            info.append(x.nombre)
+        # end for
+        return ','.join(str(e) for e in info)
     # end def
 
     def servicios(self, obj, row):
@@ -82,8 +87,11 @@ class ListConfiguracion(supra.SupraListView):
     def get_queryset(self):
         queryset = super(ListConfiguracion, self).get_queryset()
         user = CuserMiddleware.get_user()
+        search = self.request.GET.get('search','')
         confi = models.Configuracion.objects.filter(empresa__supervisor__user_ptr_id=user.id,estado=True)
+        confi = confi.filter(Q(empresa__first_name__icontains=search) | Q(ciudad__nombre__icontains=search)).order_by('empresa__first_name','ciudad__nombre','-dias__valor')
         return confi
+    #end def
 
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
@@ -102,6 +110,87 @@ class AddLabor(supra.SupraFormView):
         return super(AddLabor, self).dispatch(*args, **kwargs)
     # end def
 # end class
+
+
+class AddObservacion(supra.SupraFormView):
+    model = models.Observacion
+    form_class = forms.ObservacionForm
+    template_name = 'operacion/addobservacion.html'
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(AddObservacion, self).dispatch(*args, **kwargs)
+    # end def
+# end class
+
+
+class DeleteObservacion(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(DeleteObservacion, self).dispatch(*args, **kwargs)
+    # end def
+
+    def get(self, request, *args, **kwargs):
+        observacion=kwargs['pk']
+        if observacion:
+            lab = models.Observacion.objects.filter(id=observacion).first()
+            if lab:
+                lab.estado=False
+                lab.save()
+                return HttpResponse('[{"status":true}]', content_type='application/json', status=200)
+            # end if
+        # end if
+        return HttpResponse('[{"status":false}]', content_type='application/json', status=202)
+    # end def
+# end class
+
+
+class ValidarObservacion(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(ValidarObservacion, self).dispatch(*args, **kwargs)
+    # end def
+
+    def get(self, request, *args, **kwargs):
+        observacion=kwargs['pk']
+        if observacion:
+            lab = models.Observacion.objects.filter(id=observacion).first()
+            if lab:
+                lab.estado=atendido
+                lab.save()
+                return HttpResponse('[{"status":true}]', content_type='application/json', status=200)
+            # end if
+        # end if
+        return HttpResponse('[{"status":false}]', content_type='application/json', status=202)
+    # end def
+# end class
+
+
+class ListObservacion(supra.SupraListView):
+    model = models.Observacion
+    search_key = 'q'
+    list_display = ['id','observacion','atendido','nom_tienda', 'servicios','ciudad','empresa','nom_tienda']
+    paginate_by = 100
+
+    class Renderer:
+        nom_tienda = 'tienda__nombre'
+        empresa = 'tienda__empresa__first_name'
+        ciudad = 'tienda__empresa__ciudad__nombre'
+    # end class
+
+    def servicios(self, obj, row):
+        edit = '/operacion/edit/observacion/%d/'%obj.idea
+        add = '/operacion/add/observacion/'
+        valid = '/operacion/validar/observacion/%d/'%obj.idea
+        return {'edit': edit,'add':add,'validar':valid}
+    # end def
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(ListObservacion, self).dispatch(*args, **kwargs)
+    # end def
+# end class
+
 
 
 class ListLabor(supra.SupraListView):
@@ -225,5 +314,15 @@ class DeleteLabor(View):
 class Labores(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         return render(request, 'operacion/empleados_tienda.html')
+    # end def
+# end class
+
+
+class MobilLabore(TemplateView):
+    def dispatch(self, request, *args, **kwargs):
+        empleados = motorizado.InfoMoto.objects.filter(empleado__tienda__administrador__user_ptr_id=request.user.id)
+        print empleados
+        ctx = {'empleados':empleados,'usuario':request.user.username}
+        return render(request, 'operacion/listado_labores.html',ctx)
     # end def
 # end class

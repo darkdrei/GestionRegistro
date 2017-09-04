@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#cuve os
 from __future__ import unicode_literals
 
 from django.db import models
@@ -26,6 +27,7 @@ class DiaSemana(models.Model):
         verbose_name_plural = 'Dias de la semana'
     #end class
 #end class
+
 
 class PrecioDefecto(models.Model):
     empresa = models.ForeignKey(empresa.Empresa)
@@ -129,5 +131,49 @@ class Labor(models.Model):
     class Meta:
         verbose_name ='Labor'
         verbose_name_plural ='Labores'
+    #end class
+#end class
+
+
+class PagoLabor(models.Model):
+    labor = models.ForeignKey(Labor)
+    ini = models.CharField(max_length=22, verbose_name="Hora de inicio", null=True,blank=True)
+    fin = models.CharField(max_length=22, verbose_name="Hora de fin", null=True,blank=True)
+    precio = models.FloatField(default=0)
+    hora = models.FloatField(default=0)
+
+    def __unicode__(self):
+        return u'%s %s'%(self.labor.empleado.first_name,self.labor.empleado.last_name)
+    # end class
+
+    def __str__(self):
+        return u'%s %s'%(self.labor.empleado.first_name,self.labor.empleado.last_name)
+    # end class
+
+    class Meta:
+        verbose_name ='Pago Labor'
+        verbose_name_plural ='Pago Labores'
+    #end class
+#end class
+
+
+class Observacion(models.Model):
+    empleado = models.ForeignKey(usuario.Empleado, verbose_name='Domiciliario')
+    tienda = models.ForeignKey(empresa.Tienda, blank=True, null=True)
+    observacion = models.CharField(max_length=800, null=True, blank=True)
+    atendido = models.BooleanField(default=False)
+    estado= models.BooleanField(default=True)
+
+    def __init__(self):
+        return u'%s %s- %s'%(self.empleado.first_name, self.empleado.last_name, self.tienda.nombre)
+    #end def
+
+    def __str__(self):
+        return u'%s %s- %s'%(self.empleado.first_name, self.empleado.last_name, self.tienda.nombre)
+    #end def
+
+    class Meta:
+        verbose_name = 'Observacion'
+        verbose_name_plural = 'Observaciones'
     #end class
 #end class

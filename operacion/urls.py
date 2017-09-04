@@ -28,6 +28,16 @@ urlpatterns += [
 #funcionalidad de adicional labor
 urlpatterns += [
     url(r'labores/$',views.Labores.as_view() ,name='labores'),
-    url(r'movil/trabajos/$',login_required(TemplateView.as_view(template_name='operacion/listado_labores.html')) ,name='movil_labores'),
+    url(r'movil/trabajos/$',login_required(views.MobilLabore.as_view()) ,name='movil_labores'),
     url(r'ws/labor/$',login_required(views.AddWsLabor.as_view()) ,name='ws_labor'),
+]
+
+#funciones de la funcion de Observaciones
+urlpatterns += [
+    url(r'index/observacion/$',login_required(TemplateView.as_view(template_name='operacion/observaciones.html')),name='index_observacion'),
+    url(r'add/observacion/$',login_required(views.AddObservacion.as_view()),name='add_observacion'),
+    url(r'edit/observacion/(?P<pk>)/$',login_required(views.AddObservacion.as_view()),name='edit_observacion'),
+    url(r'delete/observacion/(?P<pk>)/$',login_required(views.DeleteObservacion.as_view()),name='delete_observacion'),
+    url(r'list/observacion/$',login_required(views.ListObservacion.as_view()),name='list_observacion'),
+    url(r'validar/observacion/(?P<pk>)/$',login_required(views.ValidarObservacion.as_view()),name='valid_observacion'),
 ]

@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^edit/moto/(?P<pk>\d+)/$',login_required(views.AddMoto.as_view()) ,name='edit_moto'),
     url(r'^delete/moto/(?P<pk>\d+)/$',login_required(views.DeleteMoto.as_view()) ,name='delete_moto'),
     url(r'^list/moto/',login_required(views.ListMoto.as_view()) ,name='lis_moto'),
+    url(r'^list/motorizado/',login_required(views.ListMotorizados.as_view()) ,name='lis_motorizado'),
 ]

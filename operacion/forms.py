@@ -147,7 +147,11 @@ class ConfiguracionFormView(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ConfiguracionFormView, self).__init__(*args, **kwargs)
         user = CuserMiddleware.get_user()
-        self.fields['empresa'].queryset = empresa.Empresa.objects.filter(supervisor__user_ptr_id=user.id)
+        emp = empresa.Empresa.objects.filter(supervisor__user_ptr_id=user.id)
+        self.fields['empresa'].queryset = emp
+        list_emp = emp.values_list('id', flat=True)
+        print 'este el valor de la empresa --> ',list_emp
+        self.fields['ciudad'].queryset = empresa.Ciudad.objects.filter(tienda__empresa__in=list_emp).distinct()
     # end def
 
     def save(self, commit = True):
@@ -237,5 +241,34 @@ class LaborFormView(forms.ModelForm):
         labor.ini = timezone.now()
         labor.save()
         return labor
+    #end def
+#end class
+
+class ObservacionForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(LaborForm, self).__init__(*args, **kwargs)
+        user = CuserMiddleware.get_user()
+        if user:
+            self.fields['empleado'].queryset = usuario.Empleado.objects.filter(tienda__empresa__supervisor__user_ptr_id=user.id)
+        #end if
+    # end def
+
+    class Meta:
+        model = models.Observacion
+        fields = ['empleado','observacion']
+        exclude = ['estado','atendido','tienda']
+    #end class
+
+    def save(self, commit = True):
+        observacion = super(ObservacionForm, self).save(commit=False)
+        if commit :
+            user = CuserMiddleware.get_user()
+            administrador = usuario.Administrador.objects.filter(id=user.id).first()
+            if administrador:
+                observacion.tienda = administrador.tienda
+                observacion.save()
+            #end if
+        # end def
+        return conf
     #end def
 #end class

@@ -34,7 +34,9 @@ class InfoMotoForm(forms.ModelForm):
             self.fields['fecha_expiracionT'].widget.attrs.update({'class': clases})
         #end if
         user = CuserMiddleware.get_user()
-        self.fields['empleado'].queryset = usuario.Empleado.objects.filter(tienda__empresa__supervisor__user_ptr_id=user.id)
+        infomoto = models.InfoMoto.objects.filter(empleado__tienda__empresa__supervisor__user_ptr_id=user.id).values_list('empleado__id', flat=True)
+        print 'los motorizados ',infomoto
+        self.fields['empleado'].queryset = usuario.Empleado.objects.filter(tienda__empresa__supervisor__user_ptr_id=user.id).exclude(id__in=infomoto)
     # end def
 
     class Meta:

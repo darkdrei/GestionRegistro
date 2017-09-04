@@ -12,3 +12,14 @@ urlpatterns = [
 urlpatterns += [
     url(r'^ws/pagos/empledos/$',login_required(views.WsPagosEmpleados.as_view()), name='ws_pagos'),
 ]
+
+
+#reporte depagos
+urlpatterns += [
+    url(r'^ws/pagos/empledos/imprimir/$',login_required(views.WsPagosEmpleadosImprimir.as_view()), name='ws_pagosg'),
+]
+
+#reporte depagos
+urlpatterns += [
+    url(r'^pagos/empledo/especifico/imprimir/$',login_required(views.EmpleadoEspicificoImprimir.as_view()), name='ws_pagose'),
+]

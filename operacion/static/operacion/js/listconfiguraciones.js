@@ -13,7 +13,6 @@ function listConfiguracion(){
         type:'get',
         dataType:'json',
         success:function(data){
-          console.log(data);
           var emp = $('#tab_mot');
           emp.html("");
           var resul = data.object_list;
@@ -25,10 +24,12 @@ function listConfiguracion(){
                   dias = resul[i].seldias,
                   valor = resul[i].valor,
                   ciudad = resul[i].ciudad__nombre,
-                  servicios = resul[i].servicios;
+                  servicios = resul[i].servicios,
+                  hora = resul[i].inicio+"-"+resul[i].fin ;
                   var temporal="";
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
                   temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
+                  temporal+="<td><span class=\"mod_hora\" >"+hora+"</span></td>";
                   temporal+="<td><span class=\"mod_dias\" >"+dias+"</span></td>";
                   temporal+="<td><span class=\"mod_valor\" >"+valor+"</span></td>";
                   var d= "<ul class=\"tabla_tool\">";
@@ -46,11 +47,7 @@ function listConfiguracion(){
             $('.tabla_edit').on('click', function(event){
               console.log("desde los tool tabla");
             });
-            // funcionesModificarMoto();
-            // funcionesEliminar();
-            // eventosDePaginador();
           }
         }
       });
-  //  }
 }
