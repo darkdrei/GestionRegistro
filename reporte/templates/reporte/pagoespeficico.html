@@ -24,6 +24,20 @@ tr:hover{background-color:#f5f5f5}
 </head>
 <body>
   <h1>Reporte de pago entre <span>{{ inicio }}</span> y <span>{{ fin }}</span></h1>
+    {% if info %}
+    <h1>
+      <ul>
+        <li><label for="">Empresa : </label> <span>{{ info.empresa}}</span></li>
+        <li><label for="">Tienda : </label> <span>{{ info.tienda}}</span></li>
+        <li><label for="">Ciudad : </label> <span>{{ info.ciudad}}</span></li>
+        <li><label for="">Identificacion : </label> <span>{{ info.identificacion}}</span></li>
+        <li><label for="">Nombre : </label> <span>{{ info.nombre}} {{ info.apellidos }}</span></li>
+        <li><label for="">Celular : </label> <span>{{ info.celular }}</span></li>
+        <li><label for="">Direccion : </label> <span>{{ info.direccion}} </span></li>
+      </ul>
+    </h1>
+
+    {% endif %}
     {% if empleados %}
       <table>
         <thead>
@@ -43,6 +57,12 @@ tr:hover{background-color:#f5f5f5}
               <td>{{ o.total_horas }}</td>
             </tr>
           {% endfor %}
+          <tr>
+            <td>  </td>
+            <td>  </td>
+            <td>TOTAL</td>
+            <td>{{ total }}</td>
+          </tr>
         </tbody>
       </table>
     {% else %}
