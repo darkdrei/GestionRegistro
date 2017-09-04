@@ -98,7 +98,6 @@ class Login(BaseFormView):
         print request.POST
         username = request.POST.get('user', False)
         passw = request.POST.get('pass', False)
-        print 'Usuario---> ',username,'  ',passw
         if username and passw:
             print 'Usuario---> 1'
             user = authenticate(username=username, password=passw)
