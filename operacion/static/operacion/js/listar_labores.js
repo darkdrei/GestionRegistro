@@ -65,9 +65,9 @@ function listLabores(){
           					temporal+="<div class=\"row\">";
           					temporal+="<div class=\"col s9 m9 l9 datos\" >";
           					temporal+="<div class=\"row\">";
-          					temporal+="<div class=\"col s5 m5 l5\">Nombre:"+nombre+" "+apellidos+"</div><br>";
-          					temporal+="<div class=\"col s4 m4 l4\">Hora:"+inicio+"</div><br>";
-          					temporal+="<div class=\"col s4 m4 l4\">Duracion:"+parseFloat(calcularTiempo(inicio, fecha_Actual)).toFixed(2)+"</div><br>";
+          					temporal+="<div class=\"col s12 m12 l12\"><b>Nombre:</b>"+nombre+" "+apellidos+"</div><br>";
+          					temporal+="<div class=\"col s12 m12 l12\"><b>Hora:</b>"+inicio+"</div><br>";
+          					temporal+="<div class=\"col s12 m12 l12\"><b>Duracion:</b>"+parseFloat(calcularTiempo(inicio, fecha_Actual)).toFixed(2)+"</div><br>";
           					temporal+="</div>";
           					temporal+="</div>";
           					temporal+="<div class=\"col s1 m1 l1\" >";
