@@ -11,14 +11,14 @@ $(document).on('ready', function(){
 });
 
 function actualizarTiempos(){
+  console.log("actualizano los tiempos..");
     var date = new Date();
     $('.move_time').each(function(x){
       var date =new Date();
-      console.log($(this));
-      var fecha_inicio = $(this).parent().find('input[type="hidden"]');
-      var fecha_actual = calcularTiempo(fecha_inicio.val(),date);
-      $(this).text(parseFloat(fecha_actual.toFixed(2)));
-      console.log(fecha_inicio,fecha_actual);
+      var fecha_inicio = $(this).parents('div.row:first').find('span.hora_tem').text();
+      var num = parseFloat(calcularTiempo(fecha_inicio, date)).toFixed(2),
+      tem_total = parseInt(num)+" horas "+parseInt((num-parseInt(num))*60)+" minutos. ";
+      $(this).text(tem_total);
     });
 }
 
@@ -66,8 +66,10 @@ function listLabores(){
           					temporal+="<div class=\"col s9 m9 l9 datos\" >";
           					temporal+="<div class=\"row\">";
           					temporal+="<div class=\"col s12 m12 l12\"><b>Nombre:</b>"+nombre+" "+apellidos+"</div><br>";
-          					temporal+="<div class=\"col s12 m12 l12\"><b>Hora:</b>"+inicio+"</div><br>";
-          					temporal+="<div class=\"col s12 m12 l12\"><b>Duracion:</b>"+parseFloat(calcularTiempo(inicio, fecha_Actual)).toFixed(2)+"</div><br>";
+          					temporal+="<div class=\"col s12 m12 l12\"><b>Hora:</b><span class=\"hora_tem\">"+inicio+"</span></div><br>";
+                    var num = parseFloat(calcularTiempo(inicio, fecha_Actual)).toFixed(2),
+                    tem_total = parseInt(num)+" horas "+parseInt((num-parseInt(num))*60)+" minutos. ";
+          					temporal+="<div class=\"col s12 m12 l12\"><b>Duracion:</b><span class=\"move_time\">"+tem_total+"</span></div><br>";
           					temporal+="</div>";
           					temporal+="</div>";
           					temporal+="<div class=\"col s1 m1 l1\" >";
@@ -85,6 +87,7 @@ function listLabores(){
             $('.tabla_delete, .tabla_edit, .editLabor, .edit_labor_emp').on('click', function(event){
               return false;
             });
+            my_cronos= setInterval(function(){ actualizarTiempos() }, 20000);
             cerrarLabor();
             eventosDePaginador();
           }
