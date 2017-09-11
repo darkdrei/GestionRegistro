@@ -19,7 +19,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 import settings
 from django.conf.urls.static import static
-
+import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^empresa/', include('empresa.urls',namespace='empresa')),
     url(r'^motorizado/', include('motorizado.urls',namespace='motorizado')),
     url(r'^reporte/', include('reporte.urls',namespace='reporte')),
-    url(r'^$', login_required(TemplateView.as_view(template_name='Registered/home.html')),name='index'),
+    url(r'^$', login_required(views.Index.as_view()),name='index'),
 ]
 
 if settings.DEBUG:
