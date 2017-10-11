@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'Registered.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'register2',
+        'NAME': 'register4',
         'USER': 'postgres',
         'PASSWORD': 'edc#$%IKP89=?',
         'HOST': '127.0.0.1',
