@@ -23,7 +23,7 @@ begin
                  l.ini,l.fin,t.empresa_id as empresa,
                            l.empleado_id as empleado,t.ciudad_id as ciudad 
                            from operacion_labor as l 
-                            inner join usuario_empleado as e on(l.empleado_id=e.usuario_ptr_id and l.)
+                            inner join usuario_empleado as e on(l.empleado_id=e.usuario_ptr_id)
                             inner join auth_user as u on (u.id=e.usuario_ptr_id)
                             inner join empresa_tienda as t on (e.tienda_id=t.id) 
     loop

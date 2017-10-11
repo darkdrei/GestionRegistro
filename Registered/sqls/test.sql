@@ -1,3 +1,4 @@
+psql -U postgres -W -h 127.0.0.1 register4
 
 CREATE OR REPLACE FUNCTION public.reporte_especifico(
 	trabajador text,
