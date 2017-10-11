@@ -20,7 +20,7 @@ begin
   raise notice 'eso es lo q hay';
     RAISE NOTICE 'Done refreshing materialized views.';
     for temporal in select l.id,(EXTRACT(EPOCH FROM l.fin)-EXTRACT(EPOCH FROM l.ini))/3600.0 as tiempo,
-                 l.ini - interval '5 hours' as ini,l.fin interval '5 hours' as fin,t.empresa_id as empresa,
+                 l.ini - interval '5 hours' as ini,l.fin interval -'5 hours' as fin,t.empresa_id as empresa,
                            l.empleado_id as empleado,t.ciudad_id as ciudad 
                            from operacion_labor as l 
                             inner join usuario_empleado as e on(l.empleado_id=e.usuario_ptr_id)
