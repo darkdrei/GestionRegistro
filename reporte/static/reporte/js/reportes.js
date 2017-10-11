@@ -2,6 +2,7 @@ var pagina=0,proxima=0,bandera=true,b2=true;
 
 $(document).on('ready', function(){
   //console.log("hola mundo pelao");
+  $('#info').modal();
   seleccionarEmpleados();
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -18,8 +19,16 @@ $(document).on('ready', function(){
         }
     }
   });
-  $('.delete_save_empleado, .addempleado').on('click', function(event){
+  $('.delete_save_empleado, .cons_emp').on('click', function(event){
     return false;
+  });
+  $('.cons_emp').on('click', function(){
+      if(isValidDate()){
+        listEmpleados();
+      }else{
+        $('#con_info').text("Debe consultar un intervalo valido, la fecha de inicio debe ser menor a la fecha de finalizacion");
+        $('#info').modal('open');
+      }
   });
   $('#empresa').on('change', function(){
     //console.log("entro ... ",$(this).val(),$(this).val() != "0");
@@ -177,6 +186,11 @@ function listEmpleados(){
 
 function reportEspecifico(){
   $('.report_especifico').on('click',function(event){
+    if(!isValidDate()){
+        $('#con_info').text("Defina un intervalo de consulta valido.");
+        $('#info').modal('open');
+        return;
+    }
     var r = $(this).parent().find('input[type="hidden"]').val();
     var res = "?";
     res+= $("#inicio").val().length>0? "&inicio="+$("#inicio").val():"",
@@ -187,7 +201,7 @@ function reportEspecifico(){
   });
 }
 
-  function seleccionarEmpleados(){
+function seleccionarEmpleados(){
     $('.all_empleados').click(function(event){
       if($(this).prop('checked')){
          $('input[name="reporte"]').prop('checked', true);
@@ -197,6 +211,11 @@ function reportEspecifico(){
 
     });
     $('.reporte_general').click(function(event){
+      if(!isValidDate()){
+        $('#con_info').text("Defina un intervalo de consulta valido.");
+        $('#info').modal('open');
+        return;
+      }
       var res = "?";
       res+= $("#inicio").val().length>0? "&inicio="+$("#inicio").val():"",
           res+= $("#fin").val().length>0? "&fin="+$("#fin").val():"",
@@ -204,4 +223,16 @@ function reportEspecifico(){
           res+= proxima != 0? "&pagina="+proxima*10:"";
           window.open("/reporte/ws/pagos/empledos/imprimir/"+res, '_blank');
     });
+  }
+
+  function isValidDate(){
+    var ini = $('#inicio').val(),
+          fin = $('#fin').val();
+      console.log(ini,"  ",fin,"  ",fin>ini)
+      if (fin > ini){
+        return true;
+      }else{
+        return false;
+
+      }
   }

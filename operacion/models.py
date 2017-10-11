@@ -137,8 +137,8 @@ class Labor(models.Model):
 
 class PagoLabor(models.Model):
     labor = models.ForeignKey(Labor)
-    ini = models.CharField(max_length=22, verbose_name="Hora de inicio", null=True,blank=True)
-    fin = models.CharField(max_length=22, verbose_name="Hora de fin", null=True,blank=True)
+    ini = models.CharField(max_length=100, verbose_name="Hora de inicio", null=True,blank=True)
+    fin = models.CharField(max_length=100, verbose_name="Hora de fin", null=True,blank=True)
     precio = models.FloatField(default=0)
     hora = models.FloatField(default=0)
 

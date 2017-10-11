@@ -15,21 +15,19 @@ $(document).on('ready', function(){
         console.log("proceso de autenticacion "+user+"  "+pass+"  "+(empleado=="0"));
         if (empleado=="0" || empleado==null){
           $('#form_labor label[for="mensaje"]').text("Debe seleccionar domiciliario.");
-          $('#password').val("");
-          $('#empleado').val("");
           return;
         }
-      $.ajax({
-        url:$(this).attr('href'),
-        type:'post',
-        dataType:'json',
-        data:{user:user,pass:pass},
-        success:function(data){
-          console.log(data);
-          if (!data[0].status){
-            document.getElementById('form_labor').reset()
-            $('#form_labor label[for="mensaje"]').text("Clave y usuario invalidos");
-          }
+      // $.ajax({
+      //   url:$(this).attr('href'),
+      //   type:'post',
+      //   dataType:'json',
+      //   data:{user:user,pass:pass},
+      //   success:function(data){
+      //     console.log(data);
+      //     if (!data[0].status){
+      //       document.getElementById('form_labor').reset()
+      //       $('#form_labor label[for="mensaje"]').text("Clave y usuario invalidos");
+      //     }
           $.ajax({
             url:$('#form_labor').attr('action'),
             type:'post',
@@ -45,7 +43,7 @@ $(document).on('ready', function(){
               }
             }
           });
-        }
-      });
+      //   }
+      // });
     });
 });

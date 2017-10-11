@@ -265,7 +265,7 @@ class AddWsLabor(View):
     def post(self, request, *args, **kwargs):
         print request.POST,kwargs
         usu = request.POST.get('usuario', False)
-        if usu:
+        if usu and request.user.is_authenticated :
             print 1
             lab = models.Labor.objects.filter(empleado__id=int(usu), estado=True, cerrado=False).first()
             if lab:

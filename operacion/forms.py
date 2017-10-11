@@ -215,7 +215,8 @@ class LaborFormView(forms.ModelForm):
         super(LaborFormView, self).__init__(*args, **kwargs)
         user = CuserMiddleware.get_user()
         if user:
-            self.fields['empleado'].queryset = usuario.Empleado.objects.filter(supervisor__user_ptr_id=user.id)
+            print 'est es lo del empleado'
+            #self.fields['empleado'].queryset = usuario.Empleado.objects.filter(supervisor__user_ptr_id=user.id)
         #end if
     # end def
 

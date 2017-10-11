@@ -142,18 +142,18 @@ function cerrarLabor(){
       var user = $('#userc').val(),
       pass = $('#passwordc').val();
       var this_ = $(this);
-      $.ajax({
-        url:$(this).attr('href'),
-        type:'post',
-        dataType:'json',
-        data:{user:user,pass:pass},
-        success:function(data){
-          console.log(data);
-          if (!data[0].status){
-            document.getElementById('form_labor').reset()
-            $('#form_labor label[for="mensajec"]').text("Clave y usuario invalidos");
-            return;
-          }
+      // $.ajax({
+      //   url:$(this).attr('href'),
+      //   type:'post',
+      //   dataType:'json',
+      //   data:{user:user,pass:pass},
+      //   success:function(data){
+      //     console.log(data);
+      //     if (!data[0].status){
+      //       document.getElementById('form_labor').reset()
+      //       $('#form_labor label[for="mensajec"]').text("Clave y usuario invalidos");
+      //       return;
+      //     }
           $.ajax({
             url:$('.edit_labor_emp:first').attr('href'),
             type:'post',
@@ -169,7 +169,7 @@ function cerrarLabor(){
               }
             }
           });
-        }
-      });
+      //   }
+      // });
     });
 }

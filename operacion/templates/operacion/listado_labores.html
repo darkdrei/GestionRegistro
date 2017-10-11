@@ -83,18 +83,6 @@
 							    <label>Empleados</label>
 							</div>
 
-							<div class="input-field col s12 m8">
-								<input placeholder="usuario" id="user" type="text" class="validate" value="{{ usuario }}">
-								<label for="first_name">Usuario</label>
-							</div>
-
-							<div class="row">
-								<div class="input-field col s12 m8">
-									<input id="password" type="password" class="validate" placeholder="contraseña">
-									<label for="password">Contraseña</label>
-								</div>
-							</div>
-
 							<div class="row">
 								<div class="input-field col s12 m8">
 									<label for="mensaje"></label>
@@ -118,12 +106,12 @@
 									<div class="row">
 										<div class="input-field col s12 m8">
 											<input placeholder="Placeholder" id="userc" type="text" class="validate" disabled>
-											<label for="userc">Usuario</label>
+											<label for="userc">Empleado</label>
 										</div>
 									<div class="row">
 										<div class="input-field col s12 m8">
-											<input id="passwordc" type="password" class="validate">
-											<label for="passwordc">Contraseña</label>
+											<!--input id="passwordc" type="password" class="validate">
+											<label for="passwordc">Contraseña</label-->
 										</div>
 									</div>
 									<div class="row">
@@ -136,7 +124,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<a href="{% url 'usuario:is_login_admin' %}" class="modal-action waves-effect waves-green btn-flat editlabor sendLabor">Iniciar Sesión</a>
+						<a href="{% url 'usuario:is_login_admin' %}" class="modal-action waves-effect waves-green btn-flat editlabor sendLabor">Aceptar</a>
 						<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
 					</div>
 				</div>
