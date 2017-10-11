@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'Registered.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'register',
+        'NAME': 'register2',
         'USER': 'postgres',
-        'PASSWORD': 'Exile*74522547',
-        'HOST': '104.236.33.228',
+        'PASSWORD': 'edc#$%IKP89=?',
+        'HOST': '127.0.0.1',
         'POST': '5432'
     },
 }
@@ -101,10 +101,10 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'register',
+        'NAME': 'autolavadox3',
         'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'PASSWORD': 'Exile*74522547',
+        'HOST': '104.236.33.228',
         'POST': '5432'
     },
 }

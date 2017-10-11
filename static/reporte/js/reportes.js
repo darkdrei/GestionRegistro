@@ -2,6 +2,7 @@ var pagina=0,proxima=0,bandera=true,b2=true;
 
 $(document).on('ready', function(){
   //console.log("hola mundo pelao");
+  seleccionarEmpleados();
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year
@@ -98,6 +99,7 @@ $(document).on('ready', function(){
     listEmpleados();
   });
   $('select').material_select();
+  listEmpleados();
 });
 
 function listEmpleados(){
@@ -109,22 +111,20 @@ function listEmpleados(){
           res+= $("#fin").val().length>0? "&fin="+$("#fin").val():"",
           res+= $("#search").val().length>0? "&busqueda="+$("#search").val():"";
           res+= proxima != 0? "&pagina="+proxima*10:"";
-      console.log(res);
       $.ajax({
         url:'/reporte/ws/pagos/empledos/?'+res,
         type:'get',
         dataType:'json',
         success:function(data){
-          console.log(data);
           var emp = $('#tab_emp');
           emp.html("");
           var resul = data;
           if(resul.length){
             inicio = 0;
             for(var i=inicio;i < resul.length;i++){
-              console.log("************------------------*****************");
               var empresa = resul[i].nom_empre,
-                  ciudad = "resul[i].ciudad_e",
+                  id = resul[i].id_empleado,
+                  ciudad = resul[i].nombre,
                   tienda = resul[i].nom_tienda,
                   identificacion = resul[i].identificacion,
                   nombre = resul[i].nom_emp,
@@ -132,14 +132,16 @@ function listEmpleados(){
                   horas = resul[i].total_horas,
                   total = resul[i].total_turnos;
                   var temporal="";
+                  temporal+="<td><input value=\""+id+"\"name=\"reporte\" type=\"checkbox\" id=\"empl"+id+"\" ><label for=\"empl"+id+"\"></label></span></td>";
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
                   temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
                   temporal+="<td><span class=\"mod_tienda\" >"+tienda+"</span></td>";
                   temporal+="<td><span class=\"mod_identificacion\" >"+identificacion+"</span></td>";
                   temporal+="<td><span class=\"mod_nombre\" >"+nombre+"</span></td>";
                   temporal+="<td><span class=\"mod_apellidos\" >"+apellidos+"</span></td>";
-                  temporal+="<td><span class=\"mod_apellidos\" >"+horas+"</span></td>";
                   temporal+="<td><span class=\"mod_apellidos\" >"+total+"</span></td>";
+                  temporal+="<td><span class=\"mod_apellidos\" >"+horas+"</span></td>";
+                  temporal+="<td><a href=\"#\" class=\"report_especifico\"><input type=hidden value=\""+id+"\"><img src=\"/media/des1.png\"/></a></td>";
                   emp.append("<tr>"+temporal+"</tr>")
             }
             $('.tabla_delete, .tabla_edit').on('click', function(event){
@@ -163,11 +165,43 @@ function listEmpleados(){
               $('#cont_delete_mod').html(contenido);
               $('#deleteempleado').modal('open');
             });
-            funcionesModificar();
-            eventosDePaginador();
-            funcionesEliminar();
+            //eventosDePaginador();
+            //funcionesEliminar();
+            //funcionesModificar();
+            reportEspecifico();
           }
         }
       });
-  //  }
+  }
+
+
+function reportEspecifico(){
+  $('.report_especifico').on('click',function(event){
+    var r = $(this).parent().find('input[type="hidden"]').val();
+    var res = "?";
+    res+= $("#inicio").val().length>0? "&inicio="+$("#inicio").val():"",
+        res+= $("#fin").val().length>0? "&fin="+$("#fin").val():"",
+        res+="&reporte="+r;
+        res+= proxima != 0? "&pagina="+proxima*10:"";
+        window.open("/reporte/pagos/empledo/especifico/imprimir/"+res, '_blank');
+  });
 }
+
+  function seleccionarEmpleados(){
+    $('.all_empleados').click(function(event){
+      if($(this).prop('checked')){
+         $('input[name="reporte"]').prop('checked', true);
+      }else{
+        $('input[name="reporte"]').prop('checked', false);
+      }
+
+    });
+    $('.reporte_general').click(function(event){
+      var res = "?";
+      res+= $("#inicio").val().length>0? "&inicio="+$("#inicio").val():"",
+          res+= $("#fin").val().length>0? "&fin="+$("#fin").val():"",
+          res+="&"+$('form input[name="reporte"]').serialize();
+          res+= proxima != 0? "&pagina="+proxima*10:"";
+          window.open("/reporte/ws/pagos/empledos/imprimir/"+res, '_blank');
+    });
+  }

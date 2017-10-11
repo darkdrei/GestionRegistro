@@ -193,7 +193,8 @@ class LaborForm(forms.ModelForm):
         self.fields['fin'].widget = widgets.AdminSplitDateTime()
         user = CuserMiddleware.get_user()
         if user:
-            self.fields['empleado'].queryset = usuario.Empleado.objects.filter(tienda__empresa__supervisor__user_ptr_id=user.id)
+            print 'funciono'
+            #self.fields['empleado'].queryset = usuario.Empleado.objects.filter(tienda__empresa__supervisor__user_ptr_id=user.id)
         #end if
     # end def
 

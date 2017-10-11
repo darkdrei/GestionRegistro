@@ -3,6 +3,7 @@ var my_cronos = null;
 window.TEMPORAL_ID=0
 var fecha1=null,fecha2=null;
 $(document).on('ready', function(){
+  $('select').material_select();
   listLabores();
   $('#busqueda').on('keyup', function(event){
     listLabores();
@@ -10,14 +11,14 @@ $(document).on('ready', function(){
 });
 
 function actualizarTiempos(){
+  console.log("actualizano los tiempos..");
     var date = new Date();
     $('.move_time').each(function(x){
       var date =new Date();
-      console.log($(this));
-      var fecha_inicio = $(this).parent().find('input[type="hidden"]');
-      var fecha_actual = calcularTiempo(fecha_inicio.val(),date);
-      $(this).text(parseFloat(fecha_actual.toFixed(2)));
-      console.log(fecha_inicio,fecha_actual);
+      var fecha_inicio = $(this).parents('div.row:first').find('span.hora_tem').text();
+      var num = parseFloat(calcularTiempo(fecha_inicio, date)).toFixed(2),
+      tem_total = parseInt(num)+" horas "+parseInt((num-parseInt(num))*60)+" minutos. ";
+      $(this).text(tem_total);
     });
 }
 
@@ -50,7 +51,6 @@ function listLabores(){
             }
             for(var i=inicio;i < limite;i++){
               if (i < TOTAL_REGISTROS){
-                console.log("entro ::::::::::::::::::::: en la reconstruccion");
                 var identificacion = resul[i].identificacion,
                     nombre = resul[i].nombre,
                     apellidos = resul[i].apellidos,
@@ -65,15 +65,16 @@ function listLabores(){
           					temporal+="<div class=\"row\">";
           					temporal+="<div class=\"col s9 m9 l9 datos\" >";
           					temporal+="<div class=\"row\">";
-          					temporal+="<div class=\"col s5 m5 l5\">Nombre:"+nombre+" "+apellidos+"</div><br>";
-          					temporal+="<div class=\"col s4 m4 l4\">Hora:"+inicio+"</div><br>";
-          					temporal+="<div class=\"col s4 m4 l4\">Duracion:"+parseFloat(calcularTiempo(inicio, fecha_Actual)).toFixed(2)+"</div>";
+          					temporal+="<div class=\"col s12 m12 l12\"><b>Nombre:</b>"+nombre+" "+apellidos+"</div><br>";
+          					temporal+="<div class=\"col s12 m12 l12\"><b>Hora:</b><span class=\"hora_tem\">"+inicio+"</span></div><br>";
+                    var num = parseFloat(calcularTiempo(inicio, fecha_Actual)).toFixed(2),
+                    tem_total = parseInt(num)+" horas "+parseInt((num-parseInt(num))*60)+" minutos. ";
+          					temporal+="<div class=\"col s12 m12 l12\"><b>Duracion:</b><span class=\"move_time\">"+tem_total+"</span></div><br>";
           					temporal+="</div>";
           					temporal+="</div>";
           					temporal+="<div class=\"col s1 m1 l1\" >";
-                    temporal+="<input type=\"hidden\" name=\"username\"  value=\""+usuario+"\">";
+                    temporal+="<input type=\"hidden\" name=\"username\"  value=\""+nombre+" "+apellidos+"\">";
                     temporal+="<input type=\"hidden\" name=\"ids\"  value=\""+id+"\">";
-                    console.log('+++++++++++++++++++++++++++++++++++  ',servicio.edit);
           					temporal+="<a href=\""+servicio.edit+"\" class=\"btn-floating btn-large waves-effect waves-light #4db6ac edit_labor_emp\"><i class=\"material-icons\">phonelink_lock</i></a>";
           					temporal+="</div>";
           					temporal+="</div>";
@@ -83,55 +84,15 @@ function listLabores(){
                     emp.append(temporal);
                 }
             }
-            //my_cronos = setInterval(function(){ actualizarTiempos(); }, 2000);
-            // var paginador = $('#paginador');
-            // paginador.html("");
-            // paginador.append('<li class="disabled"><a href="#!" class=\"ant\"><i class="material-icons">chevron_left</i></a></li>');
-            // console.log(data.next);
-            // if( bandera){
-            //   console.log(data.count,' valor de impresion ',data.count/5);
-            //   paginas = Math.round(data.count/10);
-            //   proxima = data.next;
-            //   if (paginas < 1){
-            //     paginas =1;
-            //     proxima=1;
-            //   }
-            //   bandera=false;
-              // var paginador = $('#paginador');
-              // paginador.html("");
-              // paginador.append('<li class="disabled"><a href="#!" class=\"ant\"><i class="material-icons">chevron_left</i></a></li>');
-            // }else{
-            //   //borrar el iterador
-            // }
-            // for(var i=0; i< paginas;i++){
-            //   var clase="";
-            //   if (b2){
-            //       clase = (i+1 == proxima-1?"active":"waves-effect");
-            //   }else{
-            //     clase = (i+1 == proxima?"active":"waves-effect");
-            //   }
-            //   paginador.append("<li class=\""+clase+"\"><a href=\""+(1+i)+"\" class=\"iterator\">"+(1+i)+"</a></li>");
-            // }
-            // b2=false;
-            // paginador.append('<li class="waves-effect"><a href="#!" class=\"sig\"><i class="material-icons">chevron_right</i></a></li>');
             $('.tabla_delete, .tabla_edit, .editLabor, .edit_labor_emp').on('click', function(event){
               return false;
             });
-            // $('.edit_labor_emp').on('click', function(event){
-            //   $('#cerrarlaborc ').modal('open');
-            // });
+            my_cronos= setInterval(function(){ actualizarTiempos() }, 20000);
             cerrarLabor();
-            // $('.tabla_delete').on('click', function(event){
-            //   console.log("desde los tool tabla");
-            // });
-            // $('.tabla_edit').on('click', function(event){
-            //   console.log("desde los tool tabla");
-            // });
             eventosDePaginador();
           }
         }
       });
-  //  }
 }
 
 function eventosDePaginador(){
@@ -145,7 +106,6 @@ function eventosDePaginador(){
     actual.removeClass('active');
     actual.addClass('waves-effect');
     var proximo = $(".pagination li a[href=\""+proxima+"\"");
-    console.log("El cambio de elmento es ",proximo);
     proximo.parent().addClass('active');
     proximo.parent().removeClass('waves-effect');
     listLabores();
@@ -155,15 +115,10 @@ function eventosDePaginador(){
 function calcularTiempo(valor,fechaActual){
   fecha1 = fechaActual;
   var men = valor;
-  console.log(men);
   var contenedor = men.split(" ");
-  console.log(contenedor);
   var fecha = contenedor[0].split("/");
-  console.log(fecha);
   var h = contenedor[1].split(':');
-  console.log(h);
   var hora = h[0];
-  console.log(hora);
   var minutos = h[1].substring(0, 2);
   var notacion = h[1].substring(2,4);
   var c = notacion=="PM"?String(parseInt(hora)+12) : hora ;
@@ -176,7 +131,6 @@ function calcularTiempo(valor,fechaActual){
 function cerrarLabor(){
   $('.sendLabor').on('click', function(event){return false;});
   $('.edit_labor_emp').on('click',function(event){
-    console.log("se abrio la vaina");
     var usuario = $(this).parent().find('input[name="username"]').val();
         window.TEMPORAL_ID=$(this).parent().find('input[name="ids"]').val();
     $('#userc').val(usuario);
@@ -187,8 +141,7 @@ function cerrarLabor(){
   $('.sendLabor').on('click', function(event){
       var user = $('#userc').val(),
       pass = $('#passwordc').val();
-      var this_ =$(this);
-      console.log("regreso del envio ",window.TEMPORAL_ID,"  *********");
+      var this_ = $(this);
       $.ajax({
         url:$(this).attr('href'),
         type:'post',
@@ -201,7 +154,6 @@ function cerrarLabor(){
             $('#form_labor label[for="mensajec"]').text("Clave y usuario invalidos");
             return;
           }
-          console.log("regreso del envio ",window.TEMPORAL_ID,"  *********  ",$('.tabla_edit:first').attr('href'));
           $.ajax({
             url:$('.edit_labor_emp:first').attr('href'),
             type:'post',

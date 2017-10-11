@@ -1,24 +1,25 @@
--- Function: reporte_general(text, date, date)
 
--- DROP FUNCTION reporte_general(text, date, date);
+CREATE OR REPLACE FUNCTION public.reporte_general(
+	trabajador text,
+	inicio date,
+	finalizar date)
+RETURNS json
+    LANGUAGE 'plpgsql'
+    COST 100.0
 
-CREATE OR REPLACE FUNCTION reporte_general(
-    trabajador text,
-    inicio date,
-    finalizar date)
-  RETURNS json AS
-$BODY$
+AS $function$
+
 begin
 	return (SELECT COALESCE(array_to_json(array_agg(row_to_json(p))), '[]') from (
-		select
-		   u.id AS id_empleado,
+		select 
+		   u.id AS id_empleado, 
 		   u.first_name AS nom_emp,
 		   u.last_name AS ape_emp,
 		   usu.identificacion,
 		   t.nombre AS nom_tienda,
 		   em.first_name as nom_empre,
 		   c.nombre,
-	       sum(case when pl.hora is not null and pl.precio is not null then 1 else 0 end) as total_turnos,
+	       round(sum(case when pl.hora is not null and pl.precio is not null then pl.hora else 0 end)::numeric,1) as total_turnos,
 	       sum(case when pl.hora is not null and pl.precio is not null then (pl.precio*pl.hora) else 0 end) as total ,
 	       to_char(sum(case when pl.hora is not null and pl.precio is not null then (pl.precio*pl.hora) else 0 end), 'FM$999,999,999,990') as total_horas
 		 from auth_user as u
@@ -31,8 +32,8 @@ begin
 		 left join operacion_pagolabor as pl on (l.id=pl.labor_id) group by u.id, usu.identificacion, u.first_name,u.last_name,t.nombre,em.first_name,c.nombre
 	) p);
 end;
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION reporte_general(text, date, date)
-  OWNER TO postgres;
+
+$function$;
+
+ALTER FUNCTION public.reporte_general(text, date, date)
+    OWNER TO postgres;

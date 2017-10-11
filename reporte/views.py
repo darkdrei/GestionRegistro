@@ -53,13 +53,15 @@ class WsPagosEmpleados(View):
         empresa = request.GET.get('empresa', '0')
         ciudad = request.GET.get('ciudad', '0')
         tienda = request.GET.get('tienda', '0')
-        inicio = producirFecha(request.GET.get('inicio', '01/01/2017'))
+        inicio = producirFecha(request.GET.get('inicio', '11/09/2017'))
         fecha = datetime.today()
-        fin = producirFecha(request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year)))
+        #fin = producirFecha(request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year)))
+        fin = producirFecha(request.GET.get('25/09/2017', '25/09/2017'))
         busqueda = request.GET.get('busqueda', '')
         cursor = connection.cursor()
         m = 'select get_total_trabajador2(%d,\'%s\'::text,%s::integer,%s::integer,%s::integer,\'%s\'::date,\'%s\'::date)' % (
             request.user.id, busqueda, empresa, ciudad, tienda, inicio, fin)
+        #cursor.execute('select get_labores();')
         cursor.execute(m)
         row = cursor.fetchone()
         return HttpResponse((simplejson.dumps(row[0])), content_type="application/json")
@@ -72,9 +74,10 @@ class WsPagosEmpleados(View):
         empresa = request.GET.get('empresa', '0')
         ciudad = request.GET.get('ciudad', '0')
         tienda = request.GET.get('tienda', '0')
-        inicio = producirFecha(request.GET.get('inicio', '01/01/2017'))
+        inicio = producirFecha(request.GET.get('inicio', '11/09/2017'))
         fecha = datetime.today()
-        fin = producirFecha(request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year)))
+        #fin = producirFecha(request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year)))
+        fin = producirFecha(request.GET.get('fin', '25/09/2017'))
         busqueda = request.GET.get('busqueda', '')
         cursor = connection.cursor()
         m = 'select get_total_trabajador2(%d,\'%s\'::text,%s::integer,%s::integer,%s::integer,\'%s\'::date,\'%s\'::date)' % (
@@ -90,12 +93,13 @@ class WsPagosEmpleadosImprimir(PDFTemplateView):
 
     def get(self, request, *args, **kwargs):
         empleados=','.join( x for x in map(str, request.GET.getlist('reporte','')))
+        print empleados
         empresa = request.GET.get('empresa', '0')
         ciudad = request.GET.get('ciudad', '0')
         tienda = request.GET.get('tienda', '0')
-        inicio = producirFecha(request.GET.get('inicio', '01/01/2017'))
+        inicio = producirFecha(request.GET.get('inicio', '11/09/2017'))
         fecha = datetime.today()
-        fin = producirFecha(request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year)))
+        fin = producirFecha(request.GET.get('fin', '25/09/2017'))
         busqueda = request.GET.get('busqueda', '')
         cursor = connection.cursor()
         m = 'select reporte_general(\'{%s}\'::text,\'%s\'::date,\'%s\'::date)' % (
@@ -118,9 +122,10 @@ class EmpleadoEspicificoImprimir(PDFTemplateView):
 
     def get(self, request, *args, **kwargs):
         empleados=','.join( x for x in map(str, request.GET.getlist('reporte','')))
-        inicio = producirFecha(request.GET.get('inicio', '01/01/2017'))
+        inicio = producirFecha(request.GET.get('inicio', '11/09/2017'))
         fecha = datetime.today()
-        fin = producirFecha(request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year)))
+        #fin = producirFecha(request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year)))
+        fin = producirFecha(request.GET.get('fin', '25/09/2017'))
         busqueda = request.GET.get('busqueda', '')
         cursor = connection.cursor()
         m = 'select reporte_especifico(\'{%s}\'::text,\'%s\'::date,\'%s\'::date)' % (

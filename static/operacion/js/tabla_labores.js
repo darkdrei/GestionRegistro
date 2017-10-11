@@ -64,7 +64,8 @@ function listLabores(){
                     temporal+="<td>"+inicio+"</td>";
                     temporal+="<td><label class=\"move_time\">"+parseFloat(calcularTiempo(inicio, fecha_Actual)).toFixed(2)+"</label><input type=\"hidden\" name=\"time\" value=\""+inicio+"\"></td>";
                     var d= "<ul class=\"tabla_tool\">";
-                    d+="<li><input type=\"hidden\" name=\"ids\" value=\""+id+"\"><input type=\"hidden\" name=\"username\" value=\""+usuario+"\"><a href =\""+resul[i].servicios.edit+"\" class=\"btn-floating red tabla_edit\"><i class=\"material-icons\">edit</i></a></li>";
+                    var tem_nom = nombre+" "+apellidos;
+                    d+="<li><input type=\"hidden\" name=\"ids\" value=\""+id+"\"><input type=\"hidden\" name=\"username\" value=\""+tem_nom+"\"><a href =\""+resul[i].servicios.edit+"\" class=\"btn-floating red tabla_edit\"><i class=\"material-icons\">edit</i></a></li>";
                     temporal+="<td>"+d+"</td>";
                     emp.append("<tr>"+temporal+"</tr>");
                 }
