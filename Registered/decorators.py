@@ -4,7 +4,6 @@ from usuario import models as usuario
 
 def user_supervisor(view_func):
     def _check(request, *args, **kwargs):
-        print "*********************************"
         if request.user.is_authenticated():
             admin = usuario.Administrador.objects.filter(id=request.user.id).first()
             if admin :
