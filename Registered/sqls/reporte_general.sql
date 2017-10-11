@@ -1,14 +1,19 @@
--- Function: reporte_general(text)
+-- FUNCTION: public.reporte_general(text)
 
--- DROP FUNCTION reporte_general(text);
+-- DROP FUNCTION public.reporte_general(text);
 
-CREATE OR REPLACE FUNCTION reporte_general(trabajador text)
-  RETURNS json AS
-$BODY$
+CREATE OR REPLACE FUNCTION public.reporte_general(
+	trabajador text)
+RETURNS json
+    LANGUAGE 'plpgsql'
+    COST 100.0
+
+AS $function$
+
 begin
 	return (SELECT COALESCE(array_to_json(array_agg(row_to_json(p))), '[]') from (
-		select
-		   u.id AS id_empleado,
+		select 
+		   u.id AS id_empleado, 
 		   u.first_name AS nom_emp,
 		   u.last_name AS ape_emp,
 		   usu.identificacion,
@@ -28,8 +33,8 @@ begin
 		 left join operacion_pagolabor as pl on (l.id=pl.labor_id) group by u.id, usu.identificacion, u.first_name,u.last_name,t.nombre,em.first_name,c.nombre
 	) p);
 end;
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION reporte_general(text)
-  OWNER TO postgres;
+
+$function$;
+
+ALTER FUNCTION public.reporte_general(text)
+    OWNER TO postgres;
