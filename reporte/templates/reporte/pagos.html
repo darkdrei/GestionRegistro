@@ -58,7 +58,7 @@
      <input placeholder="Busqueda" id="search" type="text" class="validate">
   </div>
   <div class="col s1 m1 l1 ">
-     <a href="{% url 'usuario:add_empleado' %}"class="btn-floating btn-large waves-effect waves-light #4db6ac addempleado"><i class="material-icons" id="addtrabajador">add</i></a>
+     <a href="{% url 'usuario:add_empleado' %}"class="btn-floating btn-large waves-effect waves-light #4db6ac cons_emp"><i class="material-icons" id="addtrabajador">search</i></a>
   </div>
 </div>
 {% endblock %}
@@ -92,6 +92,15 @@
 </div>
 {% endblock %}
 {% block dialog %}
+<div id="info" class="modal">
+    <div class="modal-content">
+      <h4>Consultar Pagos</h4>
+      <p id="con_info"></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+</div>
 <div id="addempleado" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Registrar Trabajador</h4>
