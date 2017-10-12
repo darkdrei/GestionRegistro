@@ -105,7 +105,7 @@ class WsPagosEmpleadosImprimir(PDFTemplateView):
         fin = request.GET.get('fin', '%d/%d/%d'%(fecha.day,fecha.month,fecha.year))
         busqueda = request.GET.get('busqueda', '')
         cursor = connection.cursor()
-        m = 'SET datestyle = "ISO, DMY";select reporte_general(\'{%s}\'::text,\'%s\'::date,\'%s\'::date);' % (
+        m = ' SET datestyle = dmy;select reporte_general(\'{%s}\'::text,\'%s\'::date,\'%s\'::date);' % (
             empleados, inicio, fin)
         cursor.execute(m)
         row = cursor.fetchone()
