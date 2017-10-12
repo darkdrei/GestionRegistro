@@ -70,4 +70,4 @@ begin
 end;
 $$language plpgsql;
 
-create trigger trigger_labor after insert or update on operacion_labor for each row execute procedure trigger_labor();
+/*create trigger trigger_labor after insert or update on operacion_labor for each row execute procedure trigger_labor();*/

@@ -97,7 +97,6 @@ DATABASES = {
         'POST': '5432'
     },
 }
-"""
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -137,8 +136,7 @@ USE_TZ = False
 LOGIN_URL = 'usuario:login'
 LOGIN_REDIRECT_URL = 'usuario:login'
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/dark/GestionRegistro2/static/'
+STATIC_ROOT = '/home/ubuntu/GestionRegistro/static/'
 MEDIA_URL = '/media/'
-HOST_MEDIA = '/home/dark/GestionRegistro/media/'
-#MEDIA_ROOT = '/home/dark/GestionRegistro/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+HOST_MEDIA = '/home/ubuntu/GestionRegistro/media/'
+MEDIA_ROOT = '/home/ubuntu/GestionRegistro/media/'

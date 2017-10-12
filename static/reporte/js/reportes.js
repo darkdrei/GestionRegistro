@@ -2,6 +2,8 @@ var pagina=0,proxima=0,bandera=true,b2=true;
 
 $(document).on('ready', function(){
   //console.log("hola mundo pelao");
+  $('#info').modal();
+  seleccionarEmpleados();
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year
@@ -17,8 +19,16 @@ $(document).on('ready', function(){
         }
     }
   });
-  $('.delete_save_empleado, .addempleado').on('click', function(event){
+  $('.delete_save_empleado, .cons_emp').on('click', function(event){
     return false;
+  });
+  $('.cons_emp').on('click', function(){
+      if(isValidDate()){
+        listEmpleados();
+      }else{
+        $('#con_info').text("Debe consultar un intervalo valido, la fecha de inicio debe ser menor a la fecha de finalizacion");
+        $('#info').modal('open');
+      }
   });
   $('#empresa').on('change', function(){
     //console.log("entro ... ",$(this).val(),$(this).val() != "0");
@@ -91,61 +101,56 @@ $(document).on('ready', function(){
     }
   });
   $('#ciudad, #empresa, #tienda').on('change',function(event){
-    //listEmpleados();
+    listEmpleados();
   });
   //listEmpleados();
   $('#search').on('keyup', function(event){
-    //listEmpleados();
+    listEmpleados();
   });
   $('select').material_select();
+  listEmpleados();
 });
 
 function listEmpleados(){
-  console.log("ejecutando",$("#tienda").val() != null);
-  //if($("#tienda").val() != null){
-  console.log($("#empresa").val() != "0",$("#ciudad").val() != "0",$("#tienda").val() != "0");
-  console.log($("#empresa").val(),$("#ciudad").val(),$("#tienda").val());
       var res = "";
       res+= $("#empresa").val() != null? "empresa="+$("#empresa").val():"",
           res+= $("#ciudad").val() != null? "&ciudad="+$("#ciudad").val():"",
           res+= $("#tienda").val() != null? "&tienda="+$("#tienda").val():"",
-          res+= $("#search").val() != null? "&search="+$("#search").val():"";
+          res+= $("#inicio").val().length>0? "&inicio="+$("#inicio").val():"",
+          res+= $("#fin").val().length>0? "&fin="+$("#fin").val():"",
+          res+= $("#search").val().length>0? "&busqueda="+$("#search").val():"";
           res+= proxima != 0? "&pagina="+proxima*10:"";
-      console.log(res);
       $.ajax({
-        url:'/usuario/list/empleados/?'+res,
+        url:'/reporte/ws/pagos/empledos/?'+res,
         type:'get',
         dataType:'json',
         success:function(data){
-          console.log(data);
           var emp = $('#tab_emp');
           emp.html("");
-          var resul = data.object_list;
-          var limite=data.count,inicio=0;
-          console.log('RESULTADOS   ',resul.length,'    ',data.count,'  ',resul);
+          var resul = data;
           if(resul.length){
             inicio = 0;
-            for(var i=inicio;i < limite;i++){
-              console.log("************------------------*****************");
-              var empresa = resul[i].empresa_e,
-                  ciudad = resul[i].ciudad_e,
-                  tienda = resul[i].tienda_e,
+            for(var i=inicio;i < resul.length;i++){
+              var empresa = resul[i].nom_empre,
+                  id = resul[i].id_empleado,
+                  ciudad = resul[i].nombre,
+                  tienda = resul[i].nom_tienda,
                   identificacion = resul[i].identificacion,
-                  nombre = resul[i].first_name,
-                  apellidos = resul[i].last_name,
-                  servicios = resul[i].servicios;
+                  nombre = resul[i].nom_emp,
+                  apellidos = resul[i].ape_emp,
+                  horas = resul[i].total_horas,
+                  total = resul[i].total_turnos;
                   var temporal="";
+                  temporal+="<td><input value=\""+id+"\"name=\"reporte\" type=\"checkbox\" id=\"empl"+id+"\" ><label for=\"empl"+id+"\"></label></span></td>";
                   temporal+="<td><span class=\"mod_empresa\" >"+empresa+"</span></td>";
                   temporal+="<td><span class=\"mod_ciudad\" >"+ciudad+"</span></td>";
                   temporal+="<td><span class=\"mod_tienda\" >"+tienda+"</span></td>";
                   temporal+="<td><span class=\"mod_identificacion\" >"+identificacion+"</span></td>";
                   temporal+="<td><span class=\"mod_nombre\" >"+nombre+"</span></td>";
                   temporal+="<td><span class=\"mod_apellidos\" >"+apellidos+"</span></td>";
-                  var d= "<ul class=\"tabla_tool\">";
-                  d+="<li><a href =\""+servicios.delete+"\" class=\"btn-floating red tabla_delete\"><i class=\"material-icons\">delete</i></a></li>";
-                  d+="<li><a href =\""+servicios.edit+"\" class=\"btn-floating yellow tabla_edit modf_empleado\"><i class=\"material-icons\">edit</i></a></li>";
-                  d+="<li><a href =\""+servicios.pass+"\" class=\"btn-floating yellow tabla_edit\"><i class=\"material-icons\">add</i></a></li>";
-                  temporal+="<td>"+d+"</td>";
+                  temporal+="<td><span class=\"mod_apellidos\" >"+total+"</span></td>";
+                  temporal+="<td><span class=\"mod_apellidos\" >"+horas+"</span></td>";
+                  temporal+="<td><a href=\"#\" class=\"report_especifico\"><input type=hidden value=\""+id+"\"><img src=\"/media/des1.png\"/></a></td>";
                   emp.append("<tr>"+temporal+"</tr>")
             }
             $('.tabla_delete, .tabla_edit').on('click', function(event){
@@ -169,11 +174,65 @@ function listEmpleados(){
               $('#cont_delete_mod').html(contenido);
               $('#deleteempleado').modal('open');
             });
-            funcionesModificar();
-            eventosDePaginador();
-            funcionesEliminar();
+            //eventosDePaginador();
+            //funcionesEliminar();
+            //funcionesModificar();
+            reportEspecifico();
           }
         }
       });
-  //  }
+  }
+
+
+function reportEspecifico(){
+  $('.report_especifico').on('click',function(event){
+    if(!isValidDate()){
+        $('#con_info').text("Defina un intervalo de consulta valido.");
+        $('#info').modal('open');
+        return;
+    }
+    var r = $(this).parent().find('input[type="hidden"]').val();
+    var res = "?";
+    res+= $("#inicio").val().length>0? "&inicio="+$("#inicio").val():"",
+        res+= $("#fin").val().length>0? "&fin="+$("#fin").val():"",
+        res+="&reporte="+r;
+        res+= proxima != 0? "&pagina="+proxima*10:"";
+        window.open("/reporte/pagos/empledo/especifico/imprimir/"+res, '_blank');
+  });
 }
+
+function seleccionarEmpleados(){
+    $('.all_empleados').click(function(event){
+      if($(this).prop('checked')){
+         $('input[name="reporte"]').prop('checked', true);
+      }else{
+        $('input[name="reporte"]').prop('checked', false);
+      }
+
+    });
+    $('.reporte_general').click(function(event){
+      if(!isValidDate()){
+        $('#con_info').text("Defina un intervalo de consulta valido.");
+        $('#info').modal('open');
+        return;
+      }
+      var res = "?";
+      res+= $("#inicio").val().length>0? "&inicio="+$("#inicio").val():"",
+          res+= $("#fin").val().length>0? "&fin="+$("#fin").val():"",
+          res+="&"+$('form input[name="reporte"]').serialize();
+          res+= proxima != 0? "&pagina="+proxima*10:"";
+          window.open("/reporte/ws/pagos/empledos/imprimir/"+res, '_blank');
+    });
+  }
+
+  function isValidDate(){
+    var ini = $('#inicio').val(),
+          fin = $('#fin').val();
+      console.log(ini,"  ",fin,"  ",fin>ini)
+      if (fin > ini){
+        return true;
+      }else{
+        return false;
+
+      }
+  }

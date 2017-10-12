@@ -1,0 +1,1000 @@
+  200  sudo systemctl enable mongodb
+  201  node index.js
+  202  forever index.js
+  203  forever start index.js
+  204  forever list
+  205  cd /etc/apache2/sites-enabled/
+  206  ls
+  207  sudo service apache2 start
+  208  sudo chmod 777 /etc/apache2/sites-available/000-default.conf 
+  209  sudo chmod +777 /etc/apache2/sites-available/000-default.conf 
+  210  nano /etc/apache2/sites-available/000-default.conf 
+  211  a2ensite 000-default.conf 
+  212  cd ..
+  213  cd sites-enabled/
+  214  ls
+  215  nano 000-default.conf 
+  216  sudo /etc/init.d/apache2 restart 
+  217  nano 000-default.conf 
+  218  nano /etc/apache2/sites-available/default-ssl.conf 
+  219  nano /etc/apache2/sites-available/000-default.conf 
+  220  cd  Explat/
+  221  python manage.py runserver 0.0.0.0:8000
+  222  nano /etc/apache2/sites-available/000-default.conf 
+  223  python manage.py runserver 0.0.0.0:8000
+  224  source ../exp/bin/activate
+  225  python manage.py runserver 0.0.0.0:8000
+  226  nano /etc/apache2/sites-available/000-default.conf 
+  227  a2ensite 000-default.conf 
+  228  nano /etc/apache2/sites-enabled/
+  229  nano /etc/apache2/sites-enabled/000-default.conf 
+  230  sudo /etc/init.d/apache2 restart 
+  231  apache2.serviceJob for apache2.service failed because the control process exited with error code. See "systemctl status apache2.service" and "journalctl -xe" for details.
+  232  nano /etc/apache2/sites-enabled/000-default.conf 
+  233  a2ensite 000-default.conf
+  234  nano /etc/apache2/sites-enabled/000-default.conf 
+  235  sudo /etc/init.d/apache2 restart 
+  236  cp /etc/apache2/sites-available/
+  237  cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-explat.conf
+  238  sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-explat.conf
+  239  nano /etc/apache2/sites-enabled/000-default.conf 
+  240  a2ensite 000-default.conf
+  241  nano /etc/apache2/sites-enabled/000-default.conf 
+  242  sudo /etc/init.d/apache2 restart 
+  243  cd /etc/apache2/sites-enabled/
+  244  cd ../sites-available/
+  245  ls
+  246  nano 000-explat.conf 
+  247  a2ensite 000-explat.conf 
+  248  sudo a2ensite 000-explat.conf 
+  249  sudo /etc/init.d/apache2 restart 
+  250  nano 000-explat.conf 
+  251  sudo nano 000-explat.conf 
+  252  a2ensite 000-explat.conf 
+  253  sudo /etc/init.d/apache2 restart 
+  254  journalctl | tail
+  255  nano /var/log/apache2/error.log
+  256  sudo chmod 777 000-explat.conf 
+  257  cd ../sites-enabled/
+  258  sudo chmod 777 000-explat.conf 
+  259  sudo /etc/init.d/apache2 restart 
+  260  journalctl -xe
+  261  sudo apache2ctl 000-explat
+  262  systemctl status apache2.service
+  263  cd ../sites-available/
+  264  sudo nano 000-explat.conf 
+  265  a2ensite 000-explat.conf 
+  266  sudo /etc/init.d/apache2 restart 
+  267  systemctl status apache2.service
+  268  sudo nano 000-explat.conf 
+  269  a2ensite 000-explat.conf 
+  270  sudo /etc/init.d/apache2 restart 
+  271  systemctl status apache2.service
+  272  /etc/init.d/httpd configtest
+  273  deactivate
+  274  sudo apt-get install python-pip apache2 libapache2-mod-wsgi
+  275  sudo /etc/init.d/apache2 restart 
+  276  a2ensite 000-explat.conf 
+  277  sudo /etc/init.d/apache2 restart 
+  278  sudo nano 000-explat.conf 
+  279  a2ensite 000-explat.conf 
+  280  nano ../sites-enabled/000-explat.conf 
+  281  sudo /etc/init.d/apache2 restart 
+  282  systemctl status apache2.service
+  283  sudo /etc/init.d/apache2 stop
+  284  sudo rm ../sites-enabled/000-explat.conf 
+  285  a2ensite 000-explat.conf 
+  286  sudo a2ensite 000-explat.conf 
+  287  sudo /etc/init.d/apache2 start
+  288  sudo a2ensite 000-explat.conf 
+  289  sudo /etc/init.d/apache2 restart 
+  290  sudo nano 000-explat.conf 
+  291  sudo a2ensite 000-explat.conf 
+  292  sudo /etc/init.d/apache2 restart 
+  293  sudo nano 000-explat.conf 
+  294  sudo apache2ctl configtest
+  295  sudo systemctl restart apache2
+  296  service httpd start
+  297  systemctl restart httpd
+  298  ls
+  299  cd explat/
+  300  python manage.py runserver 0.0.0.0:8000
+  301  source ../exp/bin/activate
+  302  python manage.py runserver 0.0.0.0:8000
+  303  sudo su
+  304  ls
+  305  cd ExNodeServer/
+  306  forever list
+  307  forever stop 3
+  308  forever stopall
+  309  forever list
+  310  sudo service httpd status
+  311  sudo service httpd start
+  312  sudo su 
+  313  ls
+  314  cd temporal/trabajo_roberto/
+  315  node index.js 
+  316  nano index.html 
+  317  node index.js 
+  318  forever start index.js 
+  319  forever list
+  320  cd ../../
+  321  cd temporal/trabajo_roberto/
+  322  forever list
+  323  forever stopall
+  324  node index.js 
+  325  forever start index.js
+  326  sudo systemctl restart apache2
+  327  cd ..
+  328  ls
+  329  cd ubuntu/
+  330  ls
+  331  cd explat/
+  332  ls
+  333  cd ..
+  334  chmod -R 777 explat/
+  335  cd ExNodeServer/
+  336  ls
+  337  forever list
+  338  nano index.js 
+  339  forever start index.js
+  340  cd ..
+  341  nano explat/exp/settings.py
+  342  git pull
+  343  git branch 
+  344  sudo systemctl restart apache2
+  345  ls
+  346  rm -R maquinas_virtuales/
+  347  sudo rm -R maquinas_virtuales/
+  348  sudo rm -R plataforma/
+  349  cd temporal/
+  350  git https://github.com/darkdrei/ReportRealTime.git
+  351  git clone https://github.com/darkdrei/ReportRealTime.git
+  352  ls
+  353  cp temporal/* ReportRealTime/
+  354  cp trabajo_roberto/ ReportRealTime/
+  355  cp trabajo_roberto/* ReportRealTime/
+  356  cd ReportRealTime/
+  357  ls
+  358  git add .
+  359  git commit -m "actualizacion"
+  360  git push origin master 
+  361  ls
+  362  cd ..
+  363  ls
+  364  sudo rm -R temporal/
+  365  ls
+  366  forever list
+  367  clear
+  368  forever list
+  369  forever stopall
+  370  forever list
+  371  ls
+  372  cd ExNodeServer/
+  373  forever help
+  374  forever --help
+  375  sudo forever stopall
+  376  forever list
+  377  forever start index.js
+  378  forever list
+  379  cd ..
+  380  cd explat/
+  381  ls
+  382  nano motorizado/templates/motorizado/rastreo.html 
+  383  sudo /etc/init.d/apache2 restart 
+  384  nano /var/log/apache2/error.log
+  385  sudo /etc/init.d/apache2 stop 
+  386  ls
+  387  nano exp/settings.py
+  388  python manage.py runserver 0.0.0.0:80
+  389  source ../exp/bin/activate
+  390  python manage.py runserver 0.0.0.0:80
+  391  sudo python manage.py runserver 0.0.0.0:80
+  392  sudo su
+  393  ls
+  394  source exp/bin/activate
+  395  ls
+  396  cd explat/
+  397  sudo su
+  398  cd ..
+  399  cd ExNodeServer/
+  400  node index.js
+  401  npm install -g
+  402  node index.js
+  403  npm install package.json 
+  404  ls
+  405  cd node_modules/
+  406  ls
+  407  cd ..
+  408  node index.js 
+  409  nano package.json 
+  410  npm install sqlite3@3.1.14
+  411  node -v
+  412  nano package.json 
+  413  npm install sqlite3@3.1.4
+  414  chmod -R 777 node_modules/
+  415  sudo chmod -R 777 node_modules/
+  416  npm install sqlite3@3.1.4
+  417  nano package.json 
+  418  node index.js 
+  419  forever list
+  420  forever start index.js
+  421  node index.js 
+  422  deactivate
+  423  node index.js 
+  424  forever list
+  425  forever stop 0
+  426  forever list
+  427  node index.js 
+  428  forever index.js 
+  429  forever start index.js 
+  430  sudo /etc/init.d/apache2 strat
+  431  sudo /etc/init.d/apache2 restart
+  432  cd ..
+  433  ls
+  434  mkdir maquina
+  435  cd maquina/
+  436  virtualenv pventa
+  437  cd ..
+  438  mkdir entorno
+  439  cd entorno/
+  440  git clone 
+  441  git clone https://github.com/vpadillar/pventa.git
+  442  cd pventa/
+  443  ls
+  444  git branch 
+  445  git checkout supra
+  446  git branch 
+  447  source ../../maquina/pventa/bin/activate
+  448  python manage.py runserver 0.0.0.0:8000
+  449  ls
+  450  python manage.py runserver 0.0.0.0:8000
+  451  pip install -r dependencias.txt
+  452  sudo pip install -r dependencias.txt
+  453  sudo apt install python-pip
+  454  pip install -r dependencias.txt
+  455  pip install -R dependencias.txt
+  456  nano ../../explat/motorizado/templates/motorizado/editMoto
+  457  nano ../../explat/motorizado/templates/motorizado/editMotorizado.html 
+  458  sudo /etc/init.d/apache2 restart 
+  459  pip install -r dependencias.txt
+  460  nano dependencias.txt
+  461  git pull
+  462  ls
+  463  git checkout 
+  464  ls
+  465  pip install -R librerias
+  466  pip install -R librerias.txt
+  467  pip install -r librerias.txt
+  468  python manage.py runserver 0.0.0.0:8000
+  469  python manage.py runserver 0.0.0.0:9000
+  470  deactivate
+  471  cd ..
+  472  cd /etc/apache2/sites-available/
+  473  ls
+  474  nano 000-explat.conf 
+  475  sudo apache2ctl 000-explat
+  476  sudo a2ensite 000-explat.conf 
+  477  sudo /etc/init.d/apache2 restart 
+  478  nano /etc/apache2/ports.conf 
+  479  sudo /etc/init.d/apache2 restart 
+  480  nano ../sites-enabled/000-explat.conf 
+  481  chmod -R /home/ubuntu/entorno/
+  482  sudo chmod -R /home/ubuntu/entorno/
+  483  sudo chmod -R /home/ubuntu/entorno
+  484  cd /home/ubuntu/entorno
+  485  sudo chmod -R pventa/
+  486  nano /etc/apache2/sites-available/000-explat.conf 
+  487  netstat -anp | grep apache
+  488  sudo su
+  489  sudo chown :www-data ~pventa
+  490  sudo chown :www-data ~/pventa
+  491  sudo chown :www-data ~/entorno/pventa
+  492  sudo /etc/init.d/apache2 restart 
+  493  chmod 0775 pventa/ -R
+  494  umask pventa/ -R
+  495  umask 0002 pventa/ -R
+  496  sudo /etc/init.d/apache2 restart 
+  497  exit
+  498  sudo su postgres
+  499  virtualenv maquina/register
+  500  source maquina/register/bin/activate
+  501  pip install django 
+  502  pip install psycopg2
+  503  python manage.py migrate
+  504  ls
+  505  cd entorno/
+  506  ls
+  507  git 
+  508  cls
+  509  clear
+  510  cd::
+  511  cd..
+  512  cd ..
+  513  cd maquina/
+  514  cd register/
+  515  source bin/activate
+  516  cd ..
+  517  cd entorno/
+  518  ls
+  519  cd Registered/
+  520  clear
+  521  ls
+  522  python manage.py
+  523  python manage.py runserver
+  524  ython manage.py runserver:9000
+  525  ython manage.py runserver 0.0.0.0:9000
+  526  python manage.py runserver 0.0.0.0:9000
+  527  deactivate
+  528  ls
+  529  cd ..
+  530  ls
+  531  rm -R Registered
+  532  ls
+  533  sudo su
+  534  ls
+  535  cd entorno/
+  536  ls
+  537  git clone https://github.com/ExpressDelNorte/Registered.git
+  538  ls
+  539  cd Registered/
+  540  ls
+  541  cd ..
+  542  ls
+  543  cd maquina/
+  544  ls
+  545  cd register/
+  546  ls
+  547  source bin/activate
+  548  cd ..
+  549  cd entorno/
+  550  cd Registered/
+  551  ls
+  552  python manage.py runserver 0.0.0.0:9000
+  553  pip install django-cuser==2017.3.16
+  554  python manage.py runserver 0.0.0.0:9000
+  555  pip install django-nested-admin==3.0.17
+  556  pip install 
+  557  pip install django-polls==0.2.1
+  558  pip install olefile==0.44
+  559  pip install packaging==16.8
+  560  python manage.py runserver 0.0.0.0:9000
+  561  ppip install supra==1.1.40
+  562  pip install supra==1.1.40
+  563  python manage.py runserver 0.0.0.0:9000
+  564  pip install Pillow==4.1.0
+  565  python manage.py runserver 0.0.0.0:9000
+  566  pip install pkg-resources==0.0.0
+  567  pip install psycopg2==2.7.1
+  568  pip install pyparsing==2.2.0
+  569  python manage.py runserver 0.0.0.0:9000
+  570  git status
+  571  git checkout estable
+  572  git add .
+  573  git commit -m "contrasena portgre"
+  574  git push origin estable
+  575  git push
+  576  git push origin master
+  577  git push origin estable
+  578  git status
+  579  git add .
+  580  git commit -m "seting"
+  581  git push origin master
+  582  git status
+  583  git checkout estable
+  584  git checkout
+  585  python manage.py runserver
+  586  python manage.py runserver 0.0.0.0:9000
+  587  ls
+  588  cd Registered/
+  589  ls
+  590  nano settings.py
+  591  python manage.py runserver 0.0.0.0:9000
+  592  cd..
+  593  cd ..
+  594  ls
+  595  python manage.py runserver 0.0.0.0:9000
+  596  python manage.py rucreatesuperuser
+  597  python manage.py createsuperuser
+  598  python manage.py migrate
+  599  python manage.py createsuperuser
+  600  python manage.py runserver 0.0.0.0:9000
+  601  git pull
+  602  git status
+  603  git add settings.py
+  604  git add Registered/settings.py 
+  605  git commit -m"setting"
+  606  git push origin estable
+  607  git pull
+  608  ls
+  609  cd entorno/Registered/
+  610  cd ..
+  611  cd maquina/register/
+  612  cdls
+  613  ls
+  614  source bin/activate
+  615  cd ..
+  616  ls
+  617  cd entorno/
+  618  cd Registered/
+  619  python manage.py runserver 0.0.0.0:9000
+  620  python manage.py migrate
+  621  python manage.py runserver 0.0.0.0:9000
+  622  git pull
+  623  python manage.py runserver 0.0.0.0:9000
+  624  git pull
+  625  cd ..
+  626  git clone https://github.com/ExpressDelNorte/Registered.git
+  627  cd Registered/
+  628  git branch estable
+  629  git checkout estable 
+  630  python manage.py runserver 0.0.0.0:9000
+  631  git branch
+  632  ls
+  633  python manage.py runserver 0.0.0.0:9000
+  634  git pull
+  635  git pull estable
+  636  python manage.py runserver 0.0.0.0:9000
+  637  git branch 
+  638  git status
+  639  cd ..
+  640  cd entorno/Registered/
+  641  nano usuario/views.py
+  642  python manage.py runserver 0.0.0.0:9000
+  643  source maquina/register/bin/activate
+  644  cd entorno/Registered/
+  645  python manage.py runserver 0.0.0.0:9000
+  646  creen
+  647  ls
+  648  sudo rm -R Registered/
+  649  ls
+  650  git clone https://github.com/darkdrei/GestionRegistro.git
+  651  ls
+  652  cd maquina/reg
+  653  cd maquina/register/
+  654  ls
+  655  source bin/activate
+  656  cd ..
+  657  ls
+  658  cd GestionRegistro/
+  659  git status
+  660  git checkout deploy
+  661  git status
+  662  ls
+  663  python manage.py runserver 0.0.0.0:8000
+  664  python manage.py runserver 0.0.0.0:3000
+  665  python manage.py createsuperuser
+  666  python manage.py runserver 0.0.0.0:3000
+  667  ls
+  668  ls
+  669  cd GestionRegistro/
+  670  ls
+  671  git statuc
+  672  git status
+  673  git pull origin deploy 
+  674  cd ..
+  675  ls
+  676  cd maquina/
+  677  ls
+  678  virtualenv gestionreporte
+  679  screen -r
+  680  screen
+  681  screen
+  682  screen -r
+  683  screnn -n
+  684  screen -d
+  685  source maquina/gestionreporte/bin/activate
+  686  cd GestionRegistro/
+  687  git branch 
+  688  git estatus
+  689  git status
+  690  git pull origin deploy 
+  691  pip install -r dependencias.txt 
+  692  nano dependencias.txt 
+  693  ls
+  694  source maquina/gestionreporte/bin/activate
+  695  cd GestionRegistro/
+  696  pip install -r  dependencias.txt 
+  697  nano dependencias.txt 
+  698  pip install -r  dependencias.txt 
+  699  python manage.py runserver 0.0.0.0:3000
+  700  source maquina/gestionreporte/bin/activate
+  701  cd GestionRegistro/
+  702  python manage.py runserver 0.0.0.0:3000
+  703  source maquina/gestionreporte/bin/activate
+  704  cd GestionRegistro/
+  705  python manage.py runserver 0.0.0.0:3000
+  706  source maquina/gestionreporte/bin/activate
+  707  cd GestionRegistro/
+  708  python manage.py runserver 0.0.0.0:3000
+  709  source maquina/gestionreporte/bin/activate
+  710  source maquina/gestionreporte/bin/activate
+  711  cd GestionRegistro/
+  712  python manage.py runserver 0.0.0.0:3000
+  713  source maquina/gestionreporte/bin/activate
+  714  cd GestionRegistro/
+  715  python manage.py runserver 0.0.0.0:3000
+  716  nano /etc/apache2/ports.conf 
+  717  sudo nano /etc/apache2/ports.conf 
+  718  cd /etc/apache2/sites-available/
+  719  ls
+  720  cp 000-explat.conf 000-register.conf
+  721  sudo cp 000-explat.conf 000-register.conf
+  722  sudo nano 000-register.conf 
+  723  cd /home/ubuntu/
+  724  sudo chmod :www-data /home/ubuntu/GestionRegistro
+  725  sudo chown :www-data /home/ubuntu/GestionRegistro
+  726  cd /etc/apache2/sites-available/
+  727  sudo a2ensite 000-register.conf 
+  728  sudo service apache2 restart
+  729  sudo service apache2 stop
+  730  sudo service apache2 start
+  731  sudo nano 000-register.conf 
+  732  sudo a2ensite 000-register.conf 
+  733  cd ..
+  734  cd sites-enabled/
+  735  ls
+  736  nano 000-register.conf 
+  737  sudo service apache2 stop
+  738  sudo service apache2 start
+  739  cd ..
+  740  cd sites-available/
+  741  ls
+  742  nano 000-default.conf 
+  743  sudo service apache2 stop
+  744  sudo nano 000-register.conf 
+  745  cd ..
+  746  cd sites-enabled/
+  747  ls
+  748  sudo rm 000-register.conf 
+  749  ls
+  750  cd ..
+  751  cd sites-available/
+  752  sudo nano 000-register.conf 
+  753  sudo a2ensite 000-register.conf 
+  754  sudo service apache2 run
+  755  sudo service apache2 strat
+  756  sudo service apache2 start
+  757  cd ..
+  758  cd /home/ubuntu/GestionRegistro/usuario
+  759  ls
+  760  history 
+  761  history ->histoti.txt
+  762  history -->histoti.txt
+  763  nano histoti.txt 
+  764  sudo service apache2 stop
+  765  cd /etc/apache2/sites-available/
+  766  ls
+  767  nano 000-register.conf 
+  768  cd /home/ubuntu/GestionRegistro/
+  769  git branch 
+  770  git pull
+  771  cd /etc/apache2/sites-available/
+  772  nano 000-register.conf 
+  773  cd /home/ubuntu/GestionRegistro/
+  774  ls
+  775  activate /home/ubuntu/maquina/gestionreporte/bin/activate
+  776  source /home/ubuntu/maquina/gestionreporte/bin/activate
+  777  python manage.py collectstatic
+  778  nano Registered/settings.py
+  779  python manage.py collectstatic
+  780  nano Registered/settings.py
+  781  python manage.py collectstatic
+  782  histor
+  783  python manage.py migrate
+  784  python manage.py showmigrations
+  785  git add .
+  786  git commit -m "actualizacion"
+  787  git pull
+  788  nano Registered/settings.py
+  789  git add .
+  790  git commit -m "actualizacion"
+  791  git pull
+  792  python manage.py showmigrations
+  793  ls
+  794  nano dependencias.txt 
+  795  pip install -r dependencias.txt 
+  796  cd ..
+  797  ls
+  798  cd entorno/
+  799  ls
+  800  cd ..
+  801  rm -R entorno
+  802  sudo rm -R entorno
+  803  ls ~/.local/share/Trash/
+  804  sudo ls ~/.local/share/Trash/
+  805  cd GestionRegistro/
+  806  pip install -r dependencias.txt 
+  807  cd ..
+  808  ls
+  809  cd exp
+  810  ls
+  811  cd ..
+  812  cd explat/
+  813  ls
+  814  cd ..
+  815  ls
+  816  cd maquina/
+  817  ls
+  818  cd /etc/apache2/
+  819  ls
+  820  nano ports.conf 
+  821  cd sites-available/
+  822  ls
+  823  nano 000-explat.conf 
+  824  cd /home/ubuntu/GestionRegistro/
+  825  python manage.py runserver 0.0.0.0:8000
+  826  git pull
+  827  nano dependencias.txt 
+  828  pip install -r dependencias.txt 
+  829  python manage.py runserver 0.0.0.0:8000
+  830  python manage.py runserver 0.0.0.0:3000
+  831  ls
+  832  cd GestionRegistro/
+  833  ls
+  834  history
+  835  history 
+  836  psql -U postgres
+  837  psql -h 127.0.0.1 -U postgres
+  838  history
+  839  cd GestionRegistro/
+  840  ls
+  841  history 
+  842  psql -h 127.0.0.1 -U postgres -W -f reporte_pedidos.sql register
+  843  cd Registered/sqls/
+  844  ls
+  845  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register
+  846  psql -h 127.0.0.1 -U postgres -W -f get_tiempos.sql register
+  847  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador2.sql register
+  848  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador.sql register
+  849  psql -h 127.0.0.1 -U postgres -W -f labor_empleado_test.sql register
+  850  psql -h 127.0.0.1 -U postgres -W -f reporte_especifico.sql register
+  851  psql -h 127.0.0.1 -U postgres -W -f reporte_general.sql register
+  852  psql -h 127.0.0.1 -U postgres -W -f reporte_general2.sql register
+  853  cd ..
+  854  python manage.py runserver 0.0.0.0:3000
+  855  cd ..
+  856  python manage.py runserver 0.0.0.0:3000
+  857  source ../maquina/register/bin/activate
+  858  python manage.py runserver 0.0.0.0:3000
+  859  cd ..
+  860  ls
+  861  nano /etc/apache2/sites-available/000-register.conf 
+  862  deactivate
+  863  source maquina/gestionreporte/bin/activate
+  864  cd GestionRegistro/
+  865  python manage.py runserver 0.0.0.0:3000
+  866  sudo service apache2 restart 
+  867  python manage.py runserver 0.0.0.0:3000
+  868  sudo service apache2 stop
+  869  python manage.py runserver 0.0.0.0:3000
+  870  git pull
+  871  cd ../..
+  872  ls
+  873  cd ubuntu/
+  874  git clone 
+  875  cd GestionRegistro/
+  876  git status
+  877  git pull
+  878  git add .
+  879  git commit -m "actualizacion"
+  880  git pull
+  881  python manage.py runserver 0.0.0.0:3000
+  882  nano Registered/settings.py
+  883  python manage.py runserver 0.0.0.0:3000
+  884  python manage.py migrate
+  885  python manage.py runserver 0.0.0.0:3000
+  886  python manage.py
+  887  python manage.py changepassword
+  888  python manage.py changepassword admin
+  889  python manage.py shell
+  890  sudo service apache2 restart 
+  891  python manage.py collectstatic
+  892  cd GestionRegistro/
+  893  ls
+  894  source ../maquina/register/bin/activate
+  895  python manage.py showmigartions
+  896  deactivate 
+  897  source ../maquina/gestionreporte/bin/activate
+  898  python manage.py showmigartions
+  899  python manage.py showmigrations
+  900  git pull
+  901  git branch 
+  902  ls
+  903  sudo service apache2 stop
+  904  sudo -u postgres createdb register2
+  905  ls
+  906  cd empresa/
+  907  ls
+  908  cd migrations/
+  909  ls
+  910  rm 0001_initial.py
+  911  ls
+  912  rm 0001_initial.pyc 
+  913  rm 0002_auto_20170503_1421.py
+  914  rm 0002_auto_20170503_1421.pyc 
+  915  ls
+  916  rm __init__.py
+  917  ls
+  918  rm __init__.pyc 
+  919  nano __init__.py
+  920  ls
+  921  cd..
+  922  cd ..
+  923  clear
+  924  ls
+  925  cd migrations/
+  926  ls
+  927  cd ..
+  928  ls
+  929  cd operacion/migrations/
+  930  ls
+  931  rm 0001_initial.py
+  932  rm 0001_initial.pyc 
+  933  rm 0002_preciodefecto.py
+  934  rm 0002_preciodefecto.pyc 
+  935  rm 0003_auto_20170508_2013.py
+  936  rm 0003_auto_20170508_2013.pyc 
+  937  rm 0004_pagolabor.py
+  938  rm 0004_pagolabor.pyc 
+  939  rm 0005_auto_20170826_1327.py
+  940  rm 0005_auto_20170826_1327.pyc 
+  941  rm 0006_auto_20170826_1339.py
+  942  rm 0006_auto_20170826_1339.pyc 
+  943  ls
+  944  rm __init__.pyc
+  945  ls
+  946  cd ../..
+  947  ls
+  948  cd usuario/migrations/
+  949  ls
+  950  rm 0001_initial.pyc 
+  951  rm 0001_initial.py
+  952  ls
+  953  rm __init__.pyc
+  954  ls
+  955  cd ../..
+  956  ls
+  957  cd motorizado/migrations/
+  958  ls
+  959  rm __init__.pyc
+  960  rm 0001_initial.py
+  961  rm 0001_initial.pyc 
+  962  ls
+  963  cd ..
+  964  ls
+  965  cd ..
+  966  ls
+  967  python manage.py showmigrations
+  968  pytho
+  969  python manage.py showmigrations
+  970  python manage.py makemigrations
+  971  python manage.py migrate
+  972  python manage.py changepassword
+  973  python manage.py changepassword admin
+  974  python manage.py createsuperuser
+  975  python manage.py runserver 0.0.0.0:8000
+  976  python manage.py runserver 0.0.0.0:3000
+  977  ls
+  978  cd Registered/
+  979  ls
+  980  cd sqls/
+  981  history 
+  982  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register
+  983  ls
+  984  psql -h 127.0.0.1 -U postgres -W -f get_tiempos.sql 
+  985  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador2.sql 
+  986  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador.sql 
+  987  psql -h 127.0.0.1 -U postgres -W -f labor_empleado_test.sql 
+  988  psql -h 127.0.0.1 -U postgres -W -f reporte_especifico.sql 
+  989  psql -h 127.0.0.1 -U postgres -W -f reporte_general2.sql 
+  990  psql -h 127.0.0.1 -U postgres -W -f reporte_general.sql 
+  991  Daniel Reis  
+  992  On 05/09/13 05:30
+  993  sudo -u postgres dropdb register
+  994  sudo service apache2 restart 
+  995  exit()
+  996  exit
+  997  hwclock --set --date="2017-09-08 11:42"
+  998  sudo hwclock --set --date="2017-09-08 11:42"
+  999  hwclock
+ 1000  sudo hwclock
+ 1001  txselect
+ 1002  tzselect
+ 1003  sudo hwclock
+ 1004  ls 
+ 1005  sudo service apache stop
+ 1006  sudo service apache2 stop
+ 1007  cd GestionRegistro/
+ 1008  git pull
+ 1009  source ../maquina/register/bin/activate
+ 1010  python manage.py collectstatic
+ 1011  deactivate
+ 1012  source ../maquina/gestionreporte/bin/activate
+ 1013  python manage.py collectstatic
+ 1014  sudo service apache2 restart
+ 1015  sudo hwclock
+ 1016  sudo service apache2 stop
+ 1017  cd ..
+ 1018  ls
+ 1019  cd ubuntu/
+ 1020  ls
+ 1021  cd GestionRegistro/
+ 1022  ls
+ 1023  git branch
+ 1024  git pull
+ 1025  cd ..
+ 1026  sudo service apache2 restart
+ 1027  history 
+ 1028  ls
+ 1029  cd GestionRegistro/
+ 1030  ls
+ 1031  git status
+ 1032  ls
+ 1033  cd Registered/
+ 1034  ls
+ 1035  cd sqls/
+ 1036  ls
+ 1037  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador2.sql register
+ 1038  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador2.sql register2
+ 1039  ls
+ 1040  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register2
+ 1041  psql -h 127.0.0.1 -U postgres -W -f get_tiempos.sql register2
+ 1042  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador.sql register2
+ 1043  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador2.sql register2
+ 1044  psql -h 127.0.0.1 -U postgres -W -f labor_empleado_test.sql register2
+ 1045  psql -h 127.0.0.1 -U postgres -W -f reporte_especifico.sql register2
+ 1046  ls
+ 1047  psql -h 127.0.0.1 -U postgres -W -f reporte_general register2
+ 1048  psql -h 127.0.0.1 -U postgres -W -f reporte_general.sql register2
+ 1049  psql -h 127.0.0.1 -U postgres -W -f reporte_general2.sql register2
+ 1050  cd ..
+ 1051  nano /etc/apache2/sites-available/
+ 1052  nano /etc/apache2/sites-available/000-register.conf 
+ 1053  source ../maquina/gestionreporte/bin/activate
+ 1054  python manage.py runserver 0.0.0.0:3500
+ 1055  git status
+ 1056  cd Registered/
+ 1057  ls
+ 1058  clear
+ 1059  cd sqls/
+ 1060  clear
+ 1061  psql -h 127.0.0.1 -U postgres -W -f reporte_general2.sql register2
+ 1062  -- DROP FUNCTION public.reporte_general(text, date, date);
+ 1063  CREATE OR REPLACE FUNCTION public.reporte_general(
+ 1064  trabajador text,
+ 1065  inicio date,
+ 1066  finalizar date)
+ 1067  RETURNS json
+ 1068  AS $function$
+ 1069  begin
+ 1070  return (SELECT COALESCE(array_to_json(array_agg(row_to_json(p))), '[]') from (
+ 1071  select 
+ 1072  ) p);
+ 1073  end;
+ 1074  $function$;
+ 1075  ALTER FUNCTION public.reporte_general(text, date, date)
+ 1076  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador2.sql register2
+ 1077  -- DROP FUNCTION public.reporte_general(text, date, date);
+ 1078  CREATE OR REPLACE FUNCTION public.reporte_general(
+ 1079  trabajador text,
+ 1080  inicio date,
+ 1081  finalizar date)
+ 1082  RETURNS json
+ 1083  AS $function$
+ 1084  begin
+ 1085  return (SELECT COALESCE(array_to_json(array_agg(row_to_json(p))), '[]') from (
+ 1086  select 
+ 1087  ) p);
+ 1088  end;
+ 1089  $function$;
+ 1090  ALTER FUNCTION public.reporte_general(text, date, date)
+ 1091  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register2
+ 1092  -- DROP FUNCTION public.reporte_general(text, date, date);
+ 1093  CREATE OR REPLACE FUNCTION public.reporte_general(
+ 1094  trabajador text,
+ 1095  inicio date,
+ 1096  finalizar date)
+ 1097  RETURNS json
+ 1098  AS $function$
+ 1099  begin
+ 1100  return (SELECT COALESCE(array_to_json(array_agg(row_to_json(p))), '[]') from (
+ 1101  select 
+ 1102  ) p);
+ 1103  end;
+ 1104  $function$;
+ 1105  ALTER FUNCTION public.reporte_general(text, date, date)
+ 1106  nano get_labores.sql 
+ 1107  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register2
+ 1108  clear
+ 1109  ls
+ 1110  psql -h 127.0.0.1 -U postgres -W -f get_tiempos.sql register2
+ 1111  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador.sql register2
+ 1112  psql -h 127.0.0.1 -U postgres -W -f get_total_trabajador2.sql register2
+ 1113  psql -h 127.0.0.1 -U postgres -W -f labor_empleado_test.sql register2
+ 1114  psql -h 127.0.0.1 -U postgres -W -f reporte_especifico.sql register2
+ 1115  psql -h 127.0.0.1 -U postgres -W -f reporte_general.sql register2
+ 1116  psql -h 127.0.0.1 -U postgres -W -f reporte_general2.sql register2
+ 1117  cd ..
+ 1118  ls
+ 1119  python manage.py runserver 0.0.0.0:3500
+ 1120  cd ..
+ 1121  python manage.py runserver 0.0.0.0:3500
+ 1122  dumpdata --exclude django.migrations > db.json
+ 1123  python manage.py dumpdata --exclude django.migrations > db.json
+ 1124  python manage.py dumpdata  > db.json
+ 1125  ls
+ 1126  cd GestionRegistro/
+ 1127  ls
+ 1128  source ../maquina/gestionreporte/bin/activate
+ 1129  python manage.py dumpdata --exclude auth.permission --exclude contenttypes > data.json
+ 1130  nano Registered/settings.py
+ 1131  cd Registered/
+ 1132  ls
+ 1133  nano settings.py
+ 1134  python manage.py migrate
+ 1135  cd ..
+ 1136  python manage.py migrate
+ 1137  python manage.py showmigrations
+ 1138  nano manage.py 
+ 1139  nano Registered/settings.py
+ 1140  python manage.py migrate
+ 1141  python manage.py showmigrations
+ 1142  nano Registered/settings.py
+ 1143  sudo poweroff
+ 1144  source maquina/gestionreporte/bin/activate
+ 1145  psql -U postgres -W -h 127.0.0.1 register4
+ 1146  cd GestionRegistro/
+ 1147  python manage.py runserver 0.0.0.0:3500
+ 1148  git add db3.json 
+ 1149  git commit -m "data de mi local deploy"
+ 1150  git Registered/settings.py
+ 1151  git add Registered/settings.py
+ 1152  git commit -m "cambio del local db settng"
+ 1153  git status
+ 1154  ls
+ 1155  cd Registered/
+ 1156  ls
+ 1157  git pull
+ 1158  git add .
+ 1159  git commit -m "reportar actualizacion"
+ 1160  git pull
+ 1161  nano settings.py
+ 1162  git pull
+ 1163  git add settings.py 
+ 1164  git commit -m "solucion del merge"
+ 1165  cd ..
+ 1166  git add Registered/settings.py 
+ 1167  git commit -m "solucion del merge"
+ 1168  rm historial.txt 
+ 1169  git push origin deploy_actualizacion 
+ 1170  git pull
+ 1171  git pull origin deploy_actualizacion 
+ 1172  ls
+ 1173  cd Registered/sql2
+ 1174  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register4
+ 1175  cd ../..
+ 1176  git pull origin deploy_actualizacion 
+ 1177  cd ../..
+ 1178  cd ubuntu/GestionRegistro/Registered/sql2
+ 1179  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register4
+ 1180  nano get_labores.sql 
+ 1181  cd ubuntu/GestionRegistro/Registered/sql2
+ 1182  nano get_labores.sql 
+ 1183  cd ../..
+ 1184  git pull origin deploy_actualizacion 
+ 1185  cd Registered/sql2
+ 1186  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register4
+ 1187  cd ../..
+ 1188  ls
+ 1189  python manage.py runserver 0.0.0.0:3500
+ 1190  nano Registered/settings.py
+ 1191  python manage.py runserver 0.0.0.0:3500
+ 1192  nano Registered/settings.py
+ 1193  cd Registered/sql2/
+ 1194  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register4
+ 1195  psql -h 127.0.0.1 -U postgres -W -f get_labores.sql register2
+ 1196  psql -U postgres -W -h 127.0.0.1 register4
+ 1197  psql -U postgres -W -h 127.0.0.1 register2
+ 1198  history
+ 1199  history > histori.txt
