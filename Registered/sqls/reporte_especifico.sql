@@ -3,7 +3,7 @@ CREATE OR REPLACE FUNCTION public.reporte_especifico(
 	trabajador text,
 	inicio date,
 	finalizar date)
-RETURNS json
+    RETURNS json
     LANGUAGE 'plpgsql'
     COST 100.0
 
@@ -26,7 +26,10 @@ begin
                          and cast(pl.fin as date) >= inicio and cast(pl.fin as date) <= finalizar) );
 
 	data_:= (SELECT COALESCE(array_to_json(array_agg(row_to_json(p))), '[]') from (
-			select t2.ini,t2.fin,to_char(t2.total_horas,'FM$999,999,999,990') as total_horas,trunc(t2.horas)||' horas y '||trunc((trunc(t2.horas, 2)-trunc(t2.horas))*60)||' minutos.' as horas from(select t1.orden, (select min(bus.ini) from operacion_labor as bus where extract(day from bus.ini)=t1.orden and  bus.empleado_id=t1.empleado) as ini,(select max(bus.fin) from operacion_labor as bus where extract(day from bus.ini)=t1.orden and  bus.empleado_id=t1.empleado) as fin,sum(case when t1.total is not null then t1.total else 0 end) as total_horas,sum(case when t1.horas is not null then cast(t1.horas as numeric) else 0 end) as horas,t1.empleado 
+			select t2.ini,t2.fin,to_char(t2.total_horas,'FM$999,999,999,990') as total_horas,trunc(t2.horas)||' horas y '||trunc((trunc(t2.horas, 2)-trunc(t2.horas))*60)||' minutos.' as horas from(
+    select t1.orden, (
+                      select min(bus.ini) from operacion_labor as bus where extract(day from bus.ini)=t1.orden and  bus.empleado_id=t1.empleado) as ini,
+                      (select max(bus.fin) from operacion_labor as bus where extract(day from bus.ini)=t1.orden and bus.estado=true and  bus.empleado_id=t1.empleado) as fin,sum(case when t1.total is not null then t1.total else 0 end) as total_horas,sum(case when t1.horas is not null then cast(t1.horas as numeric) else 0 end) as horas,t1.empleado 
          from(select EXTRACT(DAY FROM tf.ini) as orden,tf.horas,tf.total,tf.total_horas,tf.id as empleado  from(select u.id,l.ini,l.fin,
 			       sum(case when (select count(pl.id) from operacion_pagolabor as pl  where pl.labor_id=l.id limit 1) > 0 then 
                                      (select sum(case when pl.precio is not null and pl.hora is not null then pl.hora else 0 end) from operacion_pagolabor as pl where pl.labor_id=l.id) 
