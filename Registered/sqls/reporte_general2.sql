@@ -27,7 +27,7 @@ begin
 		 inner JOIN empresa_tienda as t ON (t.id = e.tienda_id)
 		 inner join empresa_ciudad as c on (t.ciudad_id=c.id)
 		 inner join auth_user as em on (em.id=t.empresa_id)
-		 left join operacion_labor as l on (u.id=l.empleado_id and l.cerrado=true and l.fin>=inicio and l.fin <=finalizar)
+		 left join operacion_labor as l on (u.id=l.empleado_id and l.cerrado=true and cast(l.fin as date)>=inicio and cast(l.fin as date) <=finalizar)
 		 left join operacion_pagolabor as pl on (l.id=pl.labor_id) group by u.id, usu.identificacion, u.first_name,u.last_name,t.nombre,em.first_name,c.nombre
 	) p);
 end;
