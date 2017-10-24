@@ -228,11 +228,18 @@ function seleccionarEmpleados(){
   function isValidDate(){
     var ini = $('#inicio').val(),
           fin = $('#fin').val();
-      console.log(ini,"  ",fin,"  ",fin>ini)
-      if (fin > ini){
-        return true;
-      }else{
-        return false;
+      if (ini.length > 0 && fin.length > 0){
 
+          if (converFecha(fin) > converFecha(ini)){
+            return true;
+          }else{
+            return false;
+          }
       }
+      return false;
+  }
+
+  function converFecha(date_){
+    var fecha = date_.split("/");
+    return new Date(fecha[2],fecha[1]-1,fecha[0]);
   }

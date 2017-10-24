@@ -202,8 +202,8 @@ class LaborForm(forms.ModelForm):
 
     class Meta:
         model = models.Labor
-        fields = ['empleado','ini','fin']
-        exclude = ['estado']
+        fields = ['empleado','ini','fin','estado','cerrado']
+        exclude = []
     #end class
 
     def save(self, commit = True):
