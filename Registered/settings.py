@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'Registered.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'register',
+        'NAME': 'register2',
         'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',
@@ -109,7 +109,7 @@ DATABASES = {
         'POST': '5432'
     },
 }
-
+"""
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -145,6 +145,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
+"""
 LOGIN_URL = 'usuario:login'
 LOGIN_REDIRECT_URL = 'usuario:login'
 STATIC_URL = '/static/'
@@ -152,3 +153,11 @@ STATIC_ROOT = '/home/ubuntu/GestionRegistro/static/'
 MEDIA_URL = '/media/'
 HOST_MEDIA = '/home/ubuntu/GestionRegistro/media/'
 MEDIA_ROOT = '/home/ubuntu/GestionRegistro/media/'
+"""
+LOGIN_URL = 'usuario:login'
+LOGIN_REDIRECT_URL = 'usuario:login'
+STATIC_URL = '/static/'
+STATIC_ROOT = '/home/dark/proyectos/GestionRegistro/static/'
+MEDIA_URL = '/media/'
+HOST_MEDIA = '/home/dark/proyectos/GestionRegistro/media/'
+MEDIA_ROOT = '/home/dark/proyectos/GestionRegistro/media/'

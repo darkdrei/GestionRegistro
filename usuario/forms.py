@@ -65,6 +65,7 @@ class EmpleadoEditForm(forms.ModelForm):
     # end class
 #end class
 
+
 class AdministradorForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(AdministradorForm, self).__init__(*args, **kwargs)
